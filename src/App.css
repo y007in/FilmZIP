@@ -90,3 +90,56 @@ header {
   justify-content: center;
   align-items: center;
 }
+
+.tabs {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.tabs li {
+  width: 50%;
+  border: 0.16rem solid #ccc;
+  padding: 1.2rem 0;
+  cursor: pointer;
+}
+.tabs li:first-child {
+  border-right: none;
+}
+.active {
+  background-color: bisque;
+}
+
+.lists {
+  display: flex;
+  flex-direction: column;
+}
+.list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
+  border: 0.16rem solid #ccc;
+  border-top: none;
+  cursor: pointer;
+}
+.rightBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.delBtn {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.noSearchKeyword {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
+}
