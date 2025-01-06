@@ -17,7 +17,7 @@ const useMovies = () => {
       .then((data) => {
         setMovies(data.results || []);
       });
-  }, []); // 컴포넌트가 마운트될 때 한 번만 호출
+  }, []);
 
   return { movies };
 };
