@@ -1,3 +1,4 @@
+import List from "../../../components/List";
 import useMovies from "../../../hooks/useMovies";
 
 const RecommendKeyword = ({ handleRecommend }) => {
@@ -5,17 +6,16 @@ const RecommendKeyword = ({ handleRecommend }) => {
   //추천 검색어
 
   return (
-    <ul className="lists">
-      {movies.slice(0, 5).map((item, i) => (
-        <li
-          className="list"
-          key={item.id}
-          onClick={() => handleRecommend(item.title)}
-        >
-          {i + 1}.{item.title}
-        </li>
-      ))}
-    </ul>
+    <List
+      data={movies.slice(0, 5)}
+      onClick={(item) => handleRecommend(item.title)}
+      renderItem={(item, i) => (
+        <>
+          <span>{i + 1}</span>
+          <span>{item.title}</span>
+        </>
+      )}
+    />
   );
 };
 

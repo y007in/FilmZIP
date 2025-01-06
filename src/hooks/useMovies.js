@@ -6,7 +6,7 @@ const useMovies = () => {
   // API 호출
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/movie/top_rated?language=ko-US&page=1`,
+      `https://api.themoviedb.org/3/movie/now_playing?language=ko-US&page=1`,
       {
         headers: {
           Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,

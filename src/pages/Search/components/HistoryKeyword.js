@@ -1,9 +1,13 @@
+import List from "../../../components/List";
+
 const HistoryKeyword = ({ historyList, setHistoryList, handleRecommend }) => {
-  //최근 검색어 삭제
-  const handleDel = (id) => {
+  // 최근 검색어 삭제
+  const handleDel = (id, e) => {
+    e.stopPropagation();
     const delKeyword = historyList.filter((item) => item.id !== id);
     setHistoryList(delKeyword);
   };
+
   return (
     <>
       {historyList.length === 0 ? (
@@ -11,29 +15,25 @@ const HistoryKeyword = ({ historyList, setHistoryList, handleRecommend }) => {
           <p>검색어가 없습니다.</p>
         </div>
       ) : (
-        <ul className="lists">
-          {historyList.map(({ id, text, date }) => (
-            <li key={id}>
-              <ul className="list">
-                <li onClick={() => handleRecommend(text)}>{text}</li>
-                <li className="rightBtn">
-                  <span>{date}</span>
-                  <button
-                    className="delBtn"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleDel(id);
-                    }}
-                  >
-                    x
-                  </button>
-                </li>
-              </ul>
-            </li>
-          ))}
-        </ul>
+        <List
+          data={historyList}
+          onClick={(item) => handleRecommend(item.text)}
+          renderItem={(item) => (
+            <>
+              <span>{item.text}</span>
+              <div>
+                <span>{item.date}</span>
+                <button
+                  className="delBtn"
+                  onClick={(e) => handleDel(item.id, e)}
+                >
+                  x
+                </button>
+              </div>
+            </>
+          )}
+        />
       )}
-      ;
     </>
   );
 };

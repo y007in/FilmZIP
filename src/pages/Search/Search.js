@@ -8,6 +8,8 @@ import RecommendKeyword from "./components/RecommendKeyword";
 import HistoryKeyword from "./components/HistoryKeyword";
 
 import { TabType } from "../../constants/tabs";
+import { filterMovies } from "../../utils/filterMovies";
+import useMovies from "../../hooks/useMovies";
 
 const Search = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -15,6 +17,8 @@ const Search = () => {
   const [submitted, setSubmitted] = useState(false);
   const [historyList, setHistoryList] = useState([]);
   const [selectedTab, setSelectedTab] = useState(TabType.KEYWORD);
+
+  const { movies } = useMovies();
 
   const handleRecommend = (keyword) => {
     const recommendList = filterMovies(movies, keyword);
@@ -52,13 +56,14 @@ const Search = () => {
                   setSearchKeyword={setSearchKeyword}
                   setSearchResult={setSearchResult}
                   setSubmitted={setSubmitted}
-                  onClick={handleRecommend}
+                  handleRecommend={handleRecommend}
                 />
               )}
               {selectedTab === TabType.HISTORY && (
                 <HistoryKeyword
                   historyList={historyList}
                   setHistoryList={setHistoryList}
+                  handleRecommend={handleRecommend}
                 />
               )}
             </>
