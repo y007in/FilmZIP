@@ -1,7 +1,7 @@
 const SearchResult = ({ searchResult }) => {
   return (
     <ul className="mvCard">
-      {searchResult.map((item) => (
+      {searchResult.map(item => (
         <li className="mvInfo" key={item.id}>
           <img
             className="mvInfoImg"

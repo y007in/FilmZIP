@@ -1,7 +1,7 @@
-import "./App.css";
-import Main from "./pages/Main/Main";
-import Search from "./pages/Search/Search";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import './App.css';
+import Main from './pages/Main/Main';
+import Search from './pages/Search/Search';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (

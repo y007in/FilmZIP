@@ -1,5 +1,5 @@
-import { filterMovies } from "../../../utils/filterMovies";
-import useMovies from "../../../hooks/useMovies";
+import { filterMovies } from '../../../utils/filterMovies';
+import useMovies from '../../../hooks/useMovies';
 
 const SearchBar = ({
   searchKeyword,
@@ -11,16 +11,16 @@ const SearchBar = ({
 }) => {
   const { movies } = useMovies();
 
-  const handleSearchKeyword = (e) => {
+  const handleSearchKeyword = e => {
     if (e.target.value.length <= 0) {
       handleReset();
     }
     setSearchKeyword(e.target.value);
   };
 
-  const handleSubmit = (e, text) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    if (searchKeyword.trim() === "") {
+    if (searchKeyword.trim() === '') {
       handleReset();
       return;
     }
@@ -32,13 +32,13 @@ const SearchBar = ({
   };
 
   const handleReset = () => {
-    setSearchKeyword("");
+    setSearchKeyword('');
     setSearchResult([]);
     setSubmitted(false);
   };
 
   //최근 검색어
-  const handleAdd = (text) => {
+  const handleAdd = text => {
     const newKeyword = {
       id: Date.now(),
       text: text,
@@ -48,14 +48,14 @@ const SearchBar = ({
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)} onReset={handleReset}>
+    <form onSubmit={e => handleSubmit(e)} onReset={handleReset}>
       <input
         className="searchInput"
         type="text"
         placeholder="검색어를 입력하세요."
         autoFocus
         value={searchKeyword}
-        onChange={(e) => handleSearchKeyword(e)}
+        onChange={e => handleSearchKeyword(e)}
       />
       {searchKeyword.length > 0 && (
         <button type="reset" className="btnReset"></button>

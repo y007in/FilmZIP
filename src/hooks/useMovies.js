@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 const useMovies = () => {
   const [movies, setMovies] = useState([]);
@@ -11,10 +11,10 @@ const useMovies = () => {
         headers: {
           Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
         },
-      }
+      },
     )
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         setMovies(data.results || []);
       });
   }, []);

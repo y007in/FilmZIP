@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import Header from "../../components/Header";
-import SearchBar from "./components/SearchBar";
-import SearchResult from "./components/SearchResult";
-import Tabs from "./components/Tabs";
-import RecommendKeyword from "./components/RecommendKeyword";
-import HistoryKeyword from "./components/HistoryKeyword";
+import Header from '../../components/Header';
+import SearchBar from './components/SearchBar';
+import SearchResult from './components/SearchResult';
+import Tabs from './components/Tabs';
+import RecommendKeyword from './components/RecommendKeyword';
+import HistoryKeyword from './components/HistoryKeyword';
 
-import { TabType } from "../../constants/tabs";
-import { filterMovies } from "../../utils/filterMovies";
-import useMovies from "../../hooks/useMovies";
+import { TabType } from '../../constants/tabs';
+import { filterMovies } from '../../utils/filterMovies';
+import useMovies from '../../hooks/useMovies';
 
 const Search = () => {
-  const [searchKeyword, setSearchKeyword] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [historyList, setHistoryList] = useState([]);
@@ -20,7 +20,7 @@ const Search = () => {
 
   const { movies } = useMovies();
 
-  const handleRecommend = (keyword) => {
+  const handleRecommend = keyword => {
     const recommendList = filterMovies(movies, keyword);
     setSearchKeyword(keyword); //검색창에 키워드 출력
     setSearchResult(recommendList);
@@ -29,7 +29,7 @@ const Search = () => {
 
   return (
     <div className="App">
-      <Header header={"검색"} />
+      <Header header={'검색'} />
       <div className="container">
         <SearchBar
           searchKeyword={searchKeyword}

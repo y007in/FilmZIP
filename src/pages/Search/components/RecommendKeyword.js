@@ -1,5 +1,5 @@
-import List from "../../../components/List";
-import useMovies from "../../../hooks/useMovies";
+import List from '../../../components/List';
+import useMovies from '../../../hooks/useMovies';
 
 const RecommendKeyword = ({ handleRecommend }) => {
   const { movies } = useMovies();
@@ -8,7 +8,7 @@ const RecommendKeyword = ({ handleRecommend }) => {
   return (
     <List
       data={movies.slice(0, 5)}
-      onClick={(item) => handleRecommend(item.title)}
+      onClick={item => handleRecommend(item.title)}
       renderItem={(item, i) => (
         <>
           <span>{i + 1}</span>
