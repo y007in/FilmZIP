@@ -1,0 +1,16 @@
+@import './reset.scss';
+@import './variables.scss';
+
+//pages
+@import '../pages/Search/Search/Search.scss';
+
+//pages>components
+@import '../pages/Search/components/HistoryKeyword/HistoryKeyword.scss';
+@import '../pages/Search/components/RecommendKeyword/RecommendKeyword.scss';
+@import '../pages/Search/components/SearchBar/SearchBar.scss';
+@import '../pages/Search/components/Tabs/Tabs.scss';
+
+//components
+@import '../components/Header/Header.scss';
+@import '../components/List/List.scss';
+@import '../components/MovieList/MovieList.scss';

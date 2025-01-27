@@ -1,4 +1,4 @@
-import { TabType, TabLabel } from '../../../constants/tabs';
+import { TabType, TabLabel } from '../../../../constants/tabs';
 
 const Tabs = ({ selectedTab, setSelectedTab }) => {
   return (

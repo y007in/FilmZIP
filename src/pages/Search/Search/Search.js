@@ -1,15 +1,15 @@
 import { useState } from 'react';
 
-import Header from '../../components/Header';
-import SearchBar from './components/SearchBar';
-import SearchResult from './components/SearchResult';
-import Tabs from './components/Tabs';
-import RecommendKeyword from './components/RecommendKeyword';
-import HistoryKeyword from './components/HistoryKeyword';
+import Header from '../../../components/Header/Header';
+import SearchBar from '../components/SearchBar/SearchBar';
+import MovieList from '../../../components/MovieList/MovieList';
+import Tabs from '../components/Tabs/Tabs';
+import RecommendKeyword from '../components/RecommendKeyword/RecommendKeyword';
+import HistoryKeyword from '../components/HistoryKeyword/HistoryKeyword';
 
-import { TabType } from '../../constants/tabs';
-import { filterMovies } from '../../utils/filterMovies';
-import useMovies from '../../hooks/useMovies';
+import { TabType } from '../../../constants/tabs';
+import { filterMovies } from '../../../utils/filterMovies';
+import useMovies from '../../../hooks/useMovies';
 
 const Search = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -19,6 +19,7 @@ const Search = () => {
   const [selectedTab, setSelectedTab] = useState(TabType.KEYWORD);
 
   const { movies } = useMovies();
+  console.log(movies);
 
   const handleRecommend = keyword => {
     const recommendList = filterMovies(movies, keyword);
@@ -28,7 +29,7 @@ const Search = () => {
   };
 
   return (
-    <div className="App">
+    <div className="SearchPage">
       <Header header={'검색'} />
       <div className="container">
         <SearchBar
@@ -42,10 +43,11 @@ const Search = () => {
         <div className="content">
           {submitted ? (
             searchResult.length > 0 ? (
-              <SearchResult searchResult={searchResult} />
+              <MovieList list={searchResult} />
             ) : (
               <div className="noResult">
-                <p>검색 결과가 없습니다</p>
+                앗! <span className="keyword">{searchKeyword}</span> 검색 결과가
+                없어요
               </div>
             )
           ) : (

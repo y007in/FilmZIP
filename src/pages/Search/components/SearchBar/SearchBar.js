@@ -1,5 +1,5 @@
-import { filterMovies } from '../../../utils/filterMovies';
-import useMovies from '../../../hooks/useMovies';
+import { filterMovies } from '../../../../utils/filterMovies';
+import useMovies from '../../../../hooks/useMovies';
 
 const SearchBar = ({
   searchKeyword,
@@ -52,7 +52,7 @@ const SearchBar = ({
       <input
         className="searchInput"
         type="text"
-        placeholder="검색어를 입력하세요."
+        placeholder="보고싶은 영화를 찾아보세요"
         autoFocus
         value={searchKeyword}
         onChange={e => handleSearchKeyword(e)}

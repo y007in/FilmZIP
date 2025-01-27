@@ -1,0 +1,31 @@
+form {
+  .searchInput {
+    width: calc(100% - 2.5rem);
+    border: none;
+    border-bottom: 0.063rem solid $gray;
+    padding: 1rem 1.25rem;
+    outline: none;
+    font-size: 1rem;
+
+    margin-bottom: 1rem 0;
+  }
+  .btnReset {
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 1.15rem;
+    right: 1.25rem;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: $gray;
+    color: white;
+    border: none;
+    &::before {
+      content: 'X';
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import List from '../../../components/List';
+import List from '../../../../components/List/List';
 
 const HistoryKeyword = ({ historyList, setHistoryList, handleRecommend }) => {
   // 최근 검색어 삭제
@@ -22,7 +22,6 @@ const HistoryKeyword = ({ historyList, setHistoryList, handleRecommend }) => {
             <>
               <span>{item.text}</span>
               <div>
-                <span>{item.date}</span>
                 <button className="delBtn" onClick={e => handleDel(item.id, e)}>
                   x
                 </button>
