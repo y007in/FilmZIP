@@ -1,0 +1,11 @@
+.MainPage {
+  width: 100%;
+  .mvCard {
+    .spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem;
+    }
+  }
+}

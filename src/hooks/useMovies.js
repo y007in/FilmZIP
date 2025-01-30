@@ -1,22 +1,16 @@
 import { useState, useEffect } from 'react';
+import fetchMovies from '../api/fetchMovies';
 
 const useMovies = () => {
   const [movies, setMovies] = useState([]);
 
-  // API 호출
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/now_playing?language=ko-US&page=1`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-        },
-      },
-    )
-      .then(res => res.json())
-      .then(data => {
-        setMovies(data.results || []);
-      });
+    const getMovies = async () => {
+      const data = await fetchMovies();
+      setMovies(data.results || []);
+    };
+
+    getMovies();
   }, []);
 
   return { movies };

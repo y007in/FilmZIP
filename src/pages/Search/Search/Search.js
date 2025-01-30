@@ -19,6 +19,7 @@ const Search = () => {
   const [selectedTab, setSelectedTab] = useState(TabType.KEYWORD);
 
   const { movies } = useMovies();
+
   console.log(movies);
 
   const handleRecommend = keyword => {

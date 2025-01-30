@@ -4,6 +4,8 @@
 
 - rem을 활용한 반응형 웹 적용
 - Git/GitHub 학습 내용 적용해보기
+- Prettier/ESLint 적용
+- SCSS 적용
 
 ## 구현 기능
 

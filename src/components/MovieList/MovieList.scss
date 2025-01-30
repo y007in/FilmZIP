@@ -1,36 +1,54 @@
 .mvCard {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
   .mvInfo {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;
+    justify-content: flex-start;
+    gap: 1rem;
     border-bottom: 0.063rem solid $gray;
     padding: 1rem;
     .mvInfoImg {
-      width: 30%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 35%;
       aspect-ratio: 3/4;
       border-radius: 0.313rem;
       overflow: hidden;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
+      .noImage {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.188rem;
+      }
     }
     .mvInfoTit {
+      width: 65%;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 0.25rem;
       padding: 0.313rem 0;
       .mvInfoKrTit {
+        width: 100%;
         font-size: 1.25rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .mvInfoOgTit {
+        width: 100%;
         color: $dark_gray;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }
