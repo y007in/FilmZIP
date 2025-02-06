@@ -3,7 +3,11 @@ import { fetchGenre } from '../../api/api';
 import { ClipLoader } from 'react-spinners';
 
 const MovieList = ({ list }) => {
-  const { data, isLoading, error } = useQuery({
+  const {
+    data: genre,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['genre'],
     queryFn: fetchGenre,
   });
@@ -11,7 +15,7 @@ const MovieList = ({ list }) => {
   if (isLoading) return <ClipLoader color="#5db996" />;
   if (error) return <div>Error: {error.message}</div>;
 
-  const genreList = data.genres ? data.genres : [];
+  const genreList = genre.genres ? genre.genres : [];
 
   return (
     <ul className="mvCard">
