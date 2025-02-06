@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import fetchMovies from '../api/fetchMovies';
+import { fetchMovie } from '../api/api';
 
 const useMovies = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     const getMovies = async () => {
-      const data = await fetchMovies();
+      const data = await fetchMovie();
       setMovies(data.results || []);
     };
 

@@ -1,11 +1,11 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import fetchMovies from '../api/fetchMovies';
+import { fetchMovie } from '../api/api';
 
 const useInfiniteScroll = () => {
   return useInfiniteQuery({
     queryKey: ['now-playing'],
     queryFn: ({ pageParam }) => {
-      return fetchMovies(pageParam);
+      return fetchMovie(pageParam);
     },
     getNextPageParam: last => {
       if (last.page < last.total_pages) {

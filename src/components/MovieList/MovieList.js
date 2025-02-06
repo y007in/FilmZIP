@@ -1,4 +1,18 @@
+import { useQuery } from '@tanstack/react-query';
+import { fetchGenre } from '../../api/api';
+import { ClipLoader } from 'react-spinners';
+
 const MovieList = ({ list }) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['genre'],
+    queryFn: fetchGenre,
+  });
+
+  if (isLoading) return <ClipLoader color="#5db996" />;
+  if (error) return <div>Error: {error.message}</div>;
+
+  const genreList = data.genres ? data.genres : [];
+
   return (
     <ul className="mvCard">
       {list.map(item => (
@@ -18,7 +32,15 @@ const MovieList = ({ list }) => {
           </article>
           <article className="mvInfoTit">
             <p className="mvInfoKrTit">{item.title}</p>
+
             <p className="mvInfoOgTit">{item.original_title}</p>
+            <p className="mvInfoGenre">
+              {item.genre_ids.map(id => (
+                <span className="genre" key={id}>
+                  {genreList?.find(item => item.id === id)?.name}
+                </span>
+              ))}
+            </p>
           </article>
         </li>
       ))}

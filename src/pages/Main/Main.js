@@ -21,12 +21,13 @@ const Main = () => {
       fetchNextPage();
     }
   }, [inView]);
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
+
+  // if (isLoading) {
+  //   return <ClipLoader color="#5db996" />;
+  // }
+  // if (error) {
+  //   return <div>Error: {error.message}</div>;
+  // }
 
   return (
     <div className="MainPage">
@@ -34,9 +35,11 @@ const Main = () => {
       {data?.pages.map((page, i) => (
         <MovieList key={i} list={page.results} />
       ))}
-      <div className="spinner">
-        <ClipLoader color="#5db996" ref={ref} />
-      </div>
+      {isLoading && (
+        <div className="spinner">
+          <ClipLoader color="#5db996" ref={ref} />
+        </div>
+      )}
     </div>
   );
 };
