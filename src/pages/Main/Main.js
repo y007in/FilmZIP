@@ -35,11 +35,9 @@ const Main = () => {
       {data?.pages.map((page, i) => (
         <MovieList key={i} list={page.results} />
       ))}
-      {isLoading && (
-        <div className="spinner">
-          <ClipLoader color="#5db996" ref={ref} />
-        </div>
-      )}
+      <div className="spinner">
+        <ClipLoader color="#5db996" ref={ref} />
+      </div>
     </div>
   );
 };
