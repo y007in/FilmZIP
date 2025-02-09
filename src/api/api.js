@@ -12,10 +12,15 @@ const fetchFromApi = async endpoint => {
 export const fetchMovie = async page => {
   return fetchFromApi(`/movie/now_playing?language=ko-KR&page=${page}`);
 };
-export const fetchTopRated = async page => {
+export const fetchTopRated = async () => {
   return fetchFromApi(`/movie/top_rated?language=ko-KR&page=1`);
 };
 
 export const fetchGenre = async () => {
   return fetchFromApi(`/genre/movie/list?language=ko-KR`);
+};
+export const fetchSearch = async ({ queryKey }) => {
+  const [, searchKeyword] = queryKey;
+  if (!searchKeyword) return [];
+  return fetchFromApi(`/search/movie?query=${searchKeyword}&language=ko-KR}`);
 };

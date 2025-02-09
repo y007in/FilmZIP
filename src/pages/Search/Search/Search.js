@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import Header from '../../../components/Header/Header';
 import SearchBar from '../components/SearchBar/SearchBar';
@@ -9,7 +10,7 @@ import HistoryKeyword from '../components/HistoryKeyword/HistoryKeyword';
 
 import { TabType } from '../../../constants/tabs';
 import { filterMovies } from '../../../utils/filterMovies';
-import useMovies from '../../../hooks/useMovies';
+import { fetchTopRated } from '../../../api/api';
 
 const Search = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -18,12 +19,20 @@ const Search = () => {
   const [historyList, setHistoryList] = useState([]);
   const [selectedTab, setSelectedTab] = useState(TabType.KEYWORD);
 
-  const { movies } = useMovies();
+  const {
+    data: top_rated,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['top-rated'],
+    queryFn: fetchTopRated,
+  });
 
-  console.log(movies);
+  if (isLoading) return <div>loading</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   const handleRecommend = keyword => {
-    const recommendList = filterMovies(movies, keyword);
+    const recommendList = filterMovies(top_rated?.results, keyword);
     setSearchKeyword(keyword); //검색창에 키워드 출력
     setSearchResult(recommendList);
     setSubmitted(true);
@@ -43,7 +52,7 @@ const Search = () => {
         />
         <div className="content">
           {submitted ? (
-            searchResult.length > 0 ? (
+            searchResult ? (
               <MovieList list={searchResult} />
             ) : (
               <div className="noResult">
@@ -60,6 +69,7 @@ const Search = () => {
                   setSearchResult={setSearchResult}
                   setSubmitted={setSubmitted}
                   handleRecommend={handleRecommend}
+                  data={top_rated}
                 />
               )}
               {selectedTab === TabType.HISTORY && (

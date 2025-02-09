@@ -1,5 +1,7 @@
 import { filterMovies } from '../../../../utils/filterMovies';
-import useMovies from '../../../../hooks/useMovies';
+
+import { useQuery } from '@tanstack/react-query';
+import { fetchSearch } from '../../../../api/api';
 
 const SearchBar = ({
   searchKeyword,
@@ -9,7 +11,14 @@ const SearchBar = ({
   historyList,
   setHistoryList,
 }) => {
-  const { movies } = useMovies();
+  const {
+    data: searchMovie,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['search', searchKeyword], // 검색어가 변경될 때마다 새로운 요청 수행
+    queryFn: fetchSearch,
+  });
 
   const handleSearchKeyword = e => {
     if (e.target.value.length <= 0) {
@@ -25,7 +34,7 @@ const SearchBar = ({
       return;
     }
     setSearchKeyword(searchKeyword);
-    const filteredList = filterMovies(movies, searchKeyword);
+    const filteredList = filterMovies(searchMovie?.results, searchKeyword);
     setSearchResult(filteredList);
     setSubmitted(true);
     handleAdd(searchKeyword); //최근 검색어
