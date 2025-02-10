@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchGenre } from '../../api/api';
-import { ClipLoader } from 'react-spinners';
+import Loading from '../Loading/Loading';
 
 const MovieList = ({ list }) => {
   const {
@@ -12,8 +12,8 @@ const MovieList = ({ list }) => {
     queryFn: fetchGenre,
   });
 
-  if (isLoading) return <ClipLoader color="#5db996" />;
-  if (error) return <div>Error: {error.message}</div>;
+  if (isLoading) return <Loading />;
+  if (error) return <p>Error: {error.message}</p>;
 
   const genreList = genre.genres ? genre.genres : [];
 

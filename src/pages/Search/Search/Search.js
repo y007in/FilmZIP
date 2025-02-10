@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
+import Loading from '../../../components/Loading/Loading';
 import Header from '../../../components/Header/Header';
 import SearchBar from '../components/SearchBar/SearchBar';
 import MovieList from '../../../components/MovieList/MovieList';
@@ -28,8 +29,8 @@ const Search = () => {
     queryFn: fetchTopRated,
   });
 
-  if (isLoading) return <div>loading</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (isLoading) return <Loading />;
+  if (error) return <p>Error: {error.message}</p>;
 
   const handleRecommend = keyword => {
     const recommendList = filterMovies(top_rated?.results, keyword);

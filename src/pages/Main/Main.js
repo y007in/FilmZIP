@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { ClipLoader } from 'react-spinners';
+
 import Header from '../../components/Header/Header';
 import MovieList from '../../components/MovieList/MovieList';
-import { useInView } from 'react-intersection-observer';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
-import { ClipLoader } from 'react-spinners';
+import Loading from '../../components/Loading/Loading';
 
 const Main = () => {
   const {
@@ -16,18 +18,15 @@ const Main = () => {
   } = useInfiniteScroll();
 
   const { ref, inView } = useInView();
+
   useEffect(() => {
     if (inView && hasNextPage && !isFetchNextPage) {
       fetchNextPage();
     }
-  }, [inView]);
+  }, [inView, hasNextPage, fetchNextPage, isFetchNextPage]);
 
-  // if (isLoading) {
-  //   return <ClipLoader color="#5db996" />;
-  // }
-  // if (error) {
-  //   return <div>Error: {error.message}</div>;
-  // }
+  if (isLoading) return <Loading />;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div className="MainPage">
@@ -35,9 +34,11 @@ const Main = () => {
       {data?.pages.map((page, i) => (
         <MovieList key={i} list={page.results} />
       ))}
-      <div className="spinner">
-        <ClipLoader color="#5db996" ref={ref} />
-      </div>
+      {hasNextPage && (
+        <div className="spinner" ref={ref}>
+          <ClipLoader color="#5db996" />
+        </div>
+      )}
     </div>
   );
 };

@@ -1,7 +1,9 @@
-import { filterMovies } from '../../../../utils/filterMovies';
-
 import { useQuery } from '@tanstack/react-query';
+
+import { filterMovies } from '../../../../utils/filterMovies';
 import { fetchSearch } from '../../../../api/api';
+
+import Loading from '../../../../components/Loading/Loading';
 
 const SearchBar = ({
   searchKeyword,
@@ -19,6 +21,9 @@ const SearchBar = ({
     queryKey: ['search', searchKeyword], // 검색어가 변경될 때마다 새로운 요청 수행
     queryFn: fetchSearch,
   });
+
+  if (isLoading) return <Loading />;
+  if (error) return <p>Error: {error.message}</p>;
 
   const handleSearchKeyword = e => {
     if (e.target.value.length <= 0) {

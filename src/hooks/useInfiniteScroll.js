@@ -1,4 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
+
 import { fetchMovie } from '../api/api';
 
 const useInfiniteScroll = () => {
