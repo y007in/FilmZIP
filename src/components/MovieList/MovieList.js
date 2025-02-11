@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchGenre } from '../../api/api';
 import Loading from '../Loading/Loading';
+import Button from '../Button/Button';
 
 const MovieList = ({ list }) => {
   const {
@@ -46,6 +47,11 @@ const MovieList = ({ list }) => {
               ))}
             </p>
           </article>
+          <Button
+            text={'구매하기'}
+            type={'brand'}
+            onClick={() => console.log(item.title)}
+          />
         </li>
       ))}
     </ul>
