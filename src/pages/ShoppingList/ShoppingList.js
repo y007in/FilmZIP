@@ -1,8 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Header from '../../components/Header/Header';
 import MovieList from '../../components/MovieList/MovieList';
+import Page from '../../components/Page/Page';
 
 const ShoppingList = () => {
+  const navigate = useNavigate();
   const dummy = [
     {
       id: 1,
@@ -14,9 +17,18 @@ const ShoppingList = () => {
   ];
   return (
     <div className="shoppingList">
-      <Header header={'장바구니'} back rightBtn />
-      <MovieList list={dummy} />
-      <Button type={'full'} text={'주문하기'} />
+      <Page
+        header={<Header header={'장바구니'} back rightBtn />}
+        footer={
+          <Button
+            type={'full'}
+            text={'주문하기'}
+            onClick={() => navigate('/order')}
+          />
+        }
+      >
+        <MovieList list={dummy} />
+      </Page>
     </div>
   );
 };

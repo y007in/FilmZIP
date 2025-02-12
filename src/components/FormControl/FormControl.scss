@@ -1,0 +1,14 @@
+.FormControl {
+  display: flex;
+  flex-direction: column;
+  gap: calc($px * 5);
+  justify-content: center;
+  align-items: flex-start;
+  label {
+    display: flex;
+    gap: calc($px * 3);
+    .required {
+      color: red;
+    }
+  }
+}

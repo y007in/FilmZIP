@@ -1,0 +1,7 @@
+.Order {
+  .forms {
+    display: flex;
+    flex-direction: column;
+    gap: calc($px * 10);
+  }
+}

@@ -41,7 +41,11 @@ const Main = () => {
         rightIcon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
       />
       {data?.pages.map((page, i) => (
-        <MovieList key={i} list={page.results} />
+        <MovieList
+          key={i}
+          list={page.results}
+          onClick={() => console.log(data.title)}
+        />
       ))}
       {hasNextPage && (
         <div className="spinner" ref={ref}>

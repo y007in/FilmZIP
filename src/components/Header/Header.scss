@@ -8,12 +8,14 @@
   background-color: $white;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   .title {
     flex: 1;
     text-align: center;
   }
   .headerBtn {
-    width: 60px;
+    width: calc($px * 50);
+    padding: 0 calc($px * 15);
     text-align: center;
     cursor: pointer;
     &.hidden {
