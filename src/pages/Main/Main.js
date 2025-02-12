@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import { ClipLoader } from 'react-spinners';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import Header from '../../components/Header/Header';
 import MovieList from '../../components/MovieList/MovieList';
@@ -36,6 +38,7 @@ const Main = () => {
         header={'영화'}
         rightBtn
         handleRightBtn={() => navigate('/search')}
+        rightIcon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
       />
       {data?.pages.map((page, i) => (
         <MovieList key={i} list={page.results} />

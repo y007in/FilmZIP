@@ -1,11 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faAngleLeft,
-  faMagnifyingGlass,
-} from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
-const Header = ({ header, back, rightBtn, handleRightBtn }) => {
+const Header = ({ header, back, rightBtn, rightIcon, handleRightBtn }) => {
   const navigate = useNavigate();
 
   return (
@@ -21,7 +18,7 @@ const Header = ({ header, back, rightBtn, handleRightBtn }) => {
         className={`headerBtn ${rightBtn ? '' : 'hidden'}`}
         onClick={rightBtn && handleRightBtn}
       >
-        {rightBtn && <FontAwesomeIcon icon={faMagnifyingGlass} />}
+        {rightBtn && rightIcon}
       </span>
     </header>
   );
