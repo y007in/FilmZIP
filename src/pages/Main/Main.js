@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import { ClipLoader } from 'react-spinners';
 
@@ -16,6 +17,7 @@ const Main = () => {
     hasNextPage,
     isFetchNextPage,
   } = useInfiniteScroll();
+  const navigate = useNavigate();
 
   const { ref, inView } = useInView();
 
@@ -30,7 +32,11 @@ const Main = () => {
 
   return (
     <div className="MainPage">
-      <Header header={'영화'} />
+      <Header
+        header={'영화'}
+        rightBtn
+        handleRightBtn={() => navigate('/search')}
+      />
       {data?.pages.map((page, i) => (
         <MovieList key={i} list={page.results} />
       ))}

@@ -6,4 +6,18 @@
   border-bottom: 0.063rem solid $gray;
   text-align: center;
   background-color: $white;
+  display: flex;
+  justify-content: space-around;
+  .title {
+    flex: 1;
+    text-align: center;
+  }
+  .headerBtn {
+    width: 60px;
+    text-align: center;
+    cursor: pointer;
+    &.hidden {
+      visibility: hidden;
+    }
+  }
 }

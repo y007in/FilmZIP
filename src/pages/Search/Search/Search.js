@@ -41,7 +41,7 @@ const Search = () => {
 
   return (
     <div className="SearchPage">
-      <Header header={'검색'} />
+      <Header header={'검색'} back />
       <div className="container">
         <SearchBar
           searchKeyword={searchKeyword}
