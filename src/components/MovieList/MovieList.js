@@ -3,7 +3,7 @@ import { fetchGenre } from '../../api/api';
 import Loading from '../Loading/Loading';
 import Button from '../Button/Button';
 
-const MovieList = ({ list }) => {
+const MovieList = ({ list, onClick }) => {
   const {
     data: genre,
     isLoading,
@@ -20,7 +20,7 @@ const MovieList = ({ list }) => {
 
   return (
     <ul className="mvCard">
-      {list.map(item => (
+      {list?.map(item => (
         <li className="mvInfo" key={item.id}>
           <article className="mvInfoImg">
             {item.poster_path !== null ? (
@@ -47,11 +47,13 @@ const MovieList = ({ list }) => {
               ))}
             </p>
           </article>
-          <Button
-            text={'구매하기'}
-            type={'brand'}
-            onClick={() => console.log(item.title)}
-          />
+          {onClick && (
+            <Button
+              text={'구매하기'}
+              type={'brand'}
+              onClick={() => console.log(item.title)}
+            />
+          )}
         </li>
       ))}
     </ul>

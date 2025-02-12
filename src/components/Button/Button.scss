@@ -13,4 +13,12 @@
     background-color: $white;
     color: $main_color;
   }
+  &.full {
+    width: 100%;
+    padding: calc($px * 15);
+    margin: calc($px * 10);
+    background-color: $main_color;
+    color: $white;
+    font-size: calc($px * 16);
+  }
 }
