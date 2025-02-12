@@ -5,7 +5,7 @@ const Page = ({ header, children, footer }) => {
     <div className="Page">
       <header>{header}</header>
       <main>{children}</main>
-      <footer>{footer}</footer>
+      {footer && <footer>{footer}</footer>}
     </div>
   );
 };

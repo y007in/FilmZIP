@@ -1,12 +1,18 @@
 .Page {
   width: 100%;
+  max-width: calc($px * 768);
   height: 100vh;
   display: flex;
   flex-direction: column;
+
   header {
+    max-width: calc($px * 768);
+    width: 100%;
+    height: calc($px * 55);
     position: fixed;
     top: 0;
-    right: 0;
+    right: auto;
+    background-color: $white;
   }
   main {
     display: flex;
@@ -14,13 +20,15 @@
     justify-content: center;
     align-items: flex-start;
     margin-top: calc($px * 55);
-    padding: calc($px * 15);
+    background-color: $white;
   }
   footer {
     width: 100%;
+    max-width: calc($px * 768);
     position: fixed;
     bottom: 0;
-    right: 0;
-    padding: calc($px * 15);
+    right: auto;
+    padding: $pagePadding;
+    background-color: $white;
   }
 }

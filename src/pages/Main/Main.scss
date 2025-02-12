@@ -1,9 +1,29 @@
 .MainPage {
   width: 100%;
-  .spinner {
+  background-color: $white;
+  .searchBox {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 3rem;
+    gap: calc($px * 10);
+    padding: calc($px * 5) $pagePadding;
+    border-bottom: 0.063rem solid $gray;
+    background-color: $white;
+    svg {
+      cursor: pointer;
+    }
+    .searchInput {
+      width: calc(100% - 2.5rem);
+      border: $px solid $gray;
+      border-radius: calc($px * 5);
+      padding: calc($px * 10);
+      outline: none;
+      font-size: calc($px * 14);
+      margin-bottom: 1rem 0;
+    }
+  }
+  .spinner {
+    margin: 0 auto;
+    padding: calc($px * 48);
   }
 }

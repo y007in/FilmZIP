@@ -15,7 +15,8 @@
   }
   &.full {
     width: 100%;
-    padding: calc($px * 15);
+    // max-width: calc($px * 768);
+    padding: $pagePadding;
     background-color: $main_color;
     color: $white;
     font-size: calc($px * 16);

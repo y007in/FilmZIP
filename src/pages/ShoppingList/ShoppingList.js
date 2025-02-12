@@ -18,7 +18,7 @@ const ShoppingList = () => {
   return (
     <div className="shoppingList">
       <Page
-        header={<Header header={'장바구니'} back rightBtn />}
+        header={<Header header={'장바구니'} back />}
         footer={
           <Button
             type={'full'}

@@ -14,8 +14,8 @@
     text-align: center;
   }
   .headerBtn {
-    width: calc($px * 50);
-    padding: 0 calc($px * 15);
+    width: 50px;
+    padding: 0 $pagePadding;
     text-align: center;
     cursor: pointer;
     &.hidden {

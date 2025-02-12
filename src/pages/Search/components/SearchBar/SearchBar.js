@@ -22,7 +22,7 @@ const SearchBar = ({
     queryFn: fetchSearch,
   });
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
   if (error) return <p>Error: {error.message}</p>;
 
   const handleSearchKeyword = e => {
@@ -71,9 +71,7 @@ const SearchBar = ({
         value={searchKeyword}
         onChange={e => handleSearchKeyword(e)}
       />
-      {searchKeyword.length > 0 && (
-        <button type="reset" className="btnReset"></button>
-      )}
+      {searchKeyword && <button type="reset" className="btnReset"></button>}
     </form>
   );
 };
