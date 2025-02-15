@@ -21,7 +21,7 @@ const ShoppingList = () => {
         header={<Header header={'장바구니'} back />}
         footer={
           <Button
-            type={'full'}
+            styleType={'full'}
             text={'주문하기'}
             onClick={() => navigate('/order')}
           />

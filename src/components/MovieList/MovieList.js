@@ -50,7 +50,7 @@ const MovieList = ({ list, onClick }) => {
           {onClick && (
             <Button
               text={'구매하기'}
-              type={'brand'}
+              StyleType={'brand'}
               onClick={() => console.log(item.title)}
             />
           )}
