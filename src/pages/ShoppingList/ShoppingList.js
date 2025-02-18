@@ -1,12 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+
 import Button from '../../components/Button/Button';
 import Header from '../../components/Header/Header';
 import MovieList from '../../components/MovieList/MovieList';
 import Page from '../../components/Page/Page';
-import { filterMovies } from '../../utils/filterMovies';
-import { fetchSearch } from '../../api/api';
-import { useState, useEffect } from 'react';
+import NoResult from '../../components/NoResult/NoResult';
 
 const ShoppingList = () => {
   const navigate = useNavigate();
@@ -17,14 +15,20 @@ const ShoppingList = () => {
       <Page
         header={<Header header={'장바구니'} back />}
         footer={
-          <Button
-            styleType={'full'}
-            text={'주문하기'}
-            onClick={() => navigate('/order')}
-          />
+          cartList.length !== 0 && (
+            <Button
+              styleType={'full'}
+              text={'주문하기'}
+              onClick={() => navigate('/order')}
+            />
+          )
         }
       >
-        <MovieList list={cartList} onDelete />
+        {cartList.length !== 0 ? (
+          <MovieList list={cartList} onDelete />
+        ) : (
+          <NoResult noResultData={'장바구니에 담기 영화가 없습니다.'} />
+        )}
       </Page>
     </div>
   );

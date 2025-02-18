@@ -15,6 +15,7 @@ import { filterMovies } from '../../../utils/filterMovies';
 import { fetchTopRated } from '../../../api/api';
 import { useNavigate } from 'react-router-dom';
 import Page from '../../../components/Page/Page';
+import NoResult from '../../../components/NoResult/NoResult';
 
 const Search = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -66,10 +67,9 @@ const Search = () => {
               searchResult ? (
                 <MovieList list={searchResult} />
               ) : (
-                <div className="noResult">
-                  앗! <span className="keyword">{searchKeyword}</span> 검색
-                  결과가 없어요
-                </div>
+                <NoResult
+                  noResultData={`앗! "${searchKeyword}" 검색결과가 없어요`}
+                />
               )
             ) : (
               <>

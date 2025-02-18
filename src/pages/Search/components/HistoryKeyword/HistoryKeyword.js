@@ -1,4 +1,5 @@
 import List from '../../../../components/List/List';
+import NoResult from '../../../../components/NoResult/NoResult';
 
 const HistoryKeyword = ({ historyList, setHistoryList, handleRecommend }) => {
   // 최근 검색어 삭제
@@ -11,9 +12,7 @@ const HistoryKeyword = ({ historyList, setHistoryList, handleRecommend }) => {
   return (
     <>
       {historyList.length === 0 ? (
-        <div className="noSearchKeyword">
-          <p>검색어가 없습니다.</p>
-        </div>
+        <NoResult noResultData={'검색어가 없습니다'} />
       ) : (
         <List
           data={historyList}
