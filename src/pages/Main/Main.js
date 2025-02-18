@@ -3,16 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import { ClipLoader } from 'react-spinners';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faMagnifyingGlass,
-  faShoppingCart,
-} from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-import Header from '../../components/Header/Header';
 import MovieList from '../../components/MovieList/MovieList';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import Loading from '../../components/Loading/Loading';
-import SearchBar from '../Search/components/SearchBar/SearchBar';
+
 import Page from '../../components/Page/Page';
 
 const Main = () => {
@@ -56,11 +52,7 @@ const Main = () => {
         }
       >
         {data?.pages.map((page, i) => (
-          <MovieList
-            key={i}
-            list={page.results}
-            onClick={() => console.log(data.title)}
-          />
+          <MovieList key={i} list={page.results} onClick />
         ))}
         {hasNextPage && (
           <div className="spinner" ref={ref}>

@@ -3,7 +3,7 @@ import { fetchGenre } from '../../api/api';
 import Loading from '../Loading/Loading';
 import Button from '../Button/Button';
 
-const MovieList = ({ list, onClick }) => {
+const MovieList = ({ list, onClick, onDelete }) => {
   const {
     data: genre,
     isLoading,
@@ -17,6 +17,22 @@ const MovieList = ({ list, onClick }) => {
   if (error) return <p>Error: {error.message}</p>;
 
   const genreList = genre.genres ? genre.genres : [];
+  const cart = JSON.parse(localStorage.getItem('movie')) || [];
+  const handleAddCart = movieData => {
+    if (!cart.find(movie => movie.id === movieData.id)) {
+      const updatedCart = [...cart, movieData];
+      localStorage.setItem('movie', JSON.stringify(updatedCart));
+      alert('장바구니에 담겼습니다.');
+    } else {
+      alert('이미 담겨 있는 영화입니다');
+    }
+  };
+  const handleDelCart = movieData => {
+    const deleteCart = cart.filter(movie => movie.id !== movieData.id);
+    localStorage.setItem('movie', JSON.stringify(deleteCart));
+    alert('장바구니에서 삭제되었습니다.');
+    window.location.reload();
+  };
 
   return (
     <ul className="mvCard">
@@ -51,9 +67,10 @@ const MovieList = ({ list, onClick }) => {
             <Button
               text={'구매하기'}
               StyleType={'brand'}
-              onClick={() => console.log(item.title)}
+              onClick={() => handleAddCart(item)}
             />
           )}
+          {onDelete && <button onClick={() => handleDelCart(item)}>X</button>}
         </li>
       ))}
     </ul>

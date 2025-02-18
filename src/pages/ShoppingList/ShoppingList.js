@@ -1,20 +1,17 @@
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import Button from '../../components/Button/Button';
 import Header from '../../components/Header/Header';
 import MovieList from '../../components/MovieList/MovieList';
 import Page from '../../components/Page/Page';
+import { filterMovies } from '../../utils/filterMovies';
+import { fetchSearch } from '../../api/api';
+import { useState, useEffect } from 'react';
 
 const ShoppingList = () => {
   const navigate = useNavigate();
-  const dummy = [
-    {
-      id: 1,
-      title: '오',
-      poster_path: null,
-      original_title: 'dh',
-      genre_ids: [28],
-    },
-  ];
+  const cartList = JSON.parse(localStorage.getItem('movie')) || [];
+
   return (
     <div className="shoppingList">
       <Page
@@ -27,7 +24,7 @@ const ShoppingList = () => {
           />
         }
       >
-        <MovieList list={dummy} />
+        <MovieList list={cartList} onDelete />
       </Page>
     </div>
   );
