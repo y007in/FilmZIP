@@ -9,6 +9,7 @@ import NoResult from '../../components/NoResult/NoResult';
 const ShoppingList = () => {
   const navigate = useNavigate();
   const cartList = JSON.parse(localStorage.getItem('movie')) || [];
+  const totalPrice = ((cartList?.length || 0) * 15000).toLocaleString();
 
   return (
     <div className="shoppingList">
@@ -18,7 +19,7 @@ const ShoppingList = () => {
           cartList.length !== 0 && (
             <Button
               styleType={'full'}
-              text={'주문하기'}
+              text={`${totalPrice}원 결제하기`}
               onClick={() => navigate('/order')}
             />
           )
@@ -29,6 +30,10 @@ const ShoppingList = () => {
         ) : (
           <NoResult noResultData={'장바구니에 담기 영화가 없습니다.'} />
         )}
+        <div className="price">
+          <span>총 결제 금액 </span>
+          <span className="totalPrice">{totalPrice}</span>
+        </div>
       </Page>
     </div>
   );
