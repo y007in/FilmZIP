@@ -12,6 +12,7 @@
   &.brandSolid {
     background-color: $white;
     color: $main_color;
+    border: $px solid $main_color;
   }
   &.full {
     width: 100%;

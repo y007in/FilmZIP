@@ -1,9 +1,15 @@
 .Order {
+  // padding: 0 $pagePadding;
   .forms {
     display: flex;
     flex-direction: column;
-    gap: calc($px * 10);
+    gap: $px * 10;
     margin-top: $pagePadding;
-    padding: 0 $pagePadding;
+    .paymentMethod {
+      display: flex;
+      flex-direction: row;
+      gap: $px * 5;
+      flex-wrap: wrap;
+    }
   }
 }

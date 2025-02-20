@@ -1,0 +1,46 @@
+.AccordionList {
+  width: 100%;
+  padding: $pagePadding;
+  border-bottom: $px * 20 solid #e1e1e1;
+  &:last-child {
+    border: none;
+  }
+  .AccordionTitle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .rightBtn {
+      width: 60%;
+      display: flex;
+      p {
+        width: 80%;
+        width: 100%;
+        display: flex;
+        // .titEllipsis {
+        //   width: 100%;
+        //   white-space: nowrap;
+        //   overflow: hidden;
+        //   text-overflow: ellipsis;
+        //   text-align: end;
+        // }
+        // .nonEllipsis {
+        //   width: 20%;
+        // }
+      }
+      button {
+        // width: 20%;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .products {
+    display: none;
+    &.open {
+      display: block;
+    }
+  }
+}
