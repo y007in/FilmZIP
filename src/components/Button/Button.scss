@@ -16,10 +16,15 @@
   }
   &.full {
     width: 100%;
-    // max-width: calc($px * 768);
     padding: $pagePadding;
     background-color: $main_color;
     color: $white;
     font-size: calc($px * 16);
+  }
+  &.small {
+    height: $px * 32;
+  }
+  &.large {
+    height: $px * 48;
   }
 }

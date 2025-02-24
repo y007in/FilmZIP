@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchGenre } from '../../api/api';
 import Loading from '../Loading/Loading';
 import Button from '../Button/Button';
+import DelBtn from '../Button/DelBtn';
 
 const MovieList = ({ list, onClick, onDelete }) => {
   const {
@@ -70,7 +71,7 @@ const MovieList = ({ list, onClick, onDelete }) => {
               onClick={() => handleAddCart(item)}
             />
           )}
-          {onDelete && <button onClick={() => handleDelCart(item)}>X</button>}
+          {onDelete && <DelBtn onClick={() => handleDelCart(item)} />}
         </li>
       ))}
     </ul>

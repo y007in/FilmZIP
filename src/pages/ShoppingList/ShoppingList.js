@@ -19,6 +19,7 @@ const ShoppingList = () => {
           cartList.length !== 0 && (
             <Button
               styleType={'full'}
+              styleSize={'large'}
               text={`${totalPrice}원 결제하기`}
               onClick={() => navigate('/order')}
             />

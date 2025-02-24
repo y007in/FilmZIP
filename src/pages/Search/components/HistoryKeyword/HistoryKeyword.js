@@ -1,3 +1,4 @@
+import DelBtn from '../../../../components/Button/DelBtn';
 import List from '../../../../components/List/List';
 import NoResult from '../../../../components/NoResult/NoResult';
 
@@ -20,11 +21,7 @@ const HistoryKeyword = ({ historyList, setHistoryList, handleRecommend }) => {
           renderItem={item => (
             <>
               <span>{item.text}</span>
-              <div>
-                <button className="delBtn" onClick={e => handleDel(item.id, e)}>
-                  x
-                </button>
-              </div>
+              <DelBtn onClick={e => handleDel(item.id, e)}>x</DelBtn>
             </>
           )}
         />

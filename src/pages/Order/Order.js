@@ -21,10 +21,11 @@ const Order = () => {
         header={<Header header={'결제'} back />}
         footer={
           <Button
+            type="submit"
             styleType={'full'}
+            styleSize={'large'}
             text={'결제하기'}
             form="order-form"
-            type="submit"
           />
         }
       >
