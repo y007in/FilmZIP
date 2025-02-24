@@ -27,14 +27,16 @@ const ShoppingList = () => {
         }
       >
         {cartList.length !== 0 ? (
-          <MovieList list={cartList} onDelete />
+          <>
+            <MovieList list={cartList} onDelete />
+            <div className="price">
+              <span>총 결제 금액 </span>
+              <span className="totalPrice">{totalPrice}</span>
+            </div>{' '}
+          </>
         ) : (
           <NoResult noResultData={'장바구니에 담기 영화가 없습니다.'} />
         )}
-        <div className="price">
-          <span>총 결제 금액 </span>
-          <span className="totalPrice">{totalPrice}</span>
-        </div>
       </Page>
     </div>
   );
