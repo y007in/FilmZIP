@@ -12,4 +12,10 @@
       flex-wrap: wrap;
     }
   }
+  .productPrice {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

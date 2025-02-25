@@ -1,6 +1,7 @@
 .AccordionList {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  padding: $pagePadding;
   border-bottom: $px * 20 solid #e1e1e1;
   &:last-child {
     border: none;
@@ -10,6 +11,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: $pagePadding;
     .rightBtn {
       width: 60%;
       display: flex;
@@ -39,8 +41,13 @@
 
   .products {
     display: none;
+    padding: 0 $pagePadding $px * 15;
     &.open {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: $px * 12;
     }
   }
 }

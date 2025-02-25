@@ -4,6 +4,7 @@ import Search from './pages/Search/Search/Search';
 import ShoppingList from './pages/ShoppingList/ShoppingList';
 import Order from './pages/Order/Order';
 import './App.scss';
+import CompletedOrder from './pages/CompletedOrder/CompletedOrder';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/search" element={<Search />}></Route>
           <Route path="/shoppingList" element={<ShoppingList />}></Route>
           <Route path="/order" element={<Order />}></Route>
+          <Route path="/completedOrder" element={<CompletedOrder />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
