@@ -1,9 +1,9 @@
 import React from 'react';
 import Page from '../../components/Page/Page';
 import Header from '../../components/Header/Header';
-import MovieList from '../../components/MovieList/MovieList';
 import Button from '../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import price from '../../constants/price';
 
 const CompletedOrder = () => {
   const cartList = JSON.parse(localStorage.getItem('movie')) || [];
@@ -29,6 +29,7 @@ const CompletedOrder = () => {
       label: '예매목록',
       content: `${cartList[0].title}`,
     },
+    { label: '결제금액', content: `${price()[2].value}원` },
   ];
   return (
     <div className="CompletedOrder">
