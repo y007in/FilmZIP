@@ -1,0 +1,53 @@
+.CompletedOrder {
+  .orderContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $px * 80 $pagePadding;
+    gap: $px * 10;
+    .bookInfo {
+      h1 {
+        font-size: $px * 28;
+        font-weight: 700;
+        margin-bottom: $px * 20;
+        color: $main_color;
+      }
+      display: flex;
+      width: 90%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: $px solid $main_color;
+      border-radius: $px * 5;
+      padding: $px * 20;
+      gap: $px * 10;
+      background-color: $white;
+      .personalBook {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: $px * 15;
+        .bookLabel {
+          width: 25%;
+        }
+        .bookContent {
+          width: 75%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+    .precautions {
+      padding: 0 $px * 25;
+      font-size: $px * 14;
+      line-height: 150%;
+      li {
+        color: #ff0000;
+      }
+    }
+  }
+}
