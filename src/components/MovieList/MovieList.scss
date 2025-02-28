@@ -1,17 +1,19 @@
 .mvCard {
   width: 100%;
   .mvInfo {
+    width: 100%;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    gap: 1rem;
+    gap: $px * 10;
     border-bottom: 0.063rem solid $gray;
     padding: calc($px * 15);
     .mvInfoImg {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 35%;
+      width: 30%;
+      min-width: $px * 103;
       aspect-ratio: 3/4;
       border-radius: 0.313rem;
       overflow: hidden;
@@ -30,7 +32,8 @@
       }
     }
     .mvInfoTit {
-      width: 65%;
+      width: 60%;
+      min-width: calc(55% - $px * 103);
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -64,6 +67,9 @@
           white-space: nowrap;
         }
       }
+    }
+    .movieBtn {
+      width: 10%;
     }
   }
 }

@@ -64,14 +64,16 @@ const MovieList = ({ list, onClick, onDelete }) => {
               ))}
             </p>
           </article>
-          {onClick && (
-            <Button
-              text={'구매하기'}
-              StyleType={'brand'}
-              onClick={() => handleAddCart(item)}
-            />
-          )}
-          {onDelete && <DelBtn onClick={() => handleDelCart(item)} />}
+          <article className="movieBtn">
+            {onClick && (
+              <Button
+                text="+"
+                styleType="brand"
+                onClick={() => handleAddCart(item)}
+              />
+            )}
+            {onDelete && <DelBtn onClick={() => handleDelCart(item)} />}
+          </article>
         </li>
       ))}
     </ul>
