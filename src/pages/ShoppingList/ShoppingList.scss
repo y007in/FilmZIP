@@ -1,15 +1,7 @@
-.shoppingList {
+.shoppingContainer {
   width: 100%;
-  .price {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: $pagePadding;
-    .totalPrice {
-      &::after {
-        content: '원';
-      }
-    }
-  }
+  padding: 0 $pagePadding;
+  display: flex;
+  flex-direction: column;
+  gap: $px * 20;
 }

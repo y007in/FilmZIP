@@ -1,14 +1,25 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import FormControl from '../../../../components/FormControl/FormControl';
 import AccordionList from '../../../../components/AccordionList/AccordionList';
 import Button from '../../../../components/Button/Button';
 import { paymentMethod } from '../../../../constants/paymentMethod';
+import { useNavigate } from 'react-router-dom';
+import { format } from 'prettier';
 
-const OrderForm = () => {
+const OrderForm = ({ onSubmit }) => {
   const [checked, setChecked] = useState(paymentMethod[0]);
+  const userNameRef = useRef(null);
+  const userTelRef = useRef(null);
+  const userCreditRef = useRef(null);
+
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('submit');
+    const formData = {
+      name: userNameRef.current.value,
+      tel: userTelRef.current.value,
+      payment: checked,
+    };
+    onSubmit(formData);
   };
   return (
     <form className="forms" id="order-form" onSubmit={handleSubmit}>
@@ -19,6 +30,7 @@ const OrderForm = () => {
             id="userName"
             name="userName"
             placeholder="이름"
+            ref={userNameRef}
             autoFocus
             required
           />
@@ -30,6 +42,7 @@ const OrderForm = () => {
             name="userTel"
             placeholder="01000000000"
             pattern="^\d{2,3}\d{3,4}\d{4}$"
+            ref={userTelRef}
             required
           />
         </FormControl>
@@ -58,6 +71,7 @@ const OrderForm = () => {
                 value={method}
                 checked={checked === method}
                 onChange={() => setChecked(method)}
+                ref={userCreditRef}
               />
             </FormControl>
           ))}

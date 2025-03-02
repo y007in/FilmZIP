@@ -5,11 +5,13 @@ import Header from '../../components/Header/Header';
 import MovieList from '../../components/MovieList/MovieList';
 import Page from '../../components/Page/Page';
 import NoResult from '../../components/NoResult/NoResult';
+import ProductPrice from '../../components/ProductPrice/ProductPrice';
+
+import price from '../../constants/price';
 
 const ShoppingList = () => {
   const navigate = useNavigate();
   const cartList = JSON.parse(localStorage.getItem('movie')) || [];
-  const totalPrice = ((cartList?.length || 0) * 15000).toLocaleString();
 
   return (
     <div className="shoppingList">
@@ -20,23 +22,22 @@ const ShoppingList = () => {
             <Button
               styleType={'full'}
               styleSize={'large'}
-              text={`${totalPrice}원 결제하기`}
+              text={`${price()[2].value} 원 결제하기`}
               onClick={() => navigate('/order')}
             />
           )
         }
       >
-        {cartList.length !== 0 ? (
-          <>
-            <MovieList list={cartList} onDelete />
-            <div className="price">
-              <span>총 결제 금액 </span>
-              <span className="totalPrice">{totalPrice}</span>
-            </div>{' '}
-          </>
-        ) : (
-          <NoResult noResultData={'장바구니에 담기 영화가 없습니다.'} />
-        )}
+        <div className="shoppingContainer">
+          {cartList.length !== 0 ? (
+            <>
+              <MovieList list={cartList} onDelete />
+              <ProductPrice />
+            </>
+          ) : (
+            <NoResult noResultData={'장바구니에 담기 영화가 없습니다.'} />
+          )}
+        </div>
       </Page>
     </div>
   );

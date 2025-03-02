@@ -8,19 +8,20 @@ import Page from '../../components/Page/Page';
 import MovieList from '../../components/MovieList/MovieList';
 import AccordionList from '../../components/AccordionList/AccordionList';
 import OrderForm from './components/OrderForm/OrderForm';
-import price from '../../constants/price';
+
 import PopUp from '../../components/PopUp/PopUp';
+import ProductPrice from '../../components/ProductPrice/ProductPrice';
 
 const Order = () => {
   const [credit, setCredit] = useState(false);
   const navigate = useNavigate();
 
   const cartList = JSON.parse(localStorage.getItem('movie')) || [];
-  const handleCredit = () => {
+  const handleSubmit = formData => {
     setCredit(true);
     setTimeout(() => {
       setCredit(false);
-      navigate('/completedOrder');
+      navigate('/completedOrder', { state: formData });
     }, '3000');
   };
 
@@ -30,12 +31,13 @@ const Order = () => {
         header={<Header header={'결제'} back />}
         footer={
           <Button
-            type="submit"
             styleType={'full'}
             styleSize={'large'}
             text={'결제하기'}
             form="order-form"
-            onClick={handleCredit}
+            onClick={() =>
+              document.getElementById('order-form').requestSubmit()
+            }
           />
         }
       >
@@ -49,16 +51,11 @@ const Order = () => {
         >
           <MovieList list={cartList} />
         </AccordionList>
-        <OrderForm />
+        <OrderForm onSubmit={handleSubmit} />
         <AccordionList title={'결제금액'} boolean={true}>
-          {price().map(price => (
-            <div className="productPrice">
-              <span>{price.label}</span>
-              <span>{price.value}원</span>
-            </div>
-          ))}
+          <ProductPrice />
         </AccordionList>
-      </Page>{' '}
+      </Page>
       {credit && (
         <PopUp>
           <BeatLoader />
