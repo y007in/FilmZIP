@@ -3,6 +3,9 @@ import FormControl from '../../../../components/FormControl/FormControl';
 import AccordionList from '../../../../components/AccordionList/AccordionList';
 import Button from '../../../../components/Button/Button';
 import { paymentMethod } from '../../../../constants/paymentMethod';
+import { formatDate, randomNum } from '../../../../utils/date';
+import { getCartList } from '../../../../utils/storage';
+import price from '../../../../constants/price';
 
 const OrderForm = ({ onSubmit }) => {
   const [checked, setChecked] = useState(paymentMethod[0]);
@@ -12,12 +15,17 @@ const OrderForm = ({ onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
     const formData = {
+      num: randomNum,
+      date: formatDate,
       name: userNameRef.current.value,
       tel: userTelRef.current.value,
       payment: checked,
+      product: getCartList()[0].title,
+      price: price()[2].value,
     };
     onSubmit(formData);
   };
+  console.log(randomNum);
   return (
     <form className="forms" id="order-form" onSubmit={handleSubmit}>
       <AccordionList title={'개인정보'} boolean={true}>
