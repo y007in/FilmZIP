@@ -1,9 +1,11 @@
-import React from 'react';
+import { LayoutProvider } from '../../contexts/LayoutContext';
 
 const PopUp = ({ children }) => {
   return (
     <div className="popUp">
-      <section>{children}</section>
+      <LayoutProvider>
+        <section>{children}</section>
+      </LayoutProvider>
     </div>
   );
 };

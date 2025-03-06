@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 
@@ -8,20 +8,30 @@ import Page from '../../components/Page/Page';
 import MovieList from '../../components/MovieList/MovieList';
 import AccordionList from '../../components/AccordionList/AccordionList';
 import OrderForm from './components/OrderForm/OrderForm';
-
-import PopUp from '../../components/PopUp/PopUp';
 import ProductPrice from '../../components/ProductPrice/ProductPrice';
 import { getCartList } from '../../utils/storage';
+import { LayoutContext } from '../../contexts/LayoutContext';
 
 const Order = () => {
-  const [credit, setCredit] = useState(false);
   const navigate = useNavigate();
+  const { setDialog } = useContext(LayoutContext);
 
   const cartList = getCartList();
   const handleSubmit = formData => {
-    setCredit(true);
+    setDialog({
+      isOpen: true,
+      content: (
+        <>
+          <BeatLoader />
+          <div>
+            <p>결제 진행 중입니다.</p>
+            <p>잠시만 기다려 주세요.</p>
+          </div>
+        </>
+      ),
+    });
     setTimeout(() => {
-      setCredit(false);
+      setDialog({ isOpen: false, content: '' });
       navigate('/completedOrder', { state: formData });
     }, '3000');
   };
@@ -54,15 +64,6 @@ const Order = () => {
           <ProductPrice />
         </AccordionList>
       </Page>
-      {credit && (
-        <PopUp>
-          <BeatLoader />
-          <div>
-            <p>결제 진행 중입니다.</p>
-            <p>잠시만 기다려 주세요.</p>
-          </div>
-        </PopUp>
-      )}
     </div>
   );
 };

@@ -3,8 +3,6 @@ import FormControl from '../../../../components/FormControl/FormControl';
 import AccordionList from '../../../../components/AccordionList/AccordionList';
 import Button from '../../../../components/Button/Button';
 import { paymentMethod } from '../../../../constants/paymentMethod';
-import { useNavigate } from 'react-router-dom';
-import { format } from 'prettier';
 
 const OrderForm = ({ onSubmit }) => {
   const [checked, setChecked] = useState(paymentMethod[0]);
