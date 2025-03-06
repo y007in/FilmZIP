@@ -3,6 +3,7 @@ import { fetchGenre } from '../../api/api';
 import Loading from '../Loading/Loading';
 import Button from '../Button/Button';
 import DelBtn from '../Button/DelBtn';
+import { setCartList } from '../../utils/storage';
 
 const MovieList = ({ list, onClick, onDelete }) => {
   const {
@@ -22,7 +23,7 @@ const MovieList = ({ list, onClick, onDelete }) => {
   const handleAddCart = movieData => {
     if (!cart.find(movie => movie.id === movieData.id)) {
       const updatedCart = [...cart, movieData];
-      localStorage.setItem('movie', JSON.stringify(updatedCart));
+      setCartList(updatedCart);
       alert('장바구니에 담겼습니다.');
     } else {
       alert('이미 담겨 있는 영화입니다');
@@ -30,7 +31,7 @@ const MovieList = ({ list, onClick, onDelete }) => {
   };
   const handleDelCart = movieData => {
     const deleteCart = cart.filter(movie => movie.id !== movieData.id);
-    localStorage.setItem('movie', JSON.stringify(deleteCart));
+    setCartList(deleteCart);
     alert('장바구니에서 삭제되었습니다.');
     window.location.reload();
   };

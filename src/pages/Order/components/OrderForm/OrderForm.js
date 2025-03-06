@@ -10,7 +10,6 @@ const OrderForm = ({ onSubmit }) => {
   const [checked, setChecked] = useState(paymentMethod[0]);
   const userNameRef = useRef(null);
   const userTelRef = useRef(null);
-  const userCreditRef = useRef(null);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -71,7 +70,6 @@ const OrderForm = ({ onSubmit }) => {
                 value={method}
                 checked={checked === method}
                 onChange={() => setChecked(method)}
-                ref={userCreditRef}
               />
             </FormControl>
           ))}

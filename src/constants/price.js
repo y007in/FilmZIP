@@ -1,7 +1,7 @@
-import React from 'react';
+import { getCartList } from '../utils/storage';
 
 const price = () => {
-  const cartList = JSON.parse(localStorage.getItem('movie')) || [];
+  const cartList = getCartList();
   const productPrice = cartList.length * 15000;
   const discount = 0;
   const totalPrice = productPrice - discount;

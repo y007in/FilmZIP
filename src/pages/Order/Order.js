@@ -11,12 +11,13 @@ import OrderForm from './components/OrderForm/OrderForm';
 
 import PopUp from '../../components/PopUp/PopUp';
 import ProductPrice from '../../components/ProductPrice/ProductPrice';
+import { getCartList } from '../../utils/storage';
 
 const Order = () => {
   const [credit, setCredit] = useState(false);
   const navigate = useNavigate();
 
-  const cartList = JSON.parse(localStorage.getItem('movie')) || [];
+  const cartList = getCartList();
   const handleSubmit = formData => {
     setCredit(true);
     setTimeout(() => {
@@ -35,9 +36,6 @@ const Order = () => {
             styleSize={'large'}
             text={'결제하기'}
             form="order-form"
-            onClick={() =>
-              document.getElementById('order-form').requestSubmit()
-            }
           />
         }
       >

@@ -6,12 +6,12 @@ import MovieList from '../../components/MovieList/MovieList';
 import Page from '../../components/Page/Page';
 import NoResult from '../../components/NoResult/NoResult';
 import ProductPrice from '../../components/ProductPrice/ProductPrice';
-
 import price from '../../constants/price';
+import { getCartList } from '../../utils/storage';
 
 const ShoppingList = () => {
   const navigate = useNavigate();
-  const cartList = JSON.parse(localStorage.getItem('movie')) || [];
+  const cartList = getCartList();
 
   return (
     <div className="shoppingList">
