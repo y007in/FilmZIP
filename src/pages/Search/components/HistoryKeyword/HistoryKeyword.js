@@ -1,29 +1,27 @@
-import DelBtn from '../../../../components/Button/DelBtn';
 import List from '../../../../components/List/List';
-import NoResult from '../../../../components/NoResult/NoResult';
+import { setSearchKeywordList } from '../../../../utils/storage';
 
-const HistoryKeyword = ({ historyList, setHistoryList, handleRecommend }) => {
-  // 최근 검색어 삭제
-  const handleDel = (id, e) => {
-    e.stopPropagation();
-    const delKeyword = historyList.filter(item => item.id !== id);
-    setHistoryList(delKeyword);
+import { TabType } from '../../../../constants/tabs';
+
+const HistoryKeyword = ({ historyList, handleRecommend }) => {
+  const handleAllDel = e => {
+    e.preventDefault();
+    setSearchKeywordList([]);
+    window.location.reload();
   };
-
   return (
     <>
-      {historyList.length === 0 ? (
-        <NoResult noResultData={'검색어가 없습니다'} />
-      ) : (
+      {historyList.length !== 0 && (
         <List
+          title={TabType.HISTORY}
+          type={'slide'}
           data={historyList}
           onClick={item => handleRecommend(item.text)}
-          renderItem={item => (
-            <>
-              <span>{item.text}</span>
-              <DelBtn onClick={e => handleDel(item.id, e)}>x</DelBtn>
-            </>
-          )}
+          allDel={
+            <button className="allDel" onClick={handleAllDel}>
+              전체 삭제
+            </button>
+          }
         />
       )}
     </>

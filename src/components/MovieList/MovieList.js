@@ -3,7 +3,7 @@ import { fetchGenre } from '../../api/api';
 import Loading from '../Loading/Loading';
 import Button from '../Button/Button';
 import DelBtn from '../Button/DelBtn';
-import { setCartList } from '../../utils/storage';
+import { getCartList, setCartList } from '../../utils/storage';
 
 const MovieList = ({ list, onClick, onDelete }) => {
   const {
@@ -19,7 +19,7 @@ const MovieList = ({ list, onClick, onDelete }) => {
   if (error) return <p>Error: {error.message}</p>;
 
   const genreList = genre.genres ? genre.genres : [];
-  const cart = JSON.parse(localStorage.getItem('movie')) || [];
+  const cart = getCartList();
   const handleAddCart = movieData => {
     if (!cart.find(movie => movie.id === movieData.id)) {
       const updatedCart = [...cart, movieData];

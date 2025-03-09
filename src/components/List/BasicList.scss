@@ -1,0 +1,19 @@
+.BasicList {
+  display: flex;
+  flex-direction: column;
+  .listItem {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.313rem;
+    padding: $pagePadding;
+    border-bottom: 0.063rem solid $gray;
+    font-size: 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    span {
+      padding-top: 0.125rem;
+    }
+  }
+}

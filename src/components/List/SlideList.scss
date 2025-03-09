@@ -1,0 +1,23 @@
+.swiper {
+  padding: 0 $pagePadding;
+  .swiper-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .swiper-slide {
+      padding: 0 $px * 10;
+      border: 1px solid red;
+      border: $px solid $dark_gray;
+      border-radius: $px * 50;
+
+      .listItem {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+    }
+  }
+}

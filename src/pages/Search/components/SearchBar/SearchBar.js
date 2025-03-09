@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { filterMovies } from '../../../../utils/filterMovies';
 import { fetchSearch } from '../../../../api/api';
+import { setSearchKeywordList } from '../../../../utils/storage';
 
 import Loading from '../../../../components/Loading/Loading';
 
@@ -11,7 +12,6 @@ const SearchBar = ({
   setSearchResult,
   setSubmitted,
   historyList,
-  setHistoryList,
 }) => {
   const {
     data: searchMovie,
@@ -58,7 +58,8 @@ const SearchBar = ({
       text: text,
       date: new Date().toLocaleDateString(),
     };
-    setHistoryList([newKeyword, ...historyList]);
+    setSearchKeywordList([newKeyword, ...historyList]);
+    // setHistoryList([newKeyword, ...historyList]);
   };
 
   return (

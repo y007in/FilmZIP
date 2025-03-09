@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
@@ -6,23 +7,21 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import Loading from '../../../components/Loading/Loading';
 import SearchBar from '../components/SearchBar/SearchBar';
 import MovieList from '../../../components/MovieList/MovieList';
-import Tabs from '../components/Tabs/Tabs';
 import RecommendKeyword from '../components/RecommendKeyword/RecommendKeyword';
 import HistoryKeyword from '../components/HistoryKeyword/HistoryKeyword';
-
-import { TabType } from '../../../constants/tabs';
-import { filterMovies } from '../../../utils/filterMovies';
-import { fetchTopRated } from '../../../api/api';
-import { useNavigate } from 'react-router-dom';
 import Page from '../../../components/Page/Page';
 import NoResult from '../../../components/NoResult/NoResult';
+
+import { filterMovies } from '../../../utils/filterMovies';
+import { fetchTopRated } from '../../../api/api';
+
+import { getSearchKeywordList } from '../../../utils/storage';
 
 const Search = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [submitted, setSubmitted] = useState(false);
-  const [historyList, setHistoryList] = useState([]);
-  const [selectedTab, setSelectedTab] = useState(TabType.KEYWORD);
+  const historyKeywordList = getSearchKeywordList();
 
   const navigate = useNavigate();
   const {
@@ -55,8 +54,7 @@ const Search = () => {
               setSearchKeyword={setSearchKeyword}
               setSearchResult={setSearchResult}
               setSubmitted={setSubmitted}
-              historyList={historyList}
-              setHistoryList={setHistoryList}
+              historyList={historyKeywordList}
             />
           </header>
         }
@@ -73,26 +71,17 @@ const Search = () => {
               )
             ) : (
               <>
-                <Tabs
-                  selectedTab={selectedTab}
-                  setSelectedTab={setSelectedTab}
+                <HistoryKeyword
+                  historyList={historyKeywordList}
+                  handleRecommend={handleRecommend}
                 />
-                {selectedTab === TabType.KEYWORD && (
-                  <RecommendKeyword
-                    setSearchKeyword={setSearchKeyword}
-                    setSearchResult={setSearchResult}
-                    setSubmitted={setSubmitted}
-                    handleRecommend={handleRecommend}
-                    data={top_rated}
-                  />
-                )}
-                {selectedTab === TabType.HISTORY && (
-                  <HistoryKeyword
-                    historyList={historyList}
-                    setHistoryList={setHistoryList}
-                    handleRecommend={handleRecommend}
-                  />
-                )}
+                <RecommendKeyword
+                  setSearchKeyword={setSearchKeyword}
+                  setSearchResult={setSearchResult}
+                  setSubmitted={setSubmitted}
+                  handleRecommend={handleRecommend}
+                  data={top_rated}
+                />
               </>
             )}
           </div>

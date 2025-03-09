@@ -1,18 +1,21 @@
-.lists {
-  display: flex;
-  flex-direction: column;
-  .list {
+.List {
+  width: 100%;
+  margin-bottom: $px * 15;
+  .listHeader {
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.313rem;
-    padding: $pagePadding;
-    border-bottom: 0.063rem solid $gray;
-    font-size: 1rem;
-    cursor: pointer;
-    span {
-      padding-top: 0.125rem;
+    padding: $pagePadding $pagePadding $px * 10;
+    .listTit {
+      font-size: $px * 18;
+      font-weight: 500;
+    }
+    .allDel {
+      background-color: transparent;
+      border: none;
+      font-size: $px * 14;
+      cursor: pointer;
     }
   }
 }

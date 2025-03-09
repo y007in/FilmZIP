@@ -1,12 +1,19 @@
-const List = ({ data, onClick, renderItem }) => {
+import BasicList from './BasicList';
+import SlideList from './SlideList';
+
+const List = ({ title, type, data, onClick, renderItem, allDel }) => {
   return (
-    <ul className="lists">
-      {data.map((item, i) => (
-        <li className="list" key={item.id} onClick={() => onClick(item)}>
-          {renderItem(item, i)}
-        </li>
-      ))}
-    </ul>
+    <div className="List">
+      <div className="listHeader">
+        <h1 className="listTit">{title}</h1>
+        {allDel}
+      </div>
+      {type === 'slide' ? (
+        <SlideList data={data} renderItem={renderItem} onClick={onClick} />
+      ) : (
+        <BasicList data={data} renderItem={renderItem} onClick={onClick} />
+      )}
+    </div>
   );
 };
 
