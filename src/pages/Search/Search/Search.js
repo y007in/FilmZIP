@@ -14,7 +14,6 @@ import NoResult from '../../../components/NoResult/NoResult';
 
 import { filterMovies } from '../../../utils/filterMovies';
 import { fetchTopRated } from '../../../api/api';
-
 import { getSearchKeywordList } from '../../../utils/storage';
 
 const Search = () => {
@@ -66,7 +65,7 @@ const Search = () => {
                 <MovieList list={searchResult} />
               ) : (
                 <NoResult
-                  noResultData={`앗! "${searchKeyword}" 검색결과가 없어요`}
+                  noResultData={`앗! "${historyKeywordList[0].text}" 검색결과가 없어요`}
                 />
               )
             ) : (

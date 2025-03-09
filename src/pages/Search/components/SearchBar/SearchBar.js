@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { filterMovies } from '../../../../utils/filterMovies';
@@ -59,7 +60,6 @@ const SearchBar = ({
       date: new Date().toLocaleDateString(),
     };
     setSearchKeywordList([newKeyword, ...historyList]);
-    // setHistoryList([newKeyword, ...historyList]);
   };
 
   return (
