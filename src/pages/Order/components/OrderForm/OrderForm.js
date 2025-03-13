@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import FormControl from '../../../../components/FormControl/FormControl';
 import AccordionList from '../../../../components/AccordionList/AccordionList';
 import Button from '../../../../components/Button/Button';
@@ -14,10 +14,6 @@ const OrderForm = ({ onSubmit }) => {
   const [errors, setErrors] = useState({
     name: '',
     tel: '',
-  });
-  const [touched, setTouched] = useState({
-    name: false,
-    tel: false,
   });
 
   const validate = values => {
@@ -36,25 +32,14 @@ const OrderForm = ({ onSubmit }) => {
     name: userNameRef.current?.value || '',
     tel: userTelRef.current?.value || '',
   };
-  const handleBlur = e => {
-    setTouched({
-      ...touched,
-      [e.target.name]: true,
-    });
-  };
+
   const handleSubmit = e => {
     e.preventDefault();
-
-    const nextTouched = {
-      name: true,
-      tel: true,
-    };
-    setTouched(nextTouched);
 
     const validationErrors = validate(values);
     setErrors(validationErrors);
 
-    if (Object.keys(validationErrors)) return;
+    if (Object.keys(validationErrors).length > 0) return;
 
     const formData = {
       num: randomNum,
@@ -69,10 +54,6 @@ const OrderForm = ({ onSubmit }) => {
     onSubmit(formData);
   };
 
-  useEffect(() => {
-    setErrors(validate(values));
-  }, [values]);
-
   return (
     <form className="forms" id="order-form" onSubmit={handleSubmit}>
       <AccordionList title={'개인정보'} boolean={true}>
@@ -83,7 +64,6 @@ const OrderForm = ({ onSubmit }) => {
             name="userName"
             placeholder="이름"
             ref={userNameRef}
-            onBlur={handleBlur}
             autoFocus
           />
         </FormControl>
@@ -94,7 +74,6 @@ const OrderForm = ({ onSubmit }) => {
             name="userTel"
             placeholder=" - 없이 입력"
             ref={userTelRef}
-            onBlur={handleBlur}
           />
         </FormControl>
       </AccordionList>
