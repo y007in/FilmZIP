@@ -45,10 +45,11 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        color: $black;
       }
       .mvInfoOgTit {
         width: 100%;
-        color: $dark_gray;
+        color: $detail;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -65,6 +66,7 @@
           border-radius: 1rem;
           font-size: 0.75rem;
           white-space: nowrap;
+          color: $softBold;
         }
       }
     }

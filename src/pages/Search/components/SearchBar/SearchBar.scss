@@ -1,32 +1,34 @@
 form {
   position: relative;
   width: 100%;
-
+  background-color: $white;
   .searchInput {
-    width: calc(100% - $px * 30 * 2);
+    width: calc(100% - $pagePadding * 3);
     border: none;
-    padding: $pagePadding;
+    padding: $pagePadding 0;
     outline: none;
     font-size: 1rem;
     margin-bottom: 1rem 0;
+    background-color: $white;
+    font-size: $px * 14;
   }
   .btnReset {
-    width: 1rem;
-    height: 1rem;
+    width: $px * 15;
+    height: $px * 15;
     position: absolute;
-    top: 1.15rem;
+    top: $pagePadding;
     right: $pagePadding;
     cursor: pointer;
     border-radius: 50%;
-    background-color: $gray;
-    color: white;
+    background-color: $btnLine;
     border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: $px * 3;
     &::before {
-      content: 'X';
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      content: 'x';
+      color: $detail;
     }
   }
 }

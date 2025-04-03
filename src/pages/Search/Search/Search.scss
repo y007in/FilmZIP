@@ -6,8 +6,10 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 0.063rem solid $gray;
+    background-color: $white;
     svg {
       padding: $pagePadding;
+      color: $black;
       cursor: pointer;
     }
   }

@@ -55,7 +55,6 @@ const MovieList = ({ list, onClick, onDelete }) => {
           </article>
           <article className="mvInfoTit">
             <p className="mvInfoKrTit">{item.title}</p>
-
             <p className="mvInfoOgTit">{item.original_title}</p>
             <p className="mvInfoGenre">
               {item.genre_ids.map(id => (
@@ -65,7 +64,7 @@ const MovieList = ({ list, onClick, onDelete }) => {
               ))}
             </p>
           </article>
-          <article className="movieBtn">
+          {/* <article className="movieBtn">
             {onClick && (
               <Button
                 text="+"
@@ -74,7 +73,7 @@ const MovieList = ({ list, onClick, onDelete }) => {
               />
             )}
             {onDelete && <DelBtn onClick={() => handleDelCart(item)} />}
-          </article>
+          </article> */}
         </li>
       ))}
     </ul>

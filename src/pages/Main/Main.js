@@ -41,12 +41,8 @@ const Main = () => {
             <input
               className="searchInput"
               type="text"
-              placeholder="보고싶은 영화를 찾아보세요"
+              placeholder="어떤 영화를 보셨나요?"
               onClick={() => navigate('/search')}
-            />
-            <FontAwesomeIcon
-              icon={faShoppingCart}
-              onClick={() => navigate('shoppingList')}
             />
           </header>
         }

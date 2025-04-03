@@ -7,13 +7,16 @@
     justify-content: flex-start;
     align-items: center;
     gap: 0.313rem;
-    padding: $pagePadding;
-    border-bottom: 0.063rem solid $gray;
+    padding: $px * 10 $pagePadding;
+    border-bottom: 0.063rem solid $divider;
     font-size: 1rem;
     cursor: pointer;
     white-space: nowrap;
     span {
       padding-top: 0.125rem;
+    }
+    &:first-child {
+      border-top: 0.063rem solid $divider;
     }
   }
 }

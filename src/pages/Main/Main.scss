@@ -1,6 +1,6 @@
 .MainPage {
   width: 100%;
-  background-color: $white;
+  background-color: $background;
   .searchBox {
     display: flex;
     justify-content: center;
@@ -8,18 +8,18 @@
     gap: calc($px * 10);
     padding: calc($px * 5) $pagePadding;
     border-bottom: 0.063rem solid $gray;
-    background-color: $white;
     svg {
       cursor: pointer;
     }
     .searchInput {
-      width: calc(100% - 2.5rem);
-      border: $px solid $gray;
-      border-radius: calc($px * 5);
-      padding: calc($px * 10);
+      width: 100%;
+      border: $px solid $divider;
       outline: none;
+      border-radius: calc($px * 5);
+      padding: $px * 10 $px * 15;
       font-size: calc($px * 14);
       margin-bottom: 1rem 0;
+      cursor: pointer;
     }
   }
   .spinner {

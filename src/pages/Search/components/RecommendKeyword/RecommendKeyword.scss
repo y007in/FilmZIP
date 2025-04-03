@@ -1,10 +1,40 @@
-.topNum {
+.recommendList {
+  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 1.25rem;
-  height: 1.25rem;
-  background-color: $main_color;
-  color: $sub_color;
-  border-radius: 50%;
+  gap: $px * 8;
+
+  .topNum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $px * 15;
+    height: $px * 15;
+    background-color: $main_color;
+    color: $sub_color;
+    border-radius: 50%;
+  }
+  .titles {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    .mvInfoKrTit {
+      font-size: $px * 16;
+      color: $black;
+    }
+    .mvInfoOgTit {
+      font-size: $px * 14;
+      color: $detail;
+    }
+  }
+
+  .mvInfoImg {
+    width: 10%;
+    aspect-ratio: 2/3;
+    overflow: hidden;
+    border-radius: $px * 5;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }

@@ -6,15 +6,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: $pagePadding $pagePadding $px * 10;
+    padding: $pagePadding $pagePadding $px * 8;
     .listTit {
-      font-size: $px * 18;
+      font-size: $px * 16;
       font-weight: 500;
+      color: $softBold;
     }
     .allDel {
       background-color: transparent;
       border: none;
       font-size: $px * 14;
+      color: $detail;
       cursor: pointer;
     }
   }

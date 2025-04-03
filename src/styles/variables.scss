@@ -1,15 +1,31 @@
-//color
+//#Color
+//BrandColor
 $main_color: #5db996;
 $sub_color: #fbf6e9;
 
-$black: #333;
+//background
+$background: #f8f9fa;
+$backgroundDiv: #f1f3f5;
+
+//line
+$divider: #dee2e6;
+
+//font
+$disable: #adb5bd;
+$detail: #868e96;
+$softBold: #343a40;
+
+//button
+$btnBack: #f5f5f5;
+$btnLine: #ced4da;
+
+//b&w
+$black: #222;
+$white: #fafaf8;
+
 $dark_gray: #797979;
 $gray: #ccc;
-$white: #fff;
-
-$background: #eee;
 
 //size
 $px: calc(1rem / 16);
-
-$pagePadding: calc($px * 15);
+$pagePadding: calc($px * 16);

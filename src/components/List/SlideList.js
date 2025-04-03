@@ -2,7 +2,6 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 
-import DelBtn from '../Button/DelBtn';
 import { setSearchKeywordList } from '../../utils/storage';
 
 const SlideList = ({ data, onClick }) => {
@@ -19,7 +18,9 @@ const SlideList = ({ data, onClick }) => {
         <SwiperSlide key={item.id}>
           <span className="listItem">
             <span onClick={() => onClick(item)}>{item.text}</span>
-            <DelBtn onClick={e => handleDel(item.id, e)}>x</DelBtn>
+            <button className="delBtn" onClick={e => handleDel(item.id, e)}>
+              &chi;
+            </button>
           </span>
         </SwiperSlide>
       ))}
