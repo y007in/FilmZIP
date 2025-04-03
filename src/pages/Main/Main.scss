@@ -7,7 +7,6 @@
     align-items: center;
     gap: calc($px * 10);
     padding: calc($px * 5) $pagePadding;
-    border-bottom: 0.063rem solid $gray;
     svg {
       cursor: pointer;
     }

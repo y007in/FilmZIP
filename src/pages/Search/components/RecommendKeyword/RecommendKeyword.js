@@ -1,15 +1,21 @@
+import { useNavigate } from 'react-router-dom';
 import List from '../../../../components/List/List';
+import {
+  MvInfoKrTit,
+  MvInfoOgTit,
+} from '../../../../components/MovieTitle/MovieTitle';
 import { TabType } from '../../../../constants/tabs';
 
-const RecommendKeyword = ({ handleRecommend, data }) => {
+const RecommendKeyword = ({ data }) => {
   const movie = data?.results || [];
+  const navigate = useNavigate();
 
   return (
     <>
       <List
         title={TabType.KEYWORD}
         data={movie.slice(0, 5)}
-        onClick={item => handleRecommend(item.title)}
+        onClick={item => navigate(`/movie/${item.id}`)}
         renderItem={(item, i) => (
           <div className="recommendList">
             <span className="topNum">{i + 1}</span>{' '}
@@ -27,8 +33,8 @@ const RecommendKeyword = ({ handleRecommend, data }) => {
               )}
             </article>
             <div className="titles">
-              <p className="mvInfoKrTit">{item.title}</p>
-              <p className="mvInfoOgTit">{item.original_title}</p>
+              <MvInfoKrTit data={item} />
+              <MvInfoOgTit data={item} />
             </div>
           </div>
         )}

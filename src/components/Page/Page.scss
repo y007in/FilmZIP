@@ -7,6 +7,9 @@
   flex-direction: column;
 
   header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     max-width: calc($px * 768);
     width: 100%;
     height: calc($px * 55);
@@ -14,6 +17,7 @@
     top: 0;
     right: auto;
     background-color: $white;
+    border-bottom: $px * 1 solid $divider;
   }
   main {
     width: 100%;

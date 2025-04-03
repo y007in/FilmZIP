@@ -24,3 +24,13 @@ export const fetchSearch = async ({ queryKey }) => {
   if (!searchKeyword) return [];
   return fetchFromApi(`/search/movie?query=${searchKeyword}&language=ko-KR}`);
 };
+export const fetchMovieDetail = async ({ queryKey }) => {
+  const [, movieId] = queryKey;
+  if (!movieId) return [];
+  return fetchFromApi(`/movie/${movieId}?language=ko-KR`);
+};
+export const fetchMovieVideo = async ({ queryKey }) => {
+  const [, movieId] = queryKey;
+  if (!movieId) return [];
+  return fetchFromApi(`/movie/${movieId}/videos?language=ko-KR`);
+};

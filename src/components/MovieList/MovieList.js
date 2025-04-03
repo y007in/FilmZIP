@@ -1,24 +1,13 @@
-import { useQuery } from '@tanstack/react-query';
-import { fetchGenre } from '../../api/api';
+import { MvGenre, MvInfoKrTit, MvInfoOgTit } from '../MovieTitle/MovieTitle';
 import Loading from '../Loading/Loading';
 import Button from '../Button/Button';
 import DelBtn from '../Button/DelBtn';
 import { getCartList, setCartList } from '../../utils/storage';
+import { useNavigate } from 'react-router-dom';
 
 const MovieList = ({ list, onClick, onDelete }) => {
-  const {
-    data: genre,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ['genre'],
-    queryFn: fetchGenre,
-  });
+  const navigate = useNavigate();
 
-  if (isLoading) return <Loading />;
-  if (error) return <p>Error: {error.message}</p>;
-
-  const genreList = genre.genres ? genre.genres : [];
   const cart = getCartList();
   const handleAddCart = movieData => {
     if (!cart.find(movie => movie.id === movieData.id)) {
@@ -39,7 +28,11 @@ const MovieList = ({ list, onClick, onDelete }) => {
   return (
     <ul className="mvCard">
       {list?.map(item => (
-        <li className="mvInfo" key={item.id}>
+        <li
+          className="mvInfo"
+          key={item.id}
+          onClick={() => navigate(`/movie/${item.id}`)}
+        >
           <article className="mvInfoImg">
             {item.poster_path !== null ? (
               <img
@@ -54,15 +47,9 @@ const MovieList = ({ list, onClick, onDelete }) => {
             )}
           </article>
           <article className="mvInfoTit">
-            <p className="mvInfoKrTit">{item.title}</p>
-            <p className="mvInfoOgTit">{item.original_title}</p>
-            <p className="mvInfoGenre">
-              {item.genre_ids.map(id => (
-                <span className="genre" key={id}>
-                  {genreList?.find(item => item.id === id)?.name}
-                </span>
-              ))}
-            </p>
+            <MvInfoKrTit data={item} />
+            <MvInfoOgTit data={item} />
+            <MvGenre data={item.genre_ids} />
           </article>
           {/* <article className="movieBtn">
             {onClick && (

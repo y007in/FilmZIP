@@ -78,7 +78,6 @@ const Search = () => {
                   setSearchKeyword={setSearchKeyword}
                   setSearchResult={setSearchResult}
                   setSubmitted={setSubmitted}
-                  handleRecommend={handleRecommend}
                   data={top_rated}
                 />
               </>

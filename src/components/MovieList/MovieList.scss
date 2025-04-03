@@ -39,36 +39,6 @@
       align-items: flex-start;
       gap: 0.25rem;
       padding: 0.313rem 0;
-      .mvInfoKrTit {
-        width: 100%;
-        font-size: 1.25rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: $black;
-      }
-      .mvInfoOgTit {
-        width: 100%;
-        color: $detail;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .mvInfoGenre {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 0.313rem;
-        .genre {
-          border: 0.063rem solid $main_color;
-          padding: 0.313rem 0.5rem;
-          border-radius: 1rem;
-          font-size: 0.75rem;
-          white-space: nowrap;
-          color: $softBold;
-        }
-      }
     }
     .movieBtn {
       width: 10%;
