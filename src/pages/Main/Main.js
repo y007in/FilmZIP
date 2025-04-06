@@ -6,10 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 import MovieList from '../../components/MovieList/MovieList';
+import NoResult from '../../components/NoResult/NoResult';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import Loading from '../../components/Loading/Loading';
 
 import Page from '../../components/Page/Page';
+import { getCartList } from '../../utils/storage';
 
 const Main = () => {
   const {
@@ -30,6 +32,8 @@ const Main = () => {
     }
   }, [inView, hasNextPage, fetchNextPage, isFetchNextPage]);
 
+  const recordList = getCartList();
+
   if (isLoading) return <Loading />;
   if (error) return <p>Error: {error.message}</p>;
 
@@ -47,14 +51,35 @@ const Main = () => {
           </header>
         }
       >
-        {data?.pages.map((page, i) => (
+        {/* {data?.pages.map((page, i) => (
           <MovieList key={i} list={page.results} onClick />
         ))}
         {hasNextPage && (
           <div className="spinner" ref={ref}>
             <ClipLoader color="#5db996" />
           </div>
-        )}
+        )} */}
+        <div className="recordList">
+          {recordList.length !== 0 ? (
+            recordList.map(item =>
+              item.poster_path !== null ? (
+                <div className="image" >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                    alt={item.title}
+                  />
+                </div>
+              ) : (
+                <div className="image noImage">
+                  <span>이미지</span>
+                  <span>준비중</span>
+                </div>
+              ),
+            )
+          ) : (
+            <NoResult noResultData={'장바구니에 담기 영화가 없습니다.'} />
+          )}
+        </div>
       </Page>
     </div>
   );

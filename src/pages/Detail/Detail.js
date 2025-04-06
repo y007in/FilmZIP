@@ -14,8 +14,11 @@ import {
   MvInfoOgTit,
   MvInfoOverview,
 } from '../../components/MovieTitle/MovieTitle';
+import { useState } from 'react';
+import RecordFilter from './RecordFilter/RecordFilter';
 
 const Detail = () => {
+  const [isRecord, setIsRecord] = useState(false);
   const { id } = useParams();
   const {
     data: movieData,
@@ -48,7 +51,14 @@ const Detail = () => {
             <span>{movieData.title}</span>
           </header>
         }
-        footer={<Button styleType={'full'} styleSize={'large'} text={'저장'} />}
+        footer={
+          <Button
+            styleType={'full'}
+            styleSize={'large'}
+            text={'저장'}
+            onClick={() => setIsRecord(!isRecord)}
+          />
+        }
       >
         <div className="container">
           <section className="moviePoster">
@@ -81,6 +91,7 @@ const Detail = () => {
             </article>
           </section>
         </div>
+        {isRecord && <RecordFilter />}
       </Page>
     </div>
   );

@@ -21,8 +21,25 @@
       cursor: pointer;
     }
   }
-  .spinner {
-    margin: 0 auto;
-    padding: calc($px * 48);
+  .recordList {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: $px * 8;
+    padding: $pagePadding;
+    .image {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      overflow: hidden;
+      border-radius: $px * 5;
+      img {
+        width: 100%;
+      }
+    }
   }
+  // .spinner {
+  //   margin: 0 auto;
+  //   padding: calc($px * 48);
+  // }
 }
