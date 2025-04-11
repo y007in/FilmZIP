@@ -1,4 +1,5 @@
 .FormControl {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: calc($px * 5);
@@ -8,17 +9,14 @@
     width: 100%;
     display: flex;
     gap: calc($px * 3);
+    font-weight: 500;
+    font-size: $px * 16;
   }
   .inputBox {
+    width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: $px * 5;
-    input[type='radio'] {
-      display: none;
-    }
-    .error {
-      color: red;
-      font-size: $px * 14;
-    }
   }
 }

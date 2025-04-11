@@ -1,6 +1,50 @@
 .RecordFilter {
   position: absolute;
   width: 100%;
-  height: 100vh;
-  background-color: red;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  background-color: rgba($black, 0.5);
+  .filterList {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-radius: $px * 10 $px * 10 0 0;
+    background-color: $background;
+    padding: $pagePadding;
+    transform: translateY(0%);
+    &.hide {
+      transform: translateY(-200%);
+    }
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: $px * 30;
+
+      input[type='radio'] {
+        display: none;
+      }
+      textarea {
+        width: 100%;
+        border: $px solid $divider;
+      }
+      .dateContent {
+        width: 100%;
+        display: flex;
+        gap: $px * 3;
+        .dates {
+          input[type='date'] {
+            border: $px solid $btnLine;
+            color: $softBold;
+          }
+          .subLabel {
+            font-size: $px * 14;
+            margin-bottom: $px * 3;
+          }
+        }
+      }
+    }
+  }
 }

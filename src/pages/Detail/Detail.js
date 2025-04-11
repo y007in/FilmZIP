@@ -38,10 +38,14 @@ const Detail = () => {
   });
   const navigate = useNavigate();
 
+  const handleFilterDialog = () => {
+    setIsRecord(!isRecord);
+  };
+
   if (dataLoading || videoLoading) return <Loading />;
   if (videoError || videoError) return <div>오류 발생</div>;
-  console.log(movieData);
-  console.log(movieVideo);
+  // console.log(movieData);
+  // console.log(movieVideo);
   return (
     <div className="DetailPage">
       <Page
@@ -55,8 +59,8 @@ const Detail = () => {
           <Button
             styleType={'full'}
             styleSize={'large'}
-            text={'저장'}
-            onClick={() => setIsRecord(!isRecord)}
+            text={'등록하기'}
+            onClick={handleFilterDialog}
           />
         }
       >
@@ -65,7 +69,7 @@ const Detail = () => {
             {movieVideo.results.length !== 0 ? (
               <iframe
                 src={`https://www.youtube.com/embed/${movieVideo.results[0].key}?vq=hd${movieVideo.results[0].size}`}
-                title={`${movieVideo.results[0].name} movieVideo.Movie Trailer`}
+                title={`${movieVideo.results[0].name} Movie Trailer`}
                 allowFullScreen
               ></iframe>
             ) : (
@@ -91,8 +95,13 @@ const Detail = () => {
             </article>
           </section>
         </div>
-        {isRecord && <RecordFilter />}
       </Page>
+      {isRecord && (
+        <RecordFilter
+          handleFilterDialog={handleFilterDialog}
+          isRecord={isRecord}
+        />
+      )}
     </div>
   );
 };

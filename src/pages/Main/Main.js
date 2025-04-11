@@ -63,7 +63,7 @@ const Main = () => {
           {recordList.length !== 0 ? (
             recordList.map(item =>
               item.poster_path !== null ? (
-                <div className="image" >
+                <div className="image">
                   <img
                     src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                     alt={item.title}
