@@ -96,12 +96,11 @@ const Detail = () => {
           </section>
         </div>
       </Page>
-      {isRecord && (
-        <RecordFilter
-          handleFilterDialog={handleFilterDialog}
-          isRecord={isRecord}
-        />
-      )}
+      <RecordFilter
+        handleFilterDialog={handleFilterDialog}
+        isRecord={isRecord}
+        setIsRecord={setIsRecord}
+      />
     </div>
   );
 };

@@ -1,11 +1,15 @@
 import React from 'react';
 
-const FormControl = ({ label, htmlFor, sr_only, children }) => {
+const FormControl = ({ label, htmlFor, inputType, sr_only, children }) => {
   return (
     <div className="FormControl">
       <label htmlFor={htmlFor} className={sr_only}>
         {label}
+        <span className="limit">
+          {inputType === 'buttonsCheck' && '중복 선택 가능'}
+        </span>
       </label>
+
       <div className="inputBox">{children}</div>
     </div>
   );

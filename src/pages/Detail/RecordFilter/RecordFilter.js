@@ -1,9 +1,15 @@
 import { useRef, useState } from 'react';
 import Button from '../../../components/Button/Button';
 import FormControl from '../../../components/FormControl/FormControl';
+import { formField } from '../../../constants/formField';
 import AccordionList from '../../../components/AccordionList/AccordionList';
 
-const RecordFilter = ({ handleFilterDialog, isRecord }) => {
+const RecordFilter = ({
+  handleFilterDialog,
+  isRecord,
+  setIsRecord,
+  onsubmit,
+}) => {
   const [checked, setChecked] = useState({});
   const watchStartDate = useRef(null);
   const watchEndDate = useRef(null);
@@ -12,80 +18,36 @@ const RecordFilter = ({ handleFilterDialog, isRecord }) => {
   const handleSubmit = e => {
     e.preventDefault();
     const formData = {
-      watchState: checked,
-      watchStartDate: watchStartDate.current.value,
+      selections: checked,
+      watchStartDate: watchStartDate.current?.value || '',
       watchEndDate: watchEndDate.current?.value || '',
-      watchLocation: checked,
-      watchRe: checked,
-      watchFeel: checked,
       watchComment: watchComment.current?.value || '',
     };
-    onsubmit(formData);
+    setIsRecord(false);
+    if (onsubmit) onsubmit(formData);
 
+    alert('저장되었습니다');
     console.log(formData);
   };
 
-  const formFields = [
-    {
-      label: '관람 상태',
-      type: 'buttons',
-      options: ['다 본 영화', '재관람 영화', '중단한 영화'],
-    },
-    {
-      label: '언제 관람하셨나요?',
-      type: 'dates',
-    },
-    {
-      label: '누구와 함께했나요?',
-      type: 'buttons',
-      options: [
-        '친구',
-        '연인﹒배우자',
-        '지인﹒동료',
-        '혼자',
-        '아이',
-        '부모님',
-        '반려동물',
-        '친척﹒형제',
-        '기타',
-      ],
-    },
-    {
-      label: '어디서 시청하셨나요?',
-      type: 'buttons',
-      options: ['영화관', '집', '카페', '비행기', 'OTT', '기타'],
-    },
-    {
-      label: '다시 볼 의향이 있나요?',
-      type: 'buttons',
-      options: ['네 있어요', '애매해요', '아니요 안볼래요'],
-    },
-    {
-      label: '어떤 영화였나요?',
-      type: 'buttons',
-      options: [
-        'N차 관람 확정',
-        '내 취향 저격',
-        '장면 하나가 계속 떠올라요',
-        '끝나고 멍해졌어요',
-        '생각보다 별로였어요',
-        '재밌었는데 설명은 어려운 영화',
-        '내 감정 어지럽힘',
-      ],
-    },
-    {
-      label: '추가적인 코멘트를 남겨보세요!',
-      type: 'textarea',
-    },
-  ];
+  const toggleCheckbox = (label, option) => {
+    setChecked(prev => ({
+      ...prev,
+      [label]: prev[label]?.includes(option)
+        ? prev[label].filter(item => item !== option)
+        : [...(prev[label] || []), option],
+    }));
+  };
 
   return (
-    <div className="RecordFilter">
-      <div className={`filterList ${isRecord ? '' : 'hide'}`}>
-        <form>
-          {formFields.map((field, idx) => (
-            <FormControl key={idx} label={field.label}>
-              {/* 버튼 */}
+    <div className={`RecordFilter ${isRecord ? '' : 'hide'}`}>
+      <div className="filterList">
+        <header onClick={handleFilterDialog}>
+          <div></div>
+        </header>
+        <form onSubmit={handleSubmit}>
+          {formField.map((field, idx) => (
+            <FormControl key={idx} label={field.label} inputType={field.type}>
               {field.type === 'buttons' &&
                 field.options.map((option, i) => (
                   <span key={i}>
@@ -105,19 +67,39 @@ const RecordFilter = ({ handleFilterDialog, isRecord }) => {
                     <input
                       type="radio"
                       name={field.label}
-                      id={option}
+                      id={`${field.label}-${option}`}
                       value={option}
                       checked={checked[field.label] === option}
                       onChange={() =>
-                        setChecked(prev => ({
-                          ...prev,
-                          [field.label]: option,
-                        }))
+                        setChecked(prev => ({ ...prev, [field.label]: option }))
                       }
                     />
                   </span>
                 ))}
-              {/* 날짜 */}
+              {field.type === 'buttonsCheck' &&
+                field.options.map((option, i) => {
+                  const selected = checked[field.label]?.includes(option);
+                  return (
+                    <span key={i}>
+                      <Button
+                        styleType={selected ? 'brandSolid' : ''}
+                        text={option}
+                        onClick={e => {
+                          e.preventDefault();
+                          toggleCheckbox(field.label, option);
+                        }}
+                      />
+                      <input
+                        type="checkbox"
+                        name={field.label}
+                        id={`${field.label}-${option}`}
+                        value={option}
+                        checked={selected}
+                        onChange={() => toggleCheckbox(field.label, option)}
+                      />
+                    </span>
+                  );
+                })}
               {field.type === 'dates' && (
                 <section className="dateContent">
                   <div className="dates">
@@ -144,15 +126,19 @@ const RecordFilter = ({ handleFilterDialog, isRecord }) => {
                   </div>
                 </section>
               )}
-              {/* textarea */}
-              {field.type === 'textarea' && <textarea ref={watchComment} />}
+              {field.type === 'textarea' && (
+                <textarea
+                  ref={watchComment}
+                  placeholder="추가적으로 남기고 싶은 코멘트가 있다면 자유롭게 작성해주세요!"
+                />
+              )}
             </FormControl>
           ))}
           <Button
             styleType={'full'}
             styleSize={'large'}
             text={'저장'}
-            onsubmit={handleSubmit}
+            onClick={handleSubmit}
           />
         </form>
       </div>
