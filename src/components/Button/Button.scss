@@ -21,6 +21,9 @@
     background-color: $main_color;
     color: $white;
   }
+  &.disabled {
+    color: $disable;
+  }
   &.small {
     height: $px * 32;
     font-size: $px * 14;

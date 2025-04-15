@@ -1,9 +1,8 @@
+import { useState, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
-
-import { useParams } from 'react-router-dom';
 import { fetchMovieDetail, fetchMovieVideo } from '../../api/api';
 import Loading from '../../components/Loading/Loading';
 import Page from '../../components/Page/Page';
@@ -14,12 +13,21 @@ import {
   MvInfoOgTit,
   MvInfoOverview,
 } from '../../components/MovieTitle/MovieTitle';
-import { useState } from 'react';
+
 import RecordFilter from './RecordFilter/RecordFilter';
+import { setMovieRecords, getMovieRecords } from '../../utils/storage';
 
 const Detail = () => {
   const [isRecord, setIsRecord] = useState(false);
+  const [checked, setChecked] = useState({});
+  const watchRefs = useRef({
+    startDate: null,
+    endDate: null,
+    comment: null,
+  });
+
   const { id } = useParams();
+
   const {
     data: movieData,
     isLoading: dataLoading,
@@ -42,8 +50,28 @@ const Detail = () => {
     setIsRecord(!isRecord);
   };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    const formData = {
+      movieData,
+      selections: checked,
+      watchStartDate: watchRefs.current.startDate?.value || '',
+      watchEndDate: watchRefs.current.endDate?.value || '',
+      watchComment: watchRefs.current.comment?.value || '',
+    };
+    const existingRecords = getMovieRecords();
+    const updatedRecords = [...existingRecords, formData];
+    setMovieRecords(updatedRecords);
+    setIsRecord(false);
+    if (onsubmit) onsubmit(formData);
+
+    alert('저장되었습니다');
+    // console.log(movieR);
+  };
+
   if (dataLoading || videoLoading) return <Loading />;
-  if (videoError || videoError) return <div>오류 발생</div>;
+  if (dataError || videoError) return <div>오류 발생</div>;
   // console.log(movieData);
   // console.log(movieVideo);
   return (
@@ -98,8 +126,12 @@ const Detail = () => {
       </Page>
       <RecordFilter
         handleFilterDialog={handleFilterDialog}
+        handleSubmit={handleSubmit}
         isRecord={isRecord}
         setIsRecord={setIsRecord}
+        checked={checked}
+        setChecked={setChecked}
+        watchRefs={watchRefs}
       />
     </div>
   );

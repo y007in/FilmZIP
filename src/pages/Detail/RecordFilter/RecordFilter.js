@@ -1,35 +1,18 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Button from '../../../components/Button/Button';
 import FormControl from '../../../components/FormControl/FormControl';
 import { formField } from '../../../constants/formField';
-import AccordionList from '../../../components/AccordionList/AccordionList';
 
 const RecordFilter = ({
   handleFilterDialog,
   isRecord,
   setIsRecord,
   onsubmit,
+  handleSubmit,
+  checked,
+  setChecked,
+  watchRefs,
 }) => {
-  const [checked, setChecked] = useState({});
-  const watchStartDate = useRef(null);
-  const watchEndDate = useRef(null);
-  const watchComment = useRef(null);
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    const formData = {
-      selections: checked,
-      watchStartDate: watchStartDate.current?.value || '',
-      watchEndDate: watchEndDate.current?.value || '',
-      watchComment: watchComment.current?.value || '',
-    };
-    setIsRecord(false);
-    if (onsubmit) onsubmit(formData);
-
-    alert('저장되었습니다');
-    console.log(formData);
-  };
-
   const toggleCheckbox = (label, option) => {
     setChecked(prev => ({
       ...prev,
@@ -110,7 +93,7 @@ const RecordFilter = ({
                       type="date"
                       id="start-date"
                       name="start-date"
-                      ref={watchStartDate}
+                      ref={el => (watchRefs.current.startDate = el)}
                     />
                   </div>
                   <div className="dates">
@@ -121,23 +104,23 @@ const RecordFilter = ({
                       type="date"
                       id="end-date"
                       name="end-date"
-                      ref={watchEndDate}
+                      ref={el => (watchRefs.current.endDate = el)}
                     />
                   </div>
                 </section>
               )}
               {field.type === 'textarea' && (
                 <textarea
-                  ref={watchComment}
+                  ref={el => (watchRefs.current.comment = el)}
                   placeholder="추가적으로 남기고 싶은 코멘트가 있다면 자유롭게 작성해주세요!"
                 />
               )}
             </FormControl>
           ))}
           <Button
-            styleType={'full'}
-            styleSize={'large'}
-            text={'저장'}
+            styleType="full"
+            styleSize="large"
+            text="저장"
             onClick={handleSubmit}
           />
         </form>

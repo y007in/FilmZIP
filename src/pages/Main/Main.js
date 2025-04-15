@@ -11,7 +11,7 @@ import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import Loading from '../../components/Loading/Loading';
 
 import Page from '../../components/Page/Page';
-import { getCartList } from '../../utils/storage';
+import { getMovieRecords } from '../../utils/storage';
 
 const Main = () => {
   const {
@@ -32,7 +32,8 @@ const Main = () => {
     }
   }, [inView, hasNextPage, fetchNextPage, isFetchNextPage]);
 
-  const recordList = getCartList();
+  const recordList = getMovieRecords();
+  console.log(recordList);
 
   if (isLoading) return <Loading />;
   if (error) return <p>Error: {error.message}</p>;
@@ -62,10 +63,10 @@ const Main = () => {
         <div className="recordList">
           {recordList.length !== 0 ? (
             recordList.map(item =>
-              item.poster_path !== null ? (
-                <div className="image">
+              item.movieData?.poster_path !== null ? (
+                <div className="image" key={item.movieData.id}>
                   <img
-                    src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w200${item.movieData?.poster_path}`}
                     alt={item.title}
                   />
                 </div>
