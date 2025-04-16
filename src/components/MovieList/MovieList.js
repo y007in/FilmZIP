@@ -8,22 +8,14 @@ import { useNavigate } from 'react-router-dom';
 const MovieList = ({ list, onClick, onDelete }) => {
   const navigate = useNavigate();
 
-  const cart = getCartList();
-  const handleAddCart = movieData => {
-    if (!cart.find(movie => movie.id === movieData.id)) {
-      const updatedCart = [...cart, movieData];
-      setCartList(updatedCart);
-      alert('장바구니에 담겼습니다.');
-    } else {
-      alert('이미 담겨 있는 영화입니다');
-    }
-  };
-  const handleDelCart = movieData => {
-    const deleteCart = cart.filter(movie => movie.id !== movieData.id);
-    setCartList(deleteCart);
-    alert('장바구니에서 삭제되었습니다.');
-    window.location.reload();
-  };
+  // const cart = getCartList();
+
+  // const handleDelCart = movieData => {
+  //   const deleteCart = cart.filter(movie => movie.id !== movieData.id);
+  //   setCartList(deleteCart);
+  //   alert('장바구니에서 삭제되었습니다.');
+  //   window.location.reload();
+  // };
 
   return (
     <ul className="mvCard">
@@ -51,16 +43,6 @@ const MovieList = ({ list, onClick, onDelete }) => {
             <MvInfoOgTit data={item} />
             <MvGenre data={item.genre_ids} />
           </article>
-          {/* <article className="movieBtn">
-            {onClick && (
-              <Button
-                text="+"
-                styleType="brand"
-                onClick={() => handleAddCart(item)}
-              />
-            )}
-            {onDelete && <DelBtn onClick={() => handleDelCart(item)} />}
-          </article> */}
         </li>
       ))}
     </ul>

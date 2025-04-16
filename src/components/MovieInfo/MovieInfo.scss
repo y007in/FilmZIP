@@ -1,0 +1,18 @@
+.movieInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $px * 10;
+  .movieMeta {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: $px * 5;
+    font-size: $px * 14;
+    color: $softBold;
+  }
+  .movieDescription {
+    display: flex;
+    flex-direction: column;
+    gap: $px * 5;
+  }
+}

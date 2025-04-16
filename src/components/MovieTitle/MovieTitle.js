@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchGenre } from '../../api/api';
 import Loading from '../Loading/Loading';
+import Banner from '../Banner/Banner';
 
 export const MvInfoKrTit = ({ data }) => {
   return <p className="mvInfoKrTit">{data.title}</p>;
@@ -33,9 +34,11 @@ export const MvGenre = ({ data }) => {
       {data.map(item => {
         const genreId = typeof item === 'object' ? item.id : item;
         return (
-          <span className="genre" key={genreId}>
-            {genreList?.find(item => item.id === genreId)?.name}
-          </span>
+          <Banner
+            key={genreId}
+            bannerType={'brandSolid'}
+            text={genreList?.find(item => item.id === genreId)?.name}
+          />
         );
       })}
     </p>

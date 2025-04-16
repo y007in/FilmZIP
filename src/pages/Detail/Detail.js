@@ -7,12 +7,7 @@ import { fetchMovieDetail, fetchMovieVideo } from '../../api/api';
 import Loading from '../../components/Loading/Loading';
 import Page from '../../components/Page/Page';
 import Button from '../../components/Button/Button';
-import {
-  MvGenre,
-  MvInfoKrTit,
-  MvInfoOgTit,
-  MvInfoOverview,
-} from '../../components/MovieTitle/MovieTitle';
+import MovieInfo from '../../components/MovieInfo/MovieInfo';
 
 import RecordFilter from './RecordFilter/RecordFilter';
 import { setMovieRecords, getMovieRecords } from '../../utils/storage';
@@ -54,10 +49,16 @@ const Detail = () => {
     e.preventDefault();
 
     const formData = {
-      movieData,
-      selections: checked,
+      movieId: movieData.id,
+      title: movieData.title,
+      poster_path: movieData.poster_path,
       watchStartDate: watchRefs.current.startDate?.value || '',
       watchEndDate: watchRefs.current.endDate?.value || '',
+      watchStatus: checked['관람 상태'],
+      watchPlace: checked['어디서 시청하셨나요?'],
+      watchWith: checked['누구와 함께했나요?'],
+      reWatchWill: checked['다시 볼 의향이 있나요?'],
+      watchReview: checked['어떤 영화였나요?'],
       watchComment: watchRefs.current.comment?.value || '',
     };
     const existingRecords = getMovieRecords();
@@ -108,20 +109,7 @@ const Detail = () => {
               />
             )}
           </section>
-          <section className="movieInfo">
-            <div className="movieMeta">
-              <span className="element">
-                {movieData.release_date.substr(0, 4)}
-              </span>{' '}
-              <span className="element">{movieData.runtime}분</span>
-              <MvGenre data={movieData?.genres} />
-            </div>
-            <article className="movieDescription">
-              <MvInfoKrTit data={movieData} />
-              <MvInfoOgTit data={movieData} />
-              <MvInfoOverview data={movieData} />
-            </article>
-          </section>
+          <MovieInfo />
         </div>
       </Page>
       <RecordFilter

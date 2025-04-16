@@ -27,28 +27,5 @@
         aspect-ratio: 16/9;
       }
     }
-    .movieInfo {
-      display: flex;
-      flex-direction: column;
-      gap: $px * 10;
-      .movieMeta {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: $px * 5;
-        font-size: $px * 14;
-        color: $softBold;
-        .element {
-          border: $px * 1 solid $btnLine;
-          padding: 0.313rem 0.5rem;
-          border-radius: $px * 5;
-        }
-      }
-      .movieDescription {
-        display: flex;
-        flex-direction: column;
-        gap: $px * 5;
-      }
-    }
   }
 }

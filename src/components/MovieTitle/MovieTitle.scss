@@ -23,12 +23,4 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0.313rem;
-  .genre {
-    border: 0.063rem solid $main_color;
-    padding: 0.313rem 0.5rem;
-    border-radius: $px * 5;
-    font-size: 0.75rem;
-    white-space: nowrap;
-    color: $softBold;
-  }
 }

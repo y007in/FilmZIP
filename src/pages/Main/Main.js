@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { ClipLoader } from 'react-spinners';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,31 +13,30 @@ import Loading from '../../components/Loading/Loading';
 
 import Page from '../../components/Page/Page';
 import { getMovieRecords } from '../../utils/storage';
+import { fetchMovieDetail } from '../../api/api';
 
 const Main = () => {
-  const {
-    data,
-    isLoading,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetchNextPage,
-  } = useInfiniteScroll();
   const navigate = useNavigate();
-
-  const { ref, inView } = useInView();
-
-  useEffect(() => {
-    if (inView && hasNextPage && !isFetchNextPage) {
-      fetchNextPage();
-    }
-  }, [inView, hasNextPage, fetchNextPage, isFetchNextPage]);
-
   const recordList = getMovieRecords();
-  console.log(recordList);
+  // const {
+  //   data,
+  //   isLoading,
+  //   error,
+  //   fetchNextPage,
+  //   hasNextPage,
+  //   isFetchNextPage,
+  // } = useInfiniteScroll();
 
-  if (isLoading) return <Loading />;
-  if (error) return <p>Error: {error.message}</p>;
+  // const { ref, inView } = useInView();
+
+  // useEffect(() => {
+  //   if (inView && hasNextPage && !isFetchNextPage) {
+  //     fetchNextPage();
+  //   }
+  // }, [inView, hasNextPage, fetchNextPage, isFetchNextPage]);
+
+  // if (isLoading) return <Loading />;
+  // if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div className="MainPage">
@@ -63,10 +63,14 @@ const Main = () => {
         <div className="recordList">
           {recordList.length !== 0 ? (
             recordList.map(item =>
-              item.movieData?.poster_path !== null ? (
-                <div className="image" key={item.movieData.id}>
+              item.poster_path !== null ? (
+                <div
+                  className="image"
+                  key={item.movieId}
+                  onClick={() => navigate(`/review/${item.movieId}`)}
+                >
                   <img
-                    src={`https://image.tmdb.org/t/p/w200${item.movieData?.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                     alt={item.title}
                   />
                 </div>
