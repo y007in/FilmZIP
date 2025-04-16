@@ -1,15 +1,14 @@
 import { useState, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
-import { fetchMovieDetail, fetchMovieVideo } from '../../api/api';
+
 import Loading from '../../components/Loading/Loading';
 import Page from '../../components/Page/Page';
+import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 import MovieInfo from '../../components/MovieInfo/MovieInfo';
-
 import RecordFilter from './RecordFilter/RecordFilter';
+import { fetchMovieDetail, fetchMovieVideo } from '../../api/api';
 import { setMovieRecords, getMovieRecords } from '../../utils/storage';
 
 const Detail = () => {
@@ -78,12 +77,7 @@ const Detail = () => {
   return (
     <div className="DetailPage">
       <Page
-        header={
-          <header>
-            <FontAwesomeIcon icon={faAngleLeft} onClick={() => navigate('/')} />
-            <span>{movieData.title}</span>
-          </header>
-        }
+        header={<Header movieData={movieData} />}
         footer={
           <Button
             styleType={'full'}

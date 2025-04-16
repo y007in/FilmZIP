@@ -1,25 +1,8 @@
-.pageTit {
-  width: 100%;
-  padding: 1rem 0;
-  font-size: 1.25rem;
-  font-weight: 500;
-  border-bottom: 0.063rem solid $gray;
-  text-align: center;
-  background-color: $white;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  .title {
-    flex: 1;
-    text-align: center;
-  }
-  .headerBtn {
-    width: 50px;
+.titleHeader {
+  svg {
     padding: 0 $pagePadding;
-    text-align: center;
-    cursor: pointer;
-    &.hidden {
-      visibility: hidden;
-    }
+  }
+  span {
+    margin-top: $px * 4;
   }
 }

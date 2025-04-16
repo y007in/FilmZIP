@@ -42,14 +42,7 @@ const Review = () => {
 
   return (
     <div className="Review">
-      <Page
-        header={
-          <header>
-            <FontAwesomeIcon icon={faAngleLeft} onClick={() => navigate('/')} />
-            <span>{movieData.title}</span>
-          </header>
-        }
-      >
+      <Page header={<Header movieData={movieData} />}>
         <div className="container">
           <section className="moviePoster">
             <img

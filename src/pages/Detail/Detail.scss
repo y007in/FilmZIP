@@ -1,13 +1,5 @@
 .DetailPage {
   position: relative;
-  header {
-    svg {
-      padding: 0 $pagePadding;
-    }
-    span {
-      margin-top: $px * 4;
-    }
-  }
   .container {
     width: 100%;
     display: flex;
