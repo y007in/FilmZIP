@@ -1,11 +1,8 @@
-import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { filterMovies } from '../../../../utils/filterMovies';
 import { fetchSearch } from '../../../../api/api';
 import { setSearchKeywordList } from '../../../../utils/storage';
-
-import Loading from '../../../../components/Loading/Loading';
 
 const SearchBar = ({
   searchKeyword,

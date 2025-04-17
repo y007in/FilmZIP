@@ -58,31 +58,29 @@ const Search = () => {
           </header>
         }
       >
-        <div className="container">
-          <div className="content">
-            {submitted ? (
-              searchResult ? (
-                <MovieList list={searchResult} />
-              ) : (
-                <NoResult
-                  noResultData={`앗! "${historyKeywordList[0].text}" 검색결과가 없어요`}
-                />
-              )
+        <div className="content">
+          {submitted ? (
+            searchResult ? (
+              <MovieList list={searchResult} />
             ) : (
-              <>
-                <HistoryKeyword
-                  historyList={historyKeywordList}
-                  handleRecommend={handleRecommend}
-                />
-                <RecommendKeyword
-                  setSearchKeyword={setSearchKeyword}
-                  setSearchResult={setSearchResult}
-                  setSubmitted={setSubmitted}
-                  data={top_rated}
-                />
-              </>
-            )}
-          </div>
+              <NoResult
+                noResultData={`앗! "${historyKeywordList[0].text}" 검색결과가 없어요`}
+              />
+            )
+          ) : (
+            <>
+              <HistoryKeyword
+                historyList={historyKeywordList}
+                handleRecommend={handleRecommend}
+              />
+              <RecommendKeyword
+                setSearchKeyword={setSearchKeyword}
+                setSearchResult={setSearchResult}
+                setSubmitted={setSubmitted}
+                data={top_rated}
+              />
+            </>
+          )}
         </div>
       </Page>
     </div>

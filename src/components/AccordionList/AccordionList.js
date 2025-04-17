@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
-const AccordionList = ({ title, detail, detailCount, children, boolean }) => {
+const AccordionList = ({ title, children, boolean }) => {
   const [show, setShow] = useState(boolean);
 
   const handleShowProduct = () => {
@@ -13,10 +13,6 @@ const AccordionList = ({ title, detail, detailCount, children, boolean }) => {
       <div className="AccordionTitle">
         <span>{title}</span>
         <span className="rightBtn">
-          <p>
-            {/* <div className="titEllipsis">{detail}</div> */}
-            {/* <div className="nonEllipsis">{detailCount}</div> */}
-          </p>
           <button onClick={handleShowProduct}>
             {show ? (
               <FontAwesomeIcon icon={faChevronUp} />

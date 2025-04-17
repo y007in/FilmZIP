@@ -12,12 +12,9 @@
       gap: $px * 16;
       margin-bottom: $px * 30;
       img {
-        width: 100%;
+        // width: 100%;
         border-radius: $px * 5;
       }
-    }
-    .divider {
-      border: 1px solid $divider;
     }
     .reviewData {
       display: flex;

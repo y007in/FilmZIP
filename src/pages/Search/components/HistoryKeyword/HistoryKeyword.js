@@ -1,7 +1,7 @@
 import List from '../../../../components/List/List';
 import { setSearchKeywordList } from '../../../../utils/storage';
-
 import { TabType } from '../../../../constants/tabs';
+import { useEffect } from 'react';
 
 const HistoryKeyword = ({ historyList, handleRecommend }) => {
   const handleAllDel = e => {
@@ -9,6 +9,7 @@ const HistoryKeyword = ({ historyList, handleRecommend }) => {
     setSearchKeywordList([]);
     window.location.reload();
   };
+
   return (
     <>
       {historyList.length !== 0 && (

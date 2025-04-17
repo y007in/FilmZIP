@@ -1,5 +1,3 @@
-import React from 'react';
-
 const FormControl = ({ label, htmlFor, inputType, sr_only, children }) => {
   return (
     <div className="FormControl">

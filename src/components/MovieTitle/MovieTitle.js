@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchGenre } from '../../api/api';
+
 import Loading from '../Loading/Loading';
 import Banner from '../Banner/Banner';
+import { fetchGenre } from '../../api/api';
 
 export const MvInfoKrTit = ({ data }) => {
   return <p className="mvInfoKrTit">{data.title}</p>;

@@ -1,5 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+
+import Banner from '../Banner/Banner';
+import Loading from '../Loading/Loading';
 import { fetchMovieDetail } from '../../api/api';
 import {
   MvGenre,
@@ -7,7 +10,6 @@ import {
   MvInfoOgTit,
   MvInfoOverview,
 } from '../../components/MovieTitle/MovieTitle';
-import Banner from '../Banner/Banner';
 
 const MovieInfo = () => {
   const { id } = useParams();
@@ -19,6 +21,9 @@ const MovieInfo = () => {
     queryKey: ['movieDetail', id],
     queryFn: () => fetchMovieDetail({ queryKey: ['movieDetail', id] }),
   });
+
+  if (dataLoading) return <Loading />;
+  if (dataError) return <div>오류 발생</div>;
   return (
     <section className="movieInfo">
       <div className="movieMeta">

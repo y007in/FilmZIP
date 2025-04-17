@@ -1,19 +1,16 @@
-import { useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+
 import { useInView } from 'react-intersection-observer';
 import { ClipLoader } from 'react-spinners';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-import MovieList from '../../components/MovieList/MovieList';
+import Page from '../../components/Page/Page';
 import NoResult from '../../components/NoResult/NoResult';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import Loading from '../../components/Loading/Loading';
-
-import Page from '../../components/Page/Page';
 import { getMovieRecords } from '../../utils/storage';
-import { fetchMovieDetail } from '../../api/api';
+import Poster from '../../components/Poster/Poster';
 
 const Main = () => {
   const navigate = useNavigate();
@@ -62,25 +59,12 @@ const Main = () => {
         )} */}
         <div className="recordList">
           {recordList.length !== 0 ? (
-            recordList.map(item =>
-              item.poster_path !== null ? (
-                <div
-                  className="image"
-                  key={item.movieId}
-                  onClick={() => navigate(`/review/${item.movieId}`)}
-                >
-                  <img
-                    src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
-                    alt={item.title}
-                  />
-                </div>
-              ) : (
-                <div className="image noImage">
-                  <span>이미지</span>
-                  <span>준비중</span>
-                </div>
-              ),
-            )
+            recordList.map(item => (
+              <Poster
+                item={item}
+                onClick={() => navigate(`/review/${item.movieId}`)}
+              />
+            ))
           ) : (
             <NoResult noResultData={'장바구니에 담기 영화가 없습니다.'} />
           )}

@@ -1,21 +1,8 @@
-import { MvGenre, MvInfoKrTit, MvInfoOgTit } from '../MovieTitle/MovieTitle';
-import Loading from '../Loading/Loading';
-import Button from '../Button/Button';
-import DelBtn from '../Button/DelBtn';
-import { getCartList, setCartList } from '../../utils/storage';
 import { useNavigate } from 'react-router-dom';
+import { MvGenre, MvInfoKrTit, MvInfoOgTit } from '../MovieTitle/MovieTitle';
 
-const MovieList = ({ list, onClick, onDelete }) => {
+const MovieList = ({ list }) => {
   const navigate = useNavigate();
-
-  // const cart = getCartList();
-
-  // const handleDelCart = movieData => {
-  //   const deleteCart = cart.filter(movie => movie.id !== movieData.id);
-  //   setCartList(deleteCart);
-  //   alert('장바구니에서 삭제되었습니다.');
-  //   window.location.reload();
-  // };
 
   return (
     <ul className="mvCard">

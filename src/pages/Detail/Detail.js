@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQueries, useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import Loading from '../../components/Loading/Loading';
@@ -10,56 +10,39 @@ import MovieInfo from '../../components/MovieInfo/MovieInfo';
 import RecordFilter from './RecordFilter/RecordFilter';
 import { fetchMovieDetail, fetchMovieVideo } from '../../api/api';
 import { setMovieRecords, getMovieRecords } from '../../utils/storage';
+import { useMovieForm } from '../../hooks/useMovieForm';
 
 const Detail = () => {
-  const [isRecord, setIsRecord] = useState(false);
-  const [checked, setChecked] = useState({});
-  const watchRefs = useRef({
-    startDate: null,
-    endDate: null,
-    comment: null,
-  });
-
   const { id } = useParams();
+  const [isRecord, setIsRecord] = useState(false);
+  const { checked, setChecked, watchRefs, getFormData } = useMovieForm();
 
-  const {
-    data: movieData,
-    isLoading: dataLoading,
-    error: dataError,
-  } = useQuery({
-    queryKey: ['movieDetail', id],
-    queryFn: () => fetchMovieDetail({ queryKey: ['movieDetail', id] }),
+  //영화 상세 정보, 영상 정보 가져오기
+  const [
+    { data: movieData, isLoading: dataLoading, error: dataError },
+    { data: movieVideo, isLoading: videoLoading, error: videoError },
+  ] = useQueries({
+    queries: [
+      {
+        queryKey: ['movieDetail', id],
+        queryFn: () => fetchMovieDetail({ queryKey: ['movieDetail', id] }),
+      },
+      {
+        queryKey: ['movieVideo', id],
+        queryFn: () => fetchMovieVideo({ queryKey: ['movieVideo', id] }),
+      },
+    ],
   });
-  const {
-    data: movieVideo,
-    isLoading: videoLoading,
-    error: videoError,
-  } = useQuery({
-    queryKey: ['movieVideo', id],
-    queryFn: () => fetchMovieVideo({ queryKey: ['movieVideo', id] }),
-  });
-  const navigate = useNavigate();
 
+  //기록 입력 폼 열/닫기
   const handleFilterDialog = () => {
     setIsRecord(!isRecord);
   };
-
+  //기록 저장
   const handleSubmit = e => {
     e.preventDefault();
 
-    const formData = {
-      movieId: movieData.id,
-      title: movieData.title,
-      poster_path: movieData.poster_path,
-      watchStartDate: watchRefs.current.startDate?.value || '',
-      watchEndDate: watchRefs.current.endDate?.value || '',
-      watchStatus: checked['관람 상태'],
-      watchPlace: checked['어디서 시청하셨나요?'],
-      watchWith: checked['누구와 함께했나요?'],
-      reWatchWill: checked['다시 볼 의향이 있나요?'],
-      watchReview: checked['어떤 영화였나요?'],
-      watchComment: watchRefs.current.comment?.value || '',
-    };
+    const formData = getFormData(movieData);
     const existingRecords = getMovieRecords();
     const updatedRecords = [...existingRecords, formData];
     setMovieRecords(updatedRecords);
@@ -67,13 +50,11 @@ const Detail = () => {
     if (onsubmit) onsubmit(formData);
 
     alert('저장되었습니다');
-    // console.log(movieR);
   };
 
   if (dataLoading || videoLoading) return <Loading />;
   if (dataError || videoError) return <div>오류 발생</div>;
-  // console.log(movieData);
-  // console.log(movieVideo);
+
   return (
     <div className="DetailPage">
       <Page
@@ -88,7 +69,7 @@ const Detail = () => {
         }
       >
         <div className="container">
-          <section className="moviePoster">
+          <section className="movieVideo">
             {movieVideo.results.length !== 0 ? (
               <iframe
                 src={`https://www.youtube.com/embed/${movieVideo.results[0].key}?vq=hd${movieVideo.results[0].size}`}
@@ -96,7 +77,6 @@ const Detail = () => {
                 allowFullScreen
               ></iframe>
             ) : (
-              // <p></p>
               <img
                 src={`https://image.tmdb.org/t/p/w200${movieData.backdrop_path}`}
                 alt={`${movieData.title} 포스터`}

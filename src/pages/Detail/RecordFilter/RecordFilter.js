@@ -1,4 +1,3 @@
-import { useRef, useState, useEffect } from 'react';
 import Button from '../../../components/Button/Button';
 import FormControl from '../../../components/FormControl/FormControl';
 import { formField } from '../../../constants/formField';
@@ -6,14 +5,18 @@ import { formField } from '../../../constants/formField';
 const RecordFilter = ({
   handleFilterDialog,
   isRecord,
-  setIsRecord,
-  onsubmit,
   handleSubmit,
   checked,
   setChecked,
   watchRefs,
 }) => {
-  const toggleCheckbox = (label, option) => {
+  const handleRadio = (label, option) => {
+    setChecked(prev => ({
+      ...prev,
+      [label]: option,
+    }));
+  };
+  const handleCheckbox = (label, option) => {
     setChecked(prev => ({
       ...prev,
       [label]: prev[label]?.includes(option)
@@ -23,10 +26,10 @@ const RecordFilter = ({
   };
 
   return (
-    <div className={`RecordFilter ${isRecord ? '' : 'hide'}`}>
-      <div className="filterList">
+    <aside className={`RecordFilter ${isRecord ? '' : 'hide'}`}>
+      <section className="filterList">
         <header onClick={handleFilterDialog}>
-          <div></div>
+          <button />
         </header>
         <form onSubmit={handleSubmit}>
           {formField.map((field, idx) => (
@@ -41,10 +44,7 @@ const RecordFilter = ({
                       text={option}
                       onClick={e => {
                         e.preventDefault();
-                        setChecked(prev => ({
-                          ...prev,
-                          [field.label]: option,
-                        }));
+                        handleRadio(field.label, option);
                       }}
                     />
                     <input
@@ -53,9 +53,7 @@ const RecordFilter = ({
                       id={`${field.label}-${option}`}
                       value={option}
                       checked={checked[field.label] === option}
-                      onChange={() =>
-                        setChecked(prev => ({ ...prev, [field.label]: option }))
-                      }
+                      onChange={() => handleRadio(field.label, option)}
                     />
                   </span>
                 ))}
@@ -69,7 +67,7 @@ const RecordFilter = ({
                         text={option}
                         onClick={e => {
                           e.preventDefault();
-                          toggleCheckbox(field.label, option);
+                          handleCheckbox(field.label, option);
                         }}
                       />
                       <input
@@ -78,7 +76,7 @@ const RecordFilter = ({
                         id={`${field.label}-${option}`}
                         value={option}
                         checked={selected}
-                        onChange={() => toggleCheckbox(field.label, option)}
+                        onChange={() => handleCheckbox(field.label, option)}
                       />
                     </span>
                   );
@@ -124,8 +122,8 @@ const RecordFilter = ({
             onClick={handleSubmit}
           />
         </form>
-      </div>
-    </div>
+      </section>
+    </aside>
   );
 };
 

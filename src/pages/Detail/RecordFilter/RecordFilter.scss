@@ -24,14 +24,18 @@
     overflow: scroll;
 
     header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 100%;
       margin-bottom: $px * 16;
       cursor: pointer;
-      div {
-        width: $px * 50;
-        border: $px * 3 solid $divider;
-        margin: 0 auto;
+      button {
+        background-color: $divider;
+        width: $px * 80;
+        border: $px * 2 solid $divider;
         border-radius: $px * 5;
+        cursor: pointer;
       }
     }
     form {

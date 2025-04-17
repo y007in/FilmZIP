@@ -1,5 +1,3 @@
-import React from 'react';
-
 const BasicList = ({ data, onClick, renderItem }) => {
   return (
     <ul className="BasicList">

@@ -2,10 +2,8 @@
 @import './variables.scss';
 
 //pages
-@import '../pages/Search/Search/Search.scss';
 @import '../pages/Main/Main.scss';
-@import '../pages/ShoppingList/ShoppingList.scss';
-@import '../pages/Order/Order.scss';
+@import '../pages/Search/Search/Search.scss';
 @import '../pages/Review/Review.scss';
 @import '../pages/Detail/Detail.scss';
 
@@ -23,13 +21,14 @@
 @import '../components/MovieList/MovieList.scss';
 @import '../components/Loading/Loading.scss';
 @import '../components/Button/Button.scss';
-@import '../components/Button/DelBtn.scss';
 @import '../components/FormControl/FormControl.scss';
 @import '../components/Page/Page.scss';
 @import '../components/NoResult/NoResult.scss';
-@import '../components/AccordionList/AccordionList.scss';
-@import '../components/PopUp/PopUp.scss';
-@import '../components/ProductPrice/ProductPrice.scss';
 @import '../components/MovieTitle/MovieTitle.scss';
 @import '../components/MovieInfo/MovieInfo.scss';
 @import '../components/Banner/Banner.scss';
+@import '../components/Button/DelBtn.scss';
+@import '../components/Poster/Poster.scss';
+
+@import '../components/AccordionList/AccordionList.scss';
+@import '../components/PopUp/PopUp.scss';

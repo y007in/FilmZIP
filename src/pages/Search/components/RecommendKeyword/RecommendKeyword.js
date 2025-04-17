@@ -5,6 +5,7 @@ import {
   MvInfoOgTit,
 } from '../../../../components/MovieTitle/MovieTitle';
 import { TabType } from '../../../../constants/tabs';
+import Poster from '../../../../components/Poster/Poster';
 
 const RecommendKeyword = ({ data }) => {
   const movie = data?.results || [];
@@ -18,24 +19,14 @@ const RecommendKeyword = ({ data }) => {
         onClick={item => navigate(`/movie/${item.id}`)}
         renderItem={(item, i) => (
           <div className="recommendList">
-            <span className="topNum">{i + 1}</span>{' '}
-            <article className="mvInfoImg">
-              {item.poster_path !== null ? (
-                <img
-                  src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
-                  alt={item.title}
-                />
-              ) : (
-                <div className="noImage">
-                  <span>이미지</span>
-                  <span>준비중</span>
-                </div>
-              )}
-            </article>
-            <div className="titles">
+            <span className="topNum">{i + 1}</span>
+            <span className="moviePoster">
+              <Poster item={item} />
+            </span>
+            <span className="titles">
               <MvInfoKrTit data={item} />
               <MvInfoOgTit data={item} />
-            </div>
+            </span>
           </div>
         )}
       />
