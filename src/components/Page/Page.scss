@@ -18,6 +18,7 @@
     right: auto;
     background-color: $white;
     border-bottom: $px * 1 solid $divider;
+    z-index: 2;
   }
   main {
     width: 100%;

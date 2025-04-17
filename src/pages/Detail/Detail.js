@@ -77,10 +77,18 @@ const Detail = () => {
                 allowFullScreen
               ></iframe>
             ) : (
-              <img
-                src={`https://image.tmdb.org/t/p/w200${movieData.backdrop_path}`}
-                alt={`${movieData.title} 포스터`}
-              />
+              <div className="posterWrapper">
+                <img
+                  className="posterBackground"
+                  src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`}
+                  alt={`${movieData.title} 배경 이미지`}
+                />
+                <img
+                  className="posterForeground"
+                  src={`https://image.tmdb.org/t/p/w200${movieData.backdrop_path}`}
+                  alt={`${movieData.title} 포스터`}
+                />
+              </div>
             )}
           </section>
           <MovieInfo />

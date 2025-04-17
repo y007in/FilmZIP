@@ -13,7 +13,7 @@ export const fetchMovie = async page => {
   return fetchFromApi(`/movie/now_playing?language=ko-KR&page=${page}`);
 };
 export const fetchTopRated = async () => {
-  return fetchFromApi(`/movie/top_rated?language=ko-KR&page=1`);
+  return fetchFromApi(`/movie/popular?language=ko-KR&page=1`);
 };
 
 export const fetchGenre = async () => {
