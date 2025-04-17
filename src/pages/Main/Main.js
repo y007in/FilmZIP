@@ -1,16 +1,8 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-
-import { useInView } from 'react-intersection-observer';
-import { ClipLoader } from 'react-spinners';
-
 import Page from '../../components/Page/Page';
-import NoResult from '../../components/NoResult/NoResult';
-import useInfiniteScroll from '../../hooks/useInfiniteScroll';
-import Loading from '../../components/Loading/Loading';
-import { getMovieRecords } from '../../utils/storage';
 import Poster from '../../components/Poster/Poster';
+import NoResult from '../../components/NoResult/NoResult';
+import { getMovieRecords } from '../../utils/storage';
 
 const Main = () => {
   const navigate = useNavigate();
