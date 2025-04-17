@@ -1,8 +1,8 @@
 .Review {
   .container {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding: $pagePadding;
     .moviePoster {
       width: 100%;
       display: flex;
@@ -10,29 +10,14 @@
       justify-content: center;
       align-items: center;
       gap: $px * 16;
-      margin-bottom: $px * 30;
+      margin-bottom: $px * 20;
+      padding: $pagePadding;
       img {
-        // width: 100%;
         border-radius: $px * 5;
       }
     }
-    .reviewData {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      gap: $px * 16;
-      padding: $pagePadding 0;
-    }
-    .selection {
-      display: flex;
-      gap: $px * 8;
-    }
-    .watchComment {
+    .tabContent {
       width: 100%;
-      height: $px * 100;
-      border: $px solid $divider;
-      background-color: $backgroundDiv;
       padding: $pagePadding;
     }
   }

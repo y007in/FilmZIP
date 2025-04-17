@@ -1,4 +1,5 @@
-import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import Page from '../../components/Page/Page';
@@ -6,11 +7,16 @@ import Header from '../../components/Header/Header';
 import Loading from '../../components/Loading/Loading';
 import MovieInfo from '../../components/MovieInfo/MovieInfo';
 import Banner from '../../components/Banner/Banner';
-import { getMovieRecords } from '../../utils/storage';
+import Button from '../../components/Button/Button';
+import Tabs from './components/Tabs/Tabs';
+import ReviewData from './components/ReviewData/ReviewData';
 import { fetchMovieDetail } from '../../api/api';
+import { TabReview } from '../../constants/tabs';
+import { recordList } from '../../utils/recordList';
 
 const Review = () => {
   const { id } = useParams();
+  const { watchStatus } = recordList(id);
   const {
     data: movieData,
     isLoading: dataLoading,
@@ -19,18 +25,8 @@ const Review = () => {
     queryKey: ['movieDetail', id],
     queryFn: () => fetchMovieDetail({ queryKey: ['movieDetail', id] }),
   });
-  const recordList = getMovieRecords();
-  const record = recordList.find(item => item.movieId === Number(id));
-  const {
-    watchStartDate,
-    watchEndDate,
-    watchStatus,
-    watchPlace,
-    watchWith,
-    reWatchWill,
-    watchReview,
-    watchComment,
-  } = record;
+  const [selectedTab, setSelectedTab] = useState(TabReview.REVIEW);
+  const navigate = useNavigate();
 
   if (dataLoading) return <Loading />;
   if (dataError) return <div>오류 발생</div>;
@@ -46,24 +42,23 @@ const Review = () => {
             />
             <Banner text={watchStatus} bannerType={'brand'} />
           </section>
-          <MovieInfo />
-          <section className="reviewData">
-            <div>
-              관람일
-              {watchStartDate === watchEndDate
-                ? watchEndDate
-                : `${watchStartDate} ~ ${watchEndDate}`}
-            </div>
-            <div>
-              {watchPlace} | {watchWith}
-            </div>
-
-            <div className="selection">
-              <Banner bannerType={'sub'} text={reWatchWill} />
-              <Banner bannerType={'sub'} text={watchReview} />
-            </div>
-            <div className="watchComment">{watchComment}</div>
-          </section>
+          <Tabs
+            selectedTab={selectedTab} // 3
+            onChange={selectedTab => setSelectedTab(selectedTab)}
+          />
+          <div className="tabContent">
+            {selectedTab === TabReview.REVIEW && <ReviewData id={id} />}
+            {selectedTab === TabReview.INFO && (
+              <>
+                <MovieInfo />
+                <Button
+                  text={'영화 저장하러 가기'}
+                  styleType={'fullSolid'}
+                  onClick={() => navigate(`/movie/${id}`)}
+                />
+              </>
+            )}
+          </div>
         </div>
       </Page>
     </div>

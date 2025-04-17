@@ -2,7 +2,7 @@ export const formField = [
   {
     label: '관람 상태',
     type: 'buttons',
-    options: ['다 본 영화', '재관람 영화', '중단한 영화'],
+    options: ['☺️ 다 본 영화', '🤍 재관람 영화', '🚫 중단한 영화'],
   },
   {
     label: '언제 관람하셨나요?',

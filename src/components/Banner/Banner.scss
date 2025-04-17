@@ -2,6 +2,7 @@
   border: $px * 1 solid $btnLine;
   padding: 0.313rem 0.5rem;
   border-radius: $px * 5;
+  white-space: nowrap;
   &.brandSolid {
     border: 0.063rem solid $main_color;
     padding: 0.313rem 0.5rem;

@@ -1,7 +1,11 @@
 const Button = ({ text, styleType, styleSize, onClick, form }) => {
-  const btnType = ['brand', 'brandSolid', 'full', 'disabled'].includes(
-    styleType,
-  )
+  const btnType = [
+    'brand',
+    'brandSolid',
+    'full',
+    'fullSolid',
+    'disabled',
+  ].includes(styleType)
     ? styleType
     : '';
   const btnSize = ['small', 'large'].includes(styleSize) ? styleSize : 'small';

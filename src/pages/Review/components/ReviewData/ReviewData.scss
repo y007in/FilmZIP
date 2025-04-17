@@ -1,0 +1,35 @@
+.reviewData {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: $px * 16;
+  .viewSection {
+    display: flex;
+    gap: $px * 5;
+    color: $softBold;
+    &.viewMeta {
+      p {
+        &:first-child {
+          &::after {
+            content: '|';
+            margin-left: $px * 5;
+            color: $detail;
+          }
+        }
+      }
+    }
+  }
+  .selection {
+    display: flex;
+    gap: $px * 8;
+    flex-wrap: wrap;
+  }
+  .watchComment {
+    width: 100%;
+    height: $px * 100;
+    border: $px solid $divider;
+    background-color: $backgroundDiv;
+    padding: $pagePadding;
+  }
+}
