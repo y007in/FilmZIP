@@ -51,8 +51,9 @@ const Main = () => {
         )} */}
         <div className="recordList">
           {recordList.length !== 0 ? (
-            recordList.map(item => (
+            recordList.map((item, i) => (
               <Poster
+                key={i}
                 item={item}
                 onClick={() => navigate(`/review/${item.movieId}`)}
               />

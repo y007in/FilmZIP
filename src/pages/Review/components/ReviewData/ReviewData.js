@@ -7,7 +7,6 @@ const ReviewData = ({ id }) => {
     watchEndDate,
     watchPlace,
     watchWith,
-    reWatchWill,
     watchReview,
     watchComment,
   } = recordList(id);
