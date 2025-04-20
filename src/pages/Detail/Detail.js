@@ -15,7 +15,7 @@ import { useMovieForm } from '../../hooks/useMovieForm';
 const Detail = () => {
   const { id } = useParams();
   const [isRecord, setIsRecord] = useState(false);
-  const { checked, setChecked, watchRefs, getFormData } = useMovieForm();
+  const { watch, setWatch, getFormData } = useMovieForm();
 
   //영화 상세 정보, 영상 정보 가져오기
   const [
@@ -99,9 +99,8 @@ const Detail = () => {
         handleSubmit={handleSubmit}
         isRecord={isRecord}
         setIsRecord={setIsRecord}
-        checked={checked}
-        setChecked={setChecked}
-        watchRefs={watchRefs}
+        watch={watch}
+        setWatch={setWatch}
       />
     </div>
   );

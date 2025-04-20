@@ -6,22 +6,28 @@ const RecordFilter = ({
   handleFilterDialog,
   isRecord,
   handleSubmit,
-  checked,
-  setChecked,
-  watchRefs,
+  watch,
+  setWatch,
 }) => {
+  const checked = watch.checked || {};
   const handleRadio = (label, option) => {
-    setChecked(prev => ({
+    setWatch(prev => ({
       ...prev,
-      [label]: option,
+      checked: {
+        ...prev.checked,
+        [label]: option,
+      },
     }));
   };
   const handleCheckbox = (label, option) => {
-    setChecked(prev => ({
+    setWatch(prev => ({
       ...prev,
-      [label]: prev[label]?.includes(option)
-        ? prev[label].filter(item => item !== option)
-        : [...(prev[label] || []), option],
+      checked: {
+        ...prev.checked,
+        [label]: checked[label]?.includes(option)
+          ? checked[label].filter(item => item !== option)
+          : [...(checked[label] || []), option],
+      },
     }));
   };
 
@@ -91,7 +97,10 @@ const RecordFilter = ({
                       type="date"
                       id="start-date"
                       name="start-date"
-                      ref={el => (watchRefs.current.startDate = el)}
+                      value={watch.startDate}
+                      onChange={e =>
+                        setWatch({ ...watch, startDate: e.target.value })
+                      }
                     />
                   </div>
                   <div className="dates">
@@ -102,15 +111,21 @@ const RecordFilter = ({
                       type="date"
                       id="end-date"
                       name="end-date"
-                      ref={el => (watchRefs.current.endDate = el)}
+                      value={watch.endDate}
+                      onChange={e =>
+                        setWatch({ ...watch, endDate: e.target.value })
+                      }
                     />
                   </div>
                 </section>
               )}
               {field.type === 'textarea' && (
                 <textarea
-                  ref={el => (watchRefs.current.comment = el)}
+                  value={watch.comment}
                   placeholder="추가적으로 남기고 싶은 코멘트가 있다면 자유롭게 작성해주세요!"
+                  onChange={e =>
+                    setWatch({ ...watch, comment: e.target.value })
+                  }
                 />
               )}
             </FormControl>
