@@ -65,7 +65,9 @@ const RecordFilter = ({
                 ))}
               {field.type === 'buttonsCheck' &&
                 field.options.map((option, i) => {
-                  const selected = checked[field.label]?.includes(option);
+                  const selected = (checked[field.label] || [])?.includes(
+                    option,
+                  );
                   return (
                     <span key={i}>
                       <Button
