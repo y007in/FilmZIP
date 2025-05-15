@@ -10,13 +10,13 @@
     .listTit {
       font-size: $px * 16;
       font-weight: 500;
-      color: $softBold;
+      color: var(--text-softBold);
     }
     .allDel {
       background-color: transparent;
       border: none;
       font-size: $px * 14;
-      color: $detail;
+      color: var(--text-detail);
       cursor: pointer;
     }
   }

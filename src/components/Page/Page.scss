@@ -12,12 +12,13 @@
     align-items: center;
     max-width: calc($px * 768);
     width: 100%;
-    height: calc($px * 55);
+    height: $headerHeight;
     position: fixed;
     top: 0;
     right: auto;
-    background-color: $white;
-    border-bottom: $px * 1 solid $divider;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-bottom: $px * 1 solid var(--divider);
     z-index: 2;
   }
   main {
@@ -26,9 +27,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: calc($px * 55);
-    padding-bottom: calc($px * 70);
-    background-color: $white;
+    padding-top: $headerHeight;
+    padding-bottom: calc($px * 80);
+    background-color: var(--bg-color);
+    color: var(--text-color);
   }
   footer {
     width: 100%;
@@ -37,6 +39,7 @@
     bottom: 0;
     right: auto;
     padding: $pagePadding;
-    background-color: $white;
+    background-color: var(--bg-color);
+    color: var(--text-color);
   }
 }

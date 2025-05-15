@@ -8,7 +8,7 @@
     align-items: center;
     gap: $px * 5;
     font-size: $px * 14;
-    color: $softBold;
+    color: var(--text-softBold);
   }
   .movieDescription {
     display: flex;

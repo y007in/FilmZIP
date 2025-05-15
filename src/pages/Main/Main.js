@@ -49,19 +49,19 @@ const Main = () => {
             <ClipLoader color="#5db996" />
           </div>
         )} */}
-        <div className="recordList">
-          {recordList.length !== 0 ? (
-            recordList.map((item, i) => (
+        {recordList.length !== 0 ? (
+          <div className="recordList">
+            {recordList.map((item, i) => (
               <Poster
                 key={i}
                 item={item}
                 onClick={() => navigate(`/review/${item.movieId}`)}
               />
-            ))
-          ) : (
-            <NoResult noResultData={'장바구니에 담기 영화가 없습니다.'} />
-          )}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <NoResult noResultData={'관람한 영화를 저장해 보세요!'} />
+        )}
       </Page>
     </div>
   );

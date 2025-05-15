@@ -7,14 +7,14 @@
   .viewSection {
     display: flex;
     gap: $px * 5;
-    color: $softBold;
+    color: var(--text-softBold);
     &.viewMeta {
       p {
         &:first-child {
           &::after {
             content: '|';
             margin-left: $px * 5;
-            color: $detail;
+            color: var(--text-detail);
           }
         }
       }
@@ -28,8 +28,10 @@
   .watchComment {
     width: 100%;
     height: $px * 100;
-    border: $px solid $divider;
-    background-color: $backgroundDiv;
+    border: $px solid var(--divider);
+    background-color: var(--bg-div-color);
+    color: var(--text-color);
     padding: $pagePadding;
+    border-radius: $px * 5;
   }
 }

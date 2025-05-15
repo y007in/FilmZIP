@@ -1,6 +1,6 @@
 .MainPage {
   width: 100%;
-  background-color: $background;
+  background-color: var(--bg-color);
   .searchBox {
     display: flex;
     justify-content: center;
@@ -12,13 +12,18 @@
     }
     .searchInput {
       width: 100%;
-      border: $px solid $divider;
+      border: $px solid var(--divider);
       outline: none;
       border-radius: calc($px * 5);
       padding: $px * 10 $px * 15;
       font-size: calc($px * 14);
       margin-bottom: 1rem 0;
       cursor: pointer;
+      background-color: var(--bg-div-color);
+      color: var(--text-color);
+      &::placeholder {
+        color: var(--text-detail);
+      }
     }
   }
   .recordList {

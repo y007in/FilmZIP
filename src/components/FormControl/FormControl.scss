@@ -16,7 +16,7 @@
   }
   .limit {
     font-size: $px * 12;
-    color: $detail;
+    color: var(--text-detail);
   }
   .inputBox {
     width: 100%;

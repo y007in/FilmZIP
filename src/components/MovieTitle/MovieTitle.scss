@@ -4,18 +4,17 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: $black;
 }
 .mvInfoOgTit {
   width: 100%;
-  color: $detail;
+  color: var(--text-detail);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .mvInfoOverview {
   font-size: $px * 14;
-  color: $black;
+
   line-height: 150%;
 }
 .mvInfoGenre {

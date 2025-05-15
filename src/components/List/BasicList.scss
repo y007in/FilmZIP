@@ -8,7 +8,7 @@
     align-items: center;
     gap: 0.313rem;
     padding: $px * 10 $pagePadding;
-    border-bottom: 0.063rem solid $divider;
+    border-bottom: 0.063rem solid var(--divider);
     font-size: 1rem;
     cursor: pointer;
     white-space: nowrap;
@@ -16,7 +16,7 @@
       padding-top: 0.125rem;
     }
     &:first-child {
-      border-top: 0.063rem solid $divider;
+      border-top: 0.063rem solid var(--divider);
     }
   }
 }

@@ -1,7 +1,8 @@
 .noResult {
   width: 100%;
-  height: calc(100vh - $px * 55);
+  height: calc(100vh - $headerHeight - $px * 70);
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--text-detail);
 }

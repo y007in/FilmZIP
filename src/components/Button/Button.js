@@ -12,7 +12,7 @@ const Button = ({ text, styleType, styleSize, onClick, form }) => {
 
   return (
     <button
-      className={[`btn ${btnType} ${btnSize}`]}
+      className={[`btn ${btnSize} ${btnType} `]}
       onClick={onClick}
       form={form}
     >

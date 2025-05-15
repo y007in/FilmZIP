@@ -6,7 +6,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     gap: $px * 10;
-    border-bottom: 0.063rem solid $gray;
+    border-bottom: 0.063rem solid var(--divider);
     padding: calc($px * 15);
     .mvInfoImg {
       display: flex;

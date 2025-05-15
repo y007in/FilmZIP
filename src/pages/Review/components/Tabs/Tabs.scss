@@ -4,13 +4,13 @@
   justify-content: space-around;
   align-items: center;
   .tab {
-    border-bottom: $px solid $divider;
+    border-bottom: $px solid var(--divider);
     width: 50%;
     text-align: center;
     padding: $pagePadding 0;
 
     &.active {
-      border-bottom: $px * 2 solid $main_color;
+      border-bottom: $px * 2 solid var(--main-color);
     }
   }
 }
