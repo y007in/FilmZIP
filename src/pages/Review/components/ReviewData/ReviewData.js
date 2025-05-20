@@ -3,7 +3,7 @@ import { getRecordList } from '../../../../utils/recordList';
 
 const ReviewData = ({ id }) => {
   const records = getRecordList(id);
-  console.log(records);
+
   return (
     <section className="reviewData">
       {records.map((record, idx) => (

@@ -1,4 +1,4 @@
-const Button = ({ text, styleType, styleSize, onClick, form }) => {
+const Button = ({ text, styleType, styleSize, onClick, form, disabled }) => {
   const btnType = [
     'brand',
     'brandSolid',
@@ -15,6 +15,7 @@ const Button = ({ text, styleType, styleSize, onClick, form }) => {
       className={[`btn ${btnSize} ${btnType} `]}
       onClick={onClick}
       form={form}
+      disabled={disabled}
     >
       {text}
     </button>

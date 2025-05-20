@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Button from '../../../components/Button/Button';
 import FormControl from '../../../components/FormControl/FormControl';
 import { formField } from '../../../constants/formField';
@@ -9,7 +10,28 @@ const RecordFilter = ({
   watch,
   setWatch,
 }) => {
-  const checked = watch.checked || {};
+  const checked = watch.checked;
+  const [isDisable, setIsDisable] = useState(false);
+
+  //버튼 활성화
+  useEffect(() => {
+    const isAllSelected = formField.every(field => {
+      const value = checked[field.label];
+      if (field.type === 'buttons') {
+        return Boolean(value);
+      }
+      if (field.type === 'buttonsCheck') {
+        return Array.isArray(value) && value.length > 0;
+      }
+      if (field.type === 'dates') {
+        return Boolean(watch.startDate) && Boolean(watch.endDate);
+      }
+      return true;
+    });
+    setIsDisable(isAllSelected);
+  }, [watch, checked]);
+
+  //폼 선택
   const handleRadio = (label, option) => {
     setWatch(prev => ({
       ...prev,
@@ -133,10 +155,11 @@ const RecordFilter = ({
             </FormControl>
           ))}
           <Button
-            styleType="full"
+            styleType={isDisable ? 'full' : ''}
             styleSize="large"
             text="저장"
             onClick={handleSubmit}
+            disabled={!isDisable}
           />
         </form>
       </section>

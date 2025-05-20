@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-
 // export const getCartList = () => {
 //   return JSON.parse(localStorage.getItem('movie')) || [];
 // };
