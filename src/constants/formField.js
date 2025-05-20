@@ -1,8 +1,14 @@
+export const WATCH_STATUS = {
+  FINISHED: '☺️ 다 본 영화',
+  REWATCHED: '🤍 재관람 영화',
+  STOPPED: '🚫 중단한 영화',
+};
+
 export const formField = [
   {
     label: '관람 상태',
     type: 'buttons',
-    options: ['☺️ 다 본 영화', '🤍 재관람 영화', '🚫 중단한 영화'],
+    options: Object.values(WATCH_STATUS),
   },
   {
     label: '언제 관람하셨나요?',

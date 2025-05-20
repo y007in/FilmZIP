@@ -12,11 +12,11 @@ import Tabs from './components/Tabs/Tabs';
 import ReviewData from './components/ReviewData/ReviewData';
 import { fetchMovieDetail } from '../../api/api';
 import { TabReview } from '../../constants/tabs';
-import { recordList } from '../../utils/recordList';
+import { getRecordList } from '../../utils/recordList';
 
 const Review = () => {
   const { id } = useParams();
-  const { watchStatus } = recordList(id);
+  const records = getRecordList(id);
   const {
     data: movieData,
     isLoading: dataLoading,
@@ -40,10 +40,14 @@ const Review = () => {
               src={`https://image.tmdb.org/t/p/w200${movieData.poster_path}`}
               alt={`${movieData.title} 포스터`}
             />
-            <Banner text={watchStatus} bannerType={'brand'} />
+
+            <Banner
+              text={records[records.length - 1].watchStatus}
+              bannerType={'brand'}
+            />
           </section>
           <Tabs
-            selectedTab={selectedTab} // 3
+            selectedTab={selectedTab}
             onChange={selectedTab => setSelectedTab(selectedTab)}
           />
           <div className="tabContent">

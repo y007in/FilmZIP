@@ -1,26 +1,25 @@
 import { getMovieRecords } from './storage';
 
-export const recordList = id => {
-  const recordList = getMovieRecords();
-  const record = recordList.find(item => item.movieId === Number(id));
-  const {
-    watchStartDate,
-    watchEndDate,
-    watchStatus,
-    watchPlace,
-    watchWith,
-    reWatchWill,
-    watchReview,
-    watchComment,
-  } = record;
-  return {
-    watchStartDate,
-    watchEndDate,
-    watchStatus,
-    watchPlace,
-    watchWith,
-    reWatchWill,
-    watchReview,
-    watchComment,
-  };
+const recordList = getMovieRecords();
+
+export const getRecordList = id => {
+  const record = recordList
+    .filter(item => item.movieId === Number(id))
+    .sort((a, b) => new Date(b.watchEndDate) - new Date(a.watchEndDate));
+  return record;
+};
+
+export const getNoDupRecordList = () => {
+  const deduplicated = recordList.reduce((acc, curr) => {
+    const existing = acc.find(item => item.movieId === curr.movieId);
+    if (existing) {
+      existing.count += 1;
+    } else {
+      acc.push({ ...curr, count: 1 });
+    }
+    console.log(recordList);
+    console.log(acc);
+    return acc;
+  }, []);
+  return deduplicated.reverse();
 };

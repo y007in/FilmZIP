@@ -1,37 +1,45 @@
 .reviewData {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
   gap: $px * 16;
-  .viewSection {
+  .reviewBox {
     display: flex;
-    gap: $px * 5;
-    color: var(--text-softBold);
-    &.viewMeta {
-      p {
-        &:first-child {
-          &::after {
-            content: '|';
-            margin-left: $px * 5;
-            color: var(--text-detail);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: $px * 16;
+    border-radius: $px * 5;
+    border: $px solid var(--divider);
+    padding: $pagePadding;
+    .viewSection {
+      display: flex;
+      gap: $px * 5;
+      color: var(--text-softBold);
+      &.viewMeta {
+        p {
+          &:first-child {
+            &::after {
+              content: '|';
+              margin-left: $px * 5;
+              color: var(--text-detail);
+            }
           }
         }
       }
     }
-  }
-  .selection {
-    display: flex;
-    gap: $px * 8;
-    flex-wrap: wrap;
-  }
-  .watchComment {
-    width: 100%;
-    height: $px * 100;
-    border: $px solid var(--divider);
-    background-color: var(--bg-div-color);
-    color: var(--text-color);
-    padding: $pagePadding;
-    border-radius: $px * 5;
+    .selection {
+      display: flex;
+      gap: $px * 8;
+      flex-wrap: wrap;
+    }
+    .watchComment {
+      width: 100%;
+      height: $px * 100;
+      border: $px solid var(--divider);
+      background-color: var(--bg-div-color);
+      color: var(--text-color);
+      padding: $pagePadding;
+      border-radius: $px * 5;
+    }
   }
 }

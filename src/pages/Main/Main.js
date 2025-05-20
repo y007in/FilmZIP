@@ -2,11 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import Page from '../../components/Page/Page';
 import Poster from '../../components/Poster/Poster';
 import NoResult from '../../components/NoResult/NoResult';
-import { getMovieRecords } from '../../utils/storage';
+import { getNoDupRecordList } from '../../utils/recordList';
 
 const Main = () => {
   const navigate = useNavigate();
-  const recordList = getMovieRecords();
+  const noDupRecordLists = getNoDupRecordList();
+
   // const {
   //   data,
   //   isLoading,
@@ -49,13 +50,14 @@ const Main = () => {
             <ClipLoader color="#5db996" />
           </div>
         )} */}
-        {recordList.length !== 0 ? (
+        {noDupRecordLists.length !== 0 ? (
           <div className="recordList">
-            {recordList.map((item, i) => (
+            {noDupRecordLists.map((item, i) => (
               <Poster
                 key={i}
                 item={item}
                 onClick={() => navigate(`/review/${item.movieId}`)}
+                count={item.count}
               />
             ))}
           </div>
