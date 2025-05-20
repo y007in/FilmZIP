@@ -16,12 +16,28 @@
       gap: $px * 5;
       color: var(--text-softBold);
       &.viewMeta {
-        p {
+        span {
           &:first-child {
             &::after {
               content: '|';
               margin-left: $px * 5;
               color: var(--text-detail);
+            }
+          }
+          &:last-child {
+            display: flex;
+            gap: $px * 5;
+            p {
+              &::after {
+                content: ',';
+                margin-left: $px * 3;
+                color: var(--text-disable);
+              }
+              &:last-child {
+                &::after {
+                  content: '';
+                }
+              }
             }
           }
         }

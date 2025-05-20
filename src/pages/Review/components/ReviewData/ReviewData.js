@@ -18,8 +18,12 @@ const ReviewData = ({ id }) => {
             </p>
           </article>
           <article className="viewSection viewMeta">
-            <p>{record.watchPlace}</p>
-            <p>{record.watchWith}</p>
+            <span>{record.watchPlace}</span>
+            <span>
+              {record.watchWith?.map((person, i) => (
+                <p key={i}>{person}</p>
+              ))}
+            </span>
           </article>
           <article className="selection">
             {record.watchReview?.map((review, i) => (
