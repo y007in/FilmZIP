@@ -7,10 +7,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: $px * 15;
-    height: $px * 15;
-    background-color: $main_color;
-    color: $sub_color;
+    width: $px * 18;
+    height: $px * 18;
+    background-color: var(--main-color);
+    color: var(--sub-color);
+    font-weight: 700;
+    font-size: $px * 12;
     border-radius: 50%;
   }
   .moviePoster {
