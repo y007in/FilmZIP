@@ -14,6 +14,7 @@
   .filterList {
     position: fixed;
     bottom: 0;
+    max-width: 48rem;
     width: 100%;
     height: calc(100% - $headerHeight * 1);
     border-radius: $px * 10 $px * 10 0 0;
