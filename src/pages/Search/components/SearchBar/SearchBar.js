@@ -52,11 +52,11 @@ const SearchBar = ({
   //최근 검색어
   const handleAdd = text => {
     const newKeyword = {
-      id: Date.now(),
       text: text,
-      date: new Date().toLocaleDateString(),
+      date: new Date().toLocaleString(),
     };
-    setSearchKeywordList([newKeyword, ...historyList]);
+    const filteredList = historyList.filter(item => item.text !== text);
+    setSearchKeywordList([newKeyword, ...filteredList]);
   };
 
   return (

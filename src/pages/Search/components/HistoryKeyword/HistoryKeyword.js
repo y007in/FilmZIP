@@ -6,7 +6,6 @@ const HistoryKeyword = ({ historyList, handleRecommend }) => {
   const handleAllDel = e => {
     e.preventDefault();
     setSearchKeywordList([]);
-    window.location.reload();
   };
 
   return (
