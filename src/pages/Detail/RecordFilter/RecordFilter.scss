@@ -4,7 +4,7 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
+    z-index: 100;
     max-width: 48rem;
     width: 100%;
     height: $headerHeight;
@@ -12,7 +12,7 @@
     opacity: 0.9;
   }
   .filterList {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: calc(100% - $headerHeight * 1);
@@ -22,11 +22,10 @@
     overflow: scroll;
     transform: translateY(0%);
     transition: transform 0.3s ease;
-    z-index: 3;
+    z-index: 99;
     &::-webkit-scrollbar {
       display: none;
     }
-
     form {
       width: 100%;
       display: flex;
@@ -69,7 +68,7 @@
       display: none;
     }
     .filterList {
-      transform: translateY(100%);
+      transform: translateY(200%);
       transition: transform 0.3s ease;
     }
   }
