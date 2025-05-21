@@ -7,7 +7,7 @@ const Header = ({ movieData }) => {
 
   return (
     <header className="titleHeader">
-      <FontAwesomeIcon icon={faAngleLeft} onClick={() => navigate('/')} />
+      <FontAwesomeIcon icon={faAngleLeft} onClick={() => navigate(-1)} />
       <span>{movieData.title}</span>
     </header>
   );

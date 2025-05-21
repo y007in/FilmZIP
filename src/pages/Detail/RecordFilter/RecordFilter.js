@@ -55,10 +55,8 @@ const RecordFilter = ({
 
   return (
     <aside className={`RecordFilter ${isRecord ? '' : 'hide'}`}>
+      <div className="overlay" onClick={handleFilterDialog}></div>
       <section className="filterList">
-        <header onClick={handleFilterDialog}>
-          <button />
-        </header>
         <form onSubmit={handleSubmit}>
           {formField.map((field, idx) => (
             <FormControl key={idx} label={field.label} inputType={field.type}>
