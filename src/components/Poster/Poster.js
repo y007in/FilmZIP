@@ -1,5 +1,4 @@
 import React from 'react';
-import { WATCH_STATUS } from '../../constants/formField';
 
 const Poster = ({ item, count, onClick }) => {
   return (
@@ -11,9 +10,10 @@ const Poster = ({ item, count, onClick }) => {
             alt={item.title}
           />
           {count > 1 && <span className="countBadge">{count}</span>}
-          {item.watchStatus === WATCH_STATUS.STOPPED && (
+          {item.watchStatus === 'STOPPED' && (
             <span className="countBadge no">{'❌'}</span>
           )}
+          {item.watchStatus}
         </>
       ) : (
         <div className="noImage">

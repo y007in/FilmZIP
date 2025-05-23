@@ -65,21 +65,27 @@ const RecordFilter = ({
                   <span key={i}>
                     <Button
                       styleType={
-                        checked[field.label] === option ? 'brandSolid' : ''
+                        checked[field.label] === (option.value || option)
+                          ? 'brandSolid'
+                          : ''
                       }
-                      text={option}
+                      text={option.label || option}
                       onClick={e => {
                         e.preventDefault();
-                        handleRadio(field.label, option);
+                        handleRadio(field.label, option.value || option);
                       }}
                     />
                     <input
                       type="radio"
                       name={field.label}
-                      id={`${field.label}-${option}`}
-                      value={option}
-                      checked={checked[field.label] === option}
-                      onChange={() => handleRadio(field.label, option)}
+                      id={`${field.label}-${option.value || option}`}
+                      value={option.value || option}
+                      checked={
+                        checked[field.label] === (option.value || option)
+                      }
+                      onChange={() =>
+                        handleRadio(field.label, option.value || option)
+                      }
                     />
                   </span>
                 ))}

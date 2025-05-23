@@ -13,10 +13,12 @@ import ReviewData from './components/ReviewData/ReviewData';
 import { fetchMovieDetail } from '../../api/api';
 import { TabReview } from '../../constants/tabs';
 import { getRecordList } from '../../utils/recordList';
+import { getWatchStatusLabel } from '../../constants/formField';
 
 const Review = () => {
   const { id } = useParams();
   const records = getRecordList(id);
+  console.log(records);
   const {
     data: movieData,
     isLoading: dataLoading,
@@ -30,6 +32,7 @@ const Review = () => {
 
   if (dataLoading) return <Loading />;
   if (dataError) return <div>오류 발생</div>;
+  console.log(records.watchStatus);
 
   return (
     <div className="Review">
@@ -40,10 +43,9 @@ const Review = () => {
               src={`https://image.tmdb.org/t/p/w200${movieData.poster_path}`}
               alt={`${movieData.title} 포스터`}
             />
-
             <Banner
-              text={records[records.length - 1].watchStatus}
-              bannerType={'brand'}
+              text={getWatchStatusLabel(records[0].watchStatus)}
+              bannerType={`${records[0].watchStatus}`}
             />
           </section>
           <Tabs

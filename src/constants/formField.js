@@ -1,14 +1,17 @@
-export const WATCH_STATUS = {
-  FINISHED: '☺️ 다 본 영화',
-  REWATCHED: '🤍 재관람 영화',
-  STOPPED: '🚫 중단한 영화',
-};
+export const WATCH_STATUS = [
+  { value: 'FINISHED', label: '👏 다 본 영화' },
+  { value: 'REWATCHED', label: '👍 재관람 영화' },
+  { value: 'STOPPED', label: '👎 중단한 영화' },
+];
+
+export const getWatchStatusLabel = status =>
+  WATCH_STATUS.find(s => s.value === status)?.label || '';
 
 export const formField = [
   {
     label: '관람 상태',
     type: 'buttons',
-    options: Object.values(WATCH_STATUS),
+    options: WATCH_STATUS,
   },
   {
     label: '언제 관람하셨나요?',

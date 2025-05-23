@@ -1,5 +1,6 @@
 import Banner from '../../../../components/Banner/Banner';
 import { getRecordList } from '../../../../utils/recordList';
+import { getWatchStatusLabel } from '../../../../constants/formField';
 
 const ReviewData = ({ id }) => {
   const records = getRecordList(id);
@@ -8,7 +9,10 @@ const ReviewData = ({ id }) => {
     <section className="reviewData">
       {records.map((record, idx) => (
         <section className="reviewBox" key={idx}>
-          <Banner text={record.watchStatus} bannerType={'brand'} />
+          <Banner
+            text={getWatchStatusLabel(record.watchStatus)}
+            bannerType={`${record.watchStatus}`}
+          />
           <article className="viewSection viewDate">
             <span>관람일</span>
             <p>

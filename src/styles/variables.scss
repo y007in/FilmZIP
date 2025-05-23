@@ -8,9 +8,12 @@ $px: calc(1rem / 16);
 $pagePadding: $px * 16;
 $headerHeight: $px * 55;
 $footerHeight: $px * 80;
-//b&w
+//color
 $black: #222;
 $white: #fafaf8;
+$allWatch: rgba(#4caf50, 0.7);
+$reWatch: rgba(#2196f3, 0.7);
+$stopWatch: rgba(#f44336, 0.7);
 //Dark Mode
 :root {
   //main

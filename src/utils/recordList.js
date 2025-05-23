@@ -17,8 +17,6 @@ export const getNoDupRecordList = () => {
     } else {
       acc.push({ ...curr, count: 1 });
     }
-    console.log(recordList);
-    console.log(acc);
     return acc;
   }, []);
   return deduplicated.reverse();
