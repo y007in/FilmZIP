@@ -15,7 +15,7 @@ import { useMovieForm } from '../../hooks/useMovieForm';
 const Detail = () => {
   const { id } = useParams();
   const [isRecord, setIsRecord] = useState(false);
-  const { watch, setWatch, getFormData } = useMovieForm();
+  const { watch, setWatch, getFormData, initialData } = useMovieForm();
 
   //영화 상세 정보, 영상 정보 가져오기
   const [
@@ -50,6 +50,7 @@ const Detail = () => {
     if (onsubmit) onsubmit(formData);
 
     alert('저장되었습니다');
+    setWatch(initialData);
   };
 
   if (dataLoading || videoLoading) return <Loading />;

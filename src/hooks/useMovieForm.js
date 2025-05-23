@@ -1,13 +1,16 @@
 import { useState } from 'react';
+
 export const useMovieForm = () => {
-  const [watch, setWatch] = useState({
+  const initialData = {
     checked: {},
     startDate: '',
     endDate: '',
     comment: '',
-  });
+  };
+  const [watch, setWatch] = useState(initialData);
 
   const getFormData = movieData => ({
+    createId: Date.now(),
     movieId: movieData.id,
     title: movieData.title,
     poster_path: movieData.poster_path,
@@ -25,5 +28,6 @@ export const useMovieForm = () => {
     watch,
     setWatch,
     getFormData,
+    initialData,
   };
 };
