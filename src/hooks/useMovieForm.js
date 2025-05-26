@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
 export const useMovieForm = () => {
+  const today = new Date().toISOString().substring(0, 10);
   const initialData = {
     checked: {},
-    startDate: '',
-    endDate: '',
+    startDate: today,
+    endDate: today,
     comment: '',
   };
   const [watch, setWatch] = useState(initialData);

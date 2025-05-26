@@ -13,7 +13,7 @@ const RecordFilter = ({
   const checked = watch.checked;
   const [isDisable, setIsDisable] = useState(false);
 
-  //버튼 활성화
+  //버튼 활성화 & 유효성 검사
   useEffect(() => {
     const isAllSelected = formField.every(field => {
       const value = checked[field.label];
@@ -125,6 +125,7 @@ const RecordFilter = ({
                       type="date"
                       id="start-date"
                       name="start-date"
+                      max={watch.endDate}
                       value={watch.startDate}
                       onChange={e =>
                         setWatch({ ...watch, startDate: e.target.value })
@@ -140,6 +141,8 @@ const RecordFilter = ({
                       id="end-date"
                       name="end-date"
                       value={watch.endDate}
+                      min={watch.startDate}
+                      max={watch.endDate}
                       onChange={e =>
                         setWatch({ ...watch, endDate: e.target.value })
                       }
@@ -159,7 +162,7 @@ const RecordFilter = ({
             </FormControl>
           ))}
           <Button
-            styleType={isDisable ? 'full' : ''}
+            styleType={isDisable ? 'full' : 'disabled'}
             styleSize="large"
             text="저장"
             onClick={handleSubmit}
