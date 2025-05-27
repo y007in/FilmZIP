@@ -1,0 +1,32 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($black, 0.6);
+  z-index: 999999;
+  .alertBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: $px * 343;
+    background-color: var(--bg-div-color);
+    z-index: 100;
+    padding: $pagePadding * 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: $px * 20;
+    border-radius: $px * 5;
+    transition: transform 0.1s ease;
+    .alertTxt {
+      color: var(--text-color);
+    }
+    .selectBtn {
+      display: flex;
+      justify-content: flex-end;
+      gap: $px * 8;
+    }
+  }
+}

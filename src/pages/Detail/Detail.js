@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQueries } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Loading from '../../components/Loading/Loading';
 import Page from '../../components/Page/Page';
@@ -11,10 +11,13 @@ import RecordFilter from './RecordFilter/RecordFilter';
 import { fetchMovieDetail, fetchMovieVideo } from '../../api/api';
 import { setMovieRecords, getMovieRecords } from '../../utils/storage';
 import { useMovieForm } from '../../hooks/useMovieForm';
+import AlertBox from '../../components/AlertBox/AlertBox';
 
 const Detail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [isRecord, setIsRecord] = useState(false);
+  const [isAlert, setIsAlert] = useState(false);
   const { watch, setWatch, getFormData, initialData } = useMovieForm();
 
   //영화 상세 정보, 영상 정보 가져오기
@@ -49,7 +52,7 @@ const Detail = () => {
     setIsRecord(false);
     if (onsubmit) onsubmit(formData);
 
-    alert('저장되었습니다');
+    setIsAlert(true);
     setWatch(initialData);
   };
 
@@ -103,6 +106,13 @@ const Detail = () => {
         watch={watch}
         setWatch={setWatch}
       />
+      {isAlert && (
+        <AlertBox
+          alertText={'저장되었습니다.'}
+          onSubmit={() => navigate(`/review/${id}`)}
+          submitText={'보러가기'}
+        />
+      )}
     </div>
   );
 };

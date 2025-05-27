@@ -11,6 +11,18 @@
     border-radius: $px * 5;
     border: $px solid var(--divider);
     padding: $pagePadding;
+    .head {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .reviewBtn {
+        background-color: transparent;
+        border: none;
+        color: var(--text-detail);
+        text-decoration: underline;
+      }
+    }
     .viewSection {
       display: flex;
       gap: $px * 5;
