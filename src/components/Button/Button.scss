@@ -6,15 +6,15 @@
   border-radius: calc($px * 3);
   padding: calc($px * 5) calc(($px * 8));
   text-align: center;
+  font-size: $font-base-mobile;
   cursor: pointer;
   &.small {
-    height: $px * 32;
-    font-size: $px * 14;
+    height: $px * 34;
     color: var(--text-color);
   }
   &.large {
     height: $px * 48;
-    font-size: $px * 16;
+    font-size: $font-tit-mobile;
   }
   &.brand {
     background-color: var(--main-color);
@@ -28,6 +28,7 @@
   &.full {
     width: 100%;
     background-color: var(--main-color);
+    border: none;
   }
   &.fullSolid {
     width: 100%;
@@ -36,5 +37,22 @@
   }
   &.disabled {
     color: var(--text-disable);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .btn {
+    font-size: $font-base-tablet;
+    &.large {
+      font-size: $font-tit-tablet;
+    }
+  }
+}
+@media (min-width: 1280px) {
+  .btn {
+    font-size: $font-base-pc;
+    &.large {
+      font-size: $font-tit-pc;
+    }
   }
 }

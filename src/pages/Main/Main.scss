@@ -1,12 +1,13 @@
 .MainPage {
   width: 100%;
   background-color: var(--bg-color);
+  padding-top: $headerHeight;
   .searchBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: calc($px * 10);
+    max-width: calc($px * 1280);
     padding: calc($px * 5) $pagePadding;
+    left: 50%;
+    transform: translateX(-50%);
+
     svg {
       cursor: pointer;
     }

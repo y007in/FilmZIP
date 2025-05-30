@@ -8,16 +8,38 @@
     align-items: center;
     padding: $pagePadding $pagePadding $px * 8;
     .listTit {
-      font-size: $px * 16;
+      font-size: $font-tit-tablet;
       font-weight: 500;
       color: var(--text-softBold);
     }
     .allDel {
       background-color: transparent;
       border: none;
-      font-size: $px * 14;
+      font-size: $font-caption-mobile;
       color: var(--text-detail);
       cursor: pointer;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .List {
+    .listHeader {
+      .listTit {
+        font-size: $font-tit-tablet;
+      }
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .List {
+    .listHeader {
+      .listTit {
+        font-size: $font-tit-pc;
+      }
+      .allDel {
+        font-size: $font-caption-pc;
+      }
     }
   }
 }

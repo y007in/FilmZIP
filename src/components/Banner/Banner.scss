@@ -1,13 +1,14 @@
 .banner {
-  border: $px * 1 solid var(--btn-line);
+  border: $px * 1 solid $white;
   padding: 0.313rem 0.5rem;
   border-radius: $px * 5;
   white-space: nowrap;
+  font-size: $font-caption-mobile;
   &.brandSolid {
     border: 0.063rem solid var(--main-color);
     padding: 0.313rem 0.5rem;
     border-radius: $px * 5;
-    font-size: 0.75rem;
+
     white-space: nowrap;
     color: var(--text-softBold);
   }
@@ -25,15 +26,29 @@
     background-color: $stopWatch;
     color: $white;
     border: none;
+    font-size: $font-tit-mobile;
   }
   &.REWATCHED {
     background-color: $reWatch;
     color: $white;
     border: none;
+    font-size: $font-tit-mobile;
   }
   &.FINISHED {
     background-color: $allWatch;
     color: $white;
     border: none;
+    font-size: $font-tit-mobile;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .banner {
+    font-size: $font-caption-tablet;
+  }
+}
+@media (min-width: 1024px) {
+  .banner {
+    font-size: $font-caption-pc;
   }
 }

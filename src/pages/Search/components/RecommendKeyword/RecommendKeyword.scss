@@ -2,7 +2,6 @@
   width: 100%;
   display: flex;
   gap: $px * 8;
-
   .topNum {
     display: flex;
     justify-content: center;
@@ -12,7 +11,7 @@
     background-color: var(--main-color);
     color: var(--sub-color);
     font-weight: 700;
-    font-size: $px * 12;
+    font-size: $font-caption-mobile;
     border-radius: 50%;
   }
   .moviePoster {
@@ -23,12 +22,44 @@
     flex-direction: column;
     gap: 5px;
     .mvInfoKrTit {
-      font-size: $px * 16;
+      font-size: $font-tit-mobile;
       color: var(--text-color);
     }
     .mvInfoOgTit {
-      font-size: $px * 14;
+      font-size: $font-base-mobile;
       color: var(--text-detail);
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .recommendList {
+    .topNum {
+      font-size: $font-caption-tablet;
+    }
+    .titles {
+      .mvInfoKrTit {
+        font-size: $font-tit-tablet;
+      }
+      .mvInfoOgTit {
+        font-size: $font-base-tablet;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .recommendList {
+    .topNum {
+      font-size: $font-caption-pc;
+    }
+    .titles {
+      .mvInfoKrTit {
+        font-size: $font-tit-pc;
+      }
+      .mvInfoOgTit {
+        font-size: $font-base-pc;
+      }
     }
   }
 }

@@ -1,38 +1,46 @@
-form {
-  position: relative;
-  width: 100%;
-  background-color: var(--bg-color);
-  .searchInput {
-    width: calc(100% - $pagePadding * 3);
-    border: none;
-    padding: $pagePadding 0;
-    outline: none;
-    font-size: 1rem;
-    margin-bottom: 1rem 0;
-    font-size: $px * 14;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    &::placeholder {
-      color: var(--text-detail);
-    }
-  }
-  .btnReset {
-    width: $px * 15;
-    height: $px * 15;
-    position: absolute;
-    top: $pagePadding;
-    right: $pagePadding;
-    cursor: pointer;
-    border-radius: 50%;
-    background-color: var(--btn-line);
-    border: none;
+.SearchPage {
+  .search {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: $px * 3;
-    &::before {
-      content: 'x';
-      color: var(--text-detail);
+    width: 100%;
+    max-width: $px * 1280;
+    margin: 0 auto;
+  }
+  form {
+    position: relative;
+    width: 100%;
+    background-color: var(--bg-color);
+    .searchInput {
+      width: calc(100% - $pagePadding * 3);
+      border: none;
+      padding: $pagePadding 0;
+      outline: none;
+      font-size: 1rem;
+      margin-bottom: 1rem 0;
+      font-size: $px * 14;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      &::placeholder {
+        color: var(--text-detail);
+      }
+    }
+    .btnReset {
+      width: $px * 15;
+      height: $px * 15;
+      position: absolute;
+      top: $pagePadding;
+      right: $pagePadding;
+      cursor: pointer;
+      border-radius: 50%;
+      background-color: var(--btn-line);
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: $px * 3;
+      &::before {
+        content: 'x';
+        color: var(--text-detail);
+      }
     }
   }
 }

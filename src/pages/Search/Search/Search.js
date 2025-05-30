@@ -46,7 +46,7 @@ const Search = () => {
     <div className="SearchPage">
       <Page
         header={
-          <header>
+          <div className="search">
             <FontAwesomeIcon icon={faAngleLeft} onClick={() => navigate('/')} />
             <SearchBar
               searchKeyword={searchKeyword}
@@ -55,7 +55,7 @@ const Search = () => {
               setSubmitted={setSubmitted}
               historyList={historyKeywordList}
             />
-          </header>
+          </div>
         }
       >
         <div className="content">

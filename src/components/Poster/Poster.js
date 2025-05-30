@@ -6,7 +6,7 @@ const Poster = ({ item, count, onClick }) => {
       {item.poster_path !== null ? (
         <>
           <img
-            src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w1280${item.poster_path}`}
             alt={item.title}
           />
           {count > 1 && <span className="countBadge">{count}</span>}

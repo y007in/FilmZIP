@@ -1,6 +1,6 @@
 .Page {
   width: 100%;
-  max-width: calc($px * 768);
+  max-width: calc($px * 1280);
   height: 100%;
   min-height: 100vh;
   display: flex;
@@ -10,12 +10,11 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    max-width: calc($px * 768);
     width: 100%;
     height: $headerHeight;
     position: fixed;
     top: 0;
-    right: auto;
+    left: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
     border-bottom: $px * 1 solid var(--divider);
@@ -27,19 +26,19 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-top: $headerHeight;
-    padding-bottom: calc($px * 80);
+    // padding-top: $headerHeight;
     background-color: var(--bg-color);
     color: var(--text-color);
   }
   footer {
     width: 100%;
-    max-width: calc($px * 768);
+    max-width: calc($px * 1280);
     position: fixed;
     bottom: 0;
     right: auto;
     padding: $pagePadding;
-    background-color: var(--bg-color);
+    // background-color: var(--bg-color);
+    background-color: $black;
     color: var(--text-color);
   }
 }

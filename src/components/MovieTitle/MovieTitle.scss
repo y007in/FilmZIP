@@ -1,6 +1,6 @@
 .mvInfoKrTit {
   width: 100%;
-  font-size: 1.25rem;
+  font-size: $font-tit-mobile;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -11,10 +11,10 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: $font-base-mobile;
 }
 .mvInfoOverview {
-  font-size: $px * 14;
-
+  font-size: $font-base-mobile;
   line-height: 150%;
 }
 .mvInfoGenre {
@@ -22,4 +22,24 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0.313rem;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .mvInfoKrTit {
+    font-size: $font-tit-tablet;
+  }
+  .mvInfoOgTit,
+  .mvInfoOverview {
+    font-size: $font-base-tablet;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mvInfoKrTit {
+    font-size: $font-tit-pc;
+  }
+  .mvInfoOgTit,
+  .mvInfoOverview {
+    font-size: $font-base-pc;
+  }
 }

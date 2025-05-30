@@ -8,7 +8,11 @@ import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 import MovieInfo from '../../components/MovieInfo/MovieInfo';
 import RecordFilter from './RecordFilter/RecordFilter';
-import { fetchMovieDetail, fetchMovieVideo } from '../../api/api';
+import {
+  fetchMovieDetail,
+  fetchMovieVideo,
+  fetchMovieImage,
+} from '../../api/api';
 import { setMovieRecords, getMovieRecords } from '../../utils/storage';
 import { useMovieForm } from '../../hooks/useMovieForm';
 import AlertBox from '../../components/AlertBox/AlertBox';
@@ -24,6 +28,7 @@ const Detail = () => {
   const [
     { data: movieData, isLoading: dataLoading, error: dataError },
     { data: movieVideo, isLoading: videoLoading, error: videoError },
+    { data: movieImage, isLoading: imageLoading, error: imageError },
   ] = useQueries({
     queries: [
       {
@@ -34,8 +39,14 @@ const Detail = () => {
         queryKey: ['movieVideo', id],
         queryFn: () => fetchMovieVideo({ queryKey: ['movieVideo', id] }),
       },
+      {
+        queryKey: ['movieImage', id],
+        queryFn: () => fetchMovieImage({ queryKey: ['movieImage', id] }),
+      },
     ],
   });
+
+  console.log(movieImage);
 
   //기록 입력 폼 열/닫기
   const handleFilterDialog = () => {
@@ -56,8 +67,8 @@ const Detail = () => {
     setWatch(initialData);
   };
 
-  if (dataLoading || videoLoading) return <Loading />;
-  if (dataError || videoError) return <div>오류 발생</div>;
+  if (dataLoading || videoLoading || imageLoading) return <Loading />;
+  if (dataError || videoError || imageError) return <div>오류 발생</div>;
 
   return (
     <div className="DetailPage">
@@ -73,29 +84,35 @@ const Detail = () => {
         }
       >
         <div className="container">
+          {/* <div className="left"> */}
           <section className="movieVideo">
-            {movieVideo.results.length !== 0 ? (
+            {/* {movieVideo.results.length !== 0 ? (
               <iframe
                 src={`https://www.youtube.com/embed/${movieVideo.results[0].key}?vq=hd${movieVideo.results[0].size}`}
                 title={`${movieVideo.results[0].name} Movie Trailer`}
                 allowFullScreen
               ></iframe>
-            ) : (
-              <div className="posterWrapper">
+            ) : ( */}
+            <div className="posterWrapper">
+              {movieImage.backdrops?.[1]?.file_path ? (
                 <img
                   className="posterBackground"
-                  src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`}
+                  src={`https://image.tmdb.org/t/p/w1280${movieImage.backdrops[1].file_path}`}
                   alt={`${movieData.title} 배경 이미지`}
                 />
+              ) : (
                 <img
-                  className="posterForeground"
-                  src={`https://image.tmdb.org/t/p/w200${movieData.backdrop_path}`}
-                  alt={`${movieData.title} 포스터`}
+                  className="posterBackground"
+                  src={`https://image.tmdb.org/t/p/w1280${movieData.backdrop_path}`}
+                  alt={`${movieData.title} 포스터 이미지`}
                 />
-              </div>
-            )}
+              )}
+            </div>
+            {/* )} */}
           </section>
-          <MovieInfo />
+          <section className="titleBox">
+            <MovieInfo />
+          </section>
         </div>
       </Page>
       <RecordFilter

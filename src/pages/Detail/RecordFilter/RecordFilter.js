@@ -69,6 +69,7 @@ const RecordFilter = ({
                           ? 'brandSolid'
                           : ''
                       }
+                      styleSize={'small'}
                       text={option.label || option}
                       onClick={e => {
                         e.preventDefault();
@@ -98,6 +99,7 @@ const RecordFilter = ({
                     <span key={i}>
                       <Button
                         styleType={selected ? 'brandSolid' : ''}
+                        styleSize={'small'}
                         text={option}
                         onClick={e => {
                           e.preventDefault();
@@ -167,7 +169,7 @@ const RecordFilter = ({
             text="저장"
             onClick={handleSubmit}
             disabled={!isDisable}
-          />
+          />{' '}
         </form>
       </section>
     </aside>

@@ -10,7 +10,6 @@
       border: $px solid var(--btn-line);
       background-color: var(--btn-back);
       border-radius: $px * 50;
-      font-size: $px * 12;
       color: var(--text-softBold);
       .listItem {
         width: 100%;
@@ -19,6 +18,7 @@
         justify-content: center;
         align-items: center;
         white-space: nowrap;
+        font-size: $font-caption-mobile;
         cursor: pointer;
         .delBtn {
           background-color: transparent;
@@ -26,10 +26,32 @@
           cursor: pointer;
           padding: 0;
           color: var(--text-detail);
-          font-size: $px * 12;
+          font-size: $font-caption-mobile;
           margin-bottom: $px * 5;
         }
       }
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .swiper .swiper-wrapper .swiper-slide {
+    .listItem {
+      font-size: $font-caption-tablet;
+    }
+    .delBtn {
+      font-size: $font-caption-tablet;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .swiper .swiper-wrapper .swiper-slide {
+    .listItem {
+      font-size: $font-caption-pc;
+    }
+    .delBtn {
+      font-size: $font-caption-pc;
     }
   }
 }

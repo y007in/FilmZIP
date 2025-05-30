@@ -14,7 +14,7 @@ const SlideList = ({ data, onClick }) => {
   return (
     <Swiper modules={[FreeMode]} spaceBetween={5} slidesPerView="auto">
       {data.map((item, i) => (
-        <SwiperSlide key={item.id}>
+        <SwiperSlide key={item.id ?? `${item.text}-${i}`}>
           <span className="listItem">
             <span onClick={() => onClick(item)}>{item.text}</span>
             <button className="delBtn" onClick={e => handleDel(item.id, e)}>

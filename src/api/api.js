@@ -19,6 +19,7 @@ export const fetchTopRated = async () => {
 export const fetchGenre = async () => {
   return fetchFromApi(`/genre/movie/list?language=ko-KR`);
 };
+
 export const fetchSearch = async ({ queryKey }) => {
   const [, searchKeyword] = queryKey;
   if (!searchKeyword) return [];
@@ -33,4 +34,9 @@ export const fetchMovieVideo = async ({ queryKey }) => {
   const [, movieId] = queryKey;
   if (!movieId) return [];
   return fetchFromApi(`/movie/${movieId}/videos?language=ko-KR`);
+};
+export const fetchMovieImage = async ({ queryKey }) => {
+  const [, movieId] = queryKey;
+  if (!movieId) return [];
+  return fetchFromApi(`/movie/${movieId}/images`);
 };

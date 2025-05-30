@@ -6,10 +6,10 @@ const Header = ({ movieData }) => {
   const navigate = useNavigate();
 
   return (
-    <header className="titleHeader">
+    <div className="titleHeader">
       <FontAwesomeIcon icon={faAngleLeft} onClick={() => navigate(-1)} />
       <span>{movieData.title}</span>
-    </header>
+    </div>
   );
 };
 

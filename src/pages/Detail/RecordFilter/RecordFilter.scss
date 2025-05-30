@@ -5,25 +5,24 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
-    max-width: 48rem;
     width: 100%;
-    height: $headerHeight;
-    // background-color: $black;
+    height: 100%;
+    background-color: transparent;
     opacity: 0.9;
   }
   .filterList {
     position: fixed;
     bottom: 0;
-    max-width: 48rem;
+    max-width: $px * 1280;
     width: 100%;
     height: calc(100% - $headerHeight * 1);
-    border-radius: $px * 10 $px * 10 0 0;
+    // border-radius: $px * 10 $px * 10 0 0;
     background-color: var(--bg-color);
     padding: $pagePadding;
     overflow: scroll;
     transform: translateY(0%);
     transition: transform 0.3s ease;
-    z-index: 99;
+    z-index: 101;
     &::-webkit-scrollbar {
       display: none;
     }
