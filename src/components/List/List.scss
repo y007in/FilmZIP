@@ -1,5 +1,6 @@
 .List {
   width: 100%;
+  max-width: $max-width;
   margin-bottom: $px * 15;
   .listHeader {
     width: 100%;

@@ -107,6 +107,7 @@ const Detail = () => {
               />
             )}
           </section>
+          <div className="backOverlay"></div>
           <section className="titleBox">
             <MovieInfo />
           </section>

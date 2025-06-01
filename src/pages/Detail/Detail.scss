@@ -28,21 +28,26 @@
       }
     }
   }
-  .titleBox {
-    width: 100%;
+  .backOverlay {
     position: absolute;
-    bottom: $footerHeight;
-    left: 0;
+    width: 100%;
+    height: calc(100% - $headerHeight - $footerHeight);
     background: linear-gradient(
       rgba($black, 0) 0%,
-      rgba($black, 0.3) 10%,
-      rgba($black, 0.5) 20%,
-      rgba($black, 0.7) 30%,
-      rgba($black, 0.8) 45%,
-      rgba($black, 0.85) 60%,
-      rgba($black, 0.85) 70%,
+      rgba($black, 0.5) 25%,
+      rgba($black, 0.75) 50%,
+      rgba($black, 0.9) 70%,
       rgba($black, 1) 100%
     );
+  }
+  .titleBox {
+    width: 100%;
+    max-width: $max-width;
+    position: absolute;
+    bottom: $footerHeight;
+    left: 50%;
+    transform: translateX(-50%);
+
     color: $white;
     padding: $px * 50 0 $px * 10;
     .banner {

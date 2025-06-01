@@ -6,8 +6,11 @@ body {
   color: var(--text-color);
 }
 .App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-width: $px * 375;
-  max-width: $px * 1280;
+  // max-width: $px * 1280;
   flex-direction: column;
   background-color: var(--bg-color);
   margin: 0 auto;

@@ -1,9 +1,12 @@
 .Review {
+  width: 100%;
   padding-top: $headerHeight;
   .container {
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     .moviePoster {
       width: 100%;
       display: flex;
@@ -20,6 +23,7 @@
     .tabContent {
       width: 100%;
       padding: $pagePadding;
+      max-width: $max-width;
     }
   }
 }

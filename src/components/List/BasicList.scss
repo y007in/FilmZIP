@@ -15,8 +15,8 @@
     span {
       padding-top: 0.125rem;
     }
-    &:first-child {
-      border-top: 0.063rem solid var(--divider);
+    &:last-child {
+      border: none;
     }
   }
 }

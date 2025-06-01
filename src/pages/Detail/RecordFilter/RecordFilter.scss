@@ -1,4 +1,5 @@
 .RecordFilter {
+  width: 100%;
   .overlay {
     position: fixed;
     top: 0;
@@ -11,12 +12,12 @@
     opacity: 0.9;
   }
   .filterList {
+    display: flex;
+    justify-content: center;
     position: fixed;
     bottom: 0;
-    max-width: $px * 1280;
     width: 100%;
     height: calc(100% - $headerHeight * 1);
-    // border-radius: $px * 10 $px * 10 0 0;
     background-color: var(--bg-color);
     padding: $pagePadding;
     overflow: scroll;
@@ -28,6 +29,7 @@
     }
     form {
       width: 100%;
+      max-width: $px * 1280;
       display: flex;
       flex-direction: column;
       gap: $px * 30;

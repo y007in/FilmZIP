@@ -1,7 +1,9 @@
 .MainPage {
   width: 100%;
+  max-width: $max-width;
   background-color: var(--bg-color);
   padding-top: $headerHeight;
+
   .searchBox {
     max-width: calc($px * 1280);
     padding: calc($px * 5) $pagePadding;
