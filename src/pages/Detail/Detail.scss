@@ -14,7 +14,7 @@
     // padding: $pagePadding;
 
     .posterWrapper {
-      width: 100%;
+      width: 100vw;
       height: 100vh;
       overflow: hidden;
       display: flex;
@@ -31,13 +31,12 @@
   .backOverlay {
     position: absolute;
     width: 100%;
-    height: calc(100% - $headerHeight - $footerHeight);
+    height: 100%;
     background: linear-gradient(
-      rgba($black, 0) 0%,
-      rgba($black, 0.5) 25%,
-      rgba($black, 0.75) 50%,
-      rgba($black, 0.9) 70%,
-      rgba($black, 1) 100%
+      #0000 0%,
+      #0000004d 32.47%,
+      #0009 67.36% 67.36%,
+      #000c 100%
     );
   }
   .titleBox {
