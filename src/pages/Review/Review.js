@@ -56,7 +56,7 @@ const Review = () => {
             {selectedTab === TabReview.REVIEW && <ReviewData id={id} />}
             {selectedTab === TabReview.INFO && (
               <>
-                <MovieInfo />
+                <MovieInfo direction={'col'} />
                 <Button
                   text={'영화 저장하러 가기'}
                   styleType={'fullSolid'}

@@ -5,53 +5,48 @@
   .container {
     position: relative;
     width: 100%;
-    // height: calc(100% - $headerHeight);
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     gap: $px * 5;
     // padding: $pagePadding;
-    .movieVideo {
+
+    .posterWrapper {
       width: 100%;
-      iframe {
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .posterBackground {
         width: 100%;
-        aspect-ratio: 16/9;
-      }
-      .posterWrapper {
-        width: 100%;
-        height: 100vh;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .posterBackground {
-          width: 100%;
-          height: 100%;
-          z-index: 0;
-          object-fit: cover;
-        }
+        height: 100%;
+        z-index: 0;
+        object-fit: cover;
       }
     }
-    .titleBox {
-      width: 100%;
-      position: absolute;
-      bottom: $footerHeight;
-      left: 0;
-      background: linear-gradient(
-        rgba($black, 0) 0%,
-        rgba($black, 0.1) 5%,
-        rgba($black, 0.2) 10%,
-        rgba($black, 0.3) 15%,
-        rgba($black, 0.4) 20%,
-        rgba($black, 0.5) 40%,
-        rgba($black, 0.7) 70%,
-        rgba($black, 1) 100%
-      );
+  }
+  .titleBox {
+    width: 100%;
+    position: absolute;
+    bottom: $footerHeight;
+    left: 0;
+    background: linear-gradient(
+      rgba($black, 0) 0%,
+      rgba($black, 0.3) 10%,
+      rgba($black, 0.5) 20%,
+      rgba($black, 0.7) 30%,
+      rgba($black, 0.8) 45%,
+      rgba($black, 0.85) 60%,
+      rgba($black, 0.85) 70%,
+      rgba($black, 1) 100%
+    );
+    color: $white;
+    padding: $px * 50 0 $px * 10;
+    .banner {
       color: $white;
-      .banner {
-        color: $white;
-      }
     }
   }
 }

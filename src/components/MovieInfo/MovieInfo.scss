@@ -15,6 +15,41 @@
     display: flex;
     flex-direction: column;
     gap: $px * 5;
-    margin-bottom: $pagePadding;
+  }
+  .movieDetail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: $px * 16;
+    .movieOverview {
+      width: 100%;
+    }
+    .movieCredit {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: $px * 8;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .movieInfo {
+    .movieDetail {
+      flex-direction: row;
+      gap: $px * 40;
+      .movieOverview {
+        flex: 5;
+      }
+      .movieCredit {
+        flex: 3;
+      }
+      &.col {
+        flex-direction: column;
+      }
+    }
   }
 }

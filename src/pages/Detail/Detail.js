@@ -12,6 +12,7 @@ import {
   fetchMovieDetail,
   fetchMovieVideo,
   fetchMovieImage,
+  fetchMovieCredit,
 } from '../../api/api';
 import { setMovieRecords, getMovieRecords } from '../../utils/storage';
 import { useMovieForm } from '../../hooks/useMovieForm';
@@ -29,6 +30,7 @@ const Detail = () => {
     { data: movieData, isLoading: dataLoading, error: dataError },
     { data: movieVideo, isLoading: videoLoading, error: videoError },
     { data: movieImage, isLoading: imageLoading, error: imageError },
+    { data: movieCredit, isLoading: creditLoading, error: creditError },
   ] = useQueries({
     queries: [
       {
@@ -43,10 +45,14 @@ const Detail = () => {
         queryKey: ['movieImage', id],
         queryFn: () => fetchMovieImage({ queryKey: ['movieImage', id] }),
       },
+      {
+        queryKey: ['movieCredit', id],
+        queryFn: () => fetchMovieCredit({ queryKey: ['movieCredit', id] }),
+      },
     ],
   });
 
-  console.log(movieImage);
+  console.log(movieCredit);
 
   //기록 입력 폼 열/닫기
   const handleFilterDialog = () => {
@@ -67,8 +73,10 @@ const Detail = () => {
     setWatch(initialData);
   };
 
-  if (dataLoading || videoLoading || imageLoading) return <Loading />;
-  if (dataError || videoError || imageError) return <div>오류 발생</div>;
+  if (dataLoading || videoLoading || imageLoading || creditLoading)
+    return <Loading />;
+  if (dataError || videoError || imageError || creditError)
+    return <div>오류 발생</div>;
 
   return (
     <div className="DetailPage">
@@ -84,31 +92,20 @@ const Detail = () => {
         }
       >
         <div className="container">
-          {/* <div className="left"> */}
-          <section className="movieVideo">
-            {/* {movieVideo.results.length !== 0 ? (
-              <iframe
-                src={`https://www.youtube.com/embed/${movieVideo.results[0].key}?vq=hd${movieVideo.results[0].size}`}
-                title={`${movieVideo.results[0].name} Movie Trailer`}
-                allowFullScreen
-              ></iframe>
-            ) : ( */}
-            <div className="posterWrapper">
-              {movieImage.backdrops?.[1]?.file_path ? (
-                <img
-                  className="posterBackground"
-                  src={`https://image.tmdb.org/t/p/w1280${movieImage.backdrops[1].file_path}`}
-                  alt={`${movieData.title} 배경 이미지`}
-                />
-              ) : (
-                <img
-                  className="posterBackground"
-                  src={`https://image.tmdb.org/t/p/w1280${movieData.backdrop_path}`}
-                  alt={`${movieData.title} 포스터 이미지`}
-                />
-              )}
-            </div>
-            {/* )} */}
+          <section className="posterWrapper">
+            {movieImage.backdrops?.[1]?.file_path ? (
+              <img
+                className="posterBackground"
+                src={`https://image.tmdb.org/t/p/w1280${movieImage.backdrops[0].file_path}`}
+                alt={`${movieData.title} 배경 이미지`}
+              />
+            ) : (
+              <img
+                className="posterBackground"
+                src={`https://image.tmdb.org/t/p/w1280${movieData.backdrop_path}`}
+                alt={`${movieData.title} 포스터 이미지`}
+              />
+            )}
           </section>
           <section className="titleBox">
             <MovieInfo />

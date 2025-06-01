@@ -13,6 +13,10 @@
   text-overflow: ellipsis;
   font-size: $font-base-mobile;
 }
+.mvInfoTagLine {
+  font-size: $font-base-mobile;
+  margin-bottom: $px * 10;
+}
 .mvInfoOverview {
   font-size: $font-base-mobile;
   line-height: 150%;
@@ -24,13 +28,48 @@
   gap: 0.313rem;
 }
 
+.mvCreditBlock {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  font-size: $font-caption-mobile;
+  h3 {
+    white-space: nowrap;
+    &::after {
+      content: ':';
+      margin: 0 $px * 3;
+    }
+  }
+  .creditList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $px * 3;
+    line-height: 120%;
+    .character {
+      &::after {
+        content: ',';
+        margin: 0 $px * 2 $px * 6;
+      }
+      &:last-child {
+        &::after {
+          content: '';
+        }
+      }
+    }
+  }
+}
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .mvInfoKrTit {
     font-size: $font-tit-tablet;
   }
   .mvInfoOgTit,
-  .mvInfoOverview {
+  .mvInfoOverview,
+  .mvInfoTagLine {
     font-size: $font-base-tablet;
+  }
+  .mvCreditBlock {
+    font-size: $font-caption-tablet;
   }
 }
 
@@ -39,7 +78,11 @@
     font-size: $font-tit-pc;
   }
   .mvInfoOgTit,
-  .mvInfoOverview {
+  .mvInfoOverview,
+  .mvInfoTagLine {
     font-size: $font-base-pc;
+  }
+  .mvCreditBlock {
+    font-size: $font-caption-pc;
   }
 }

@@ -10,6 +10,9 @@ export const MvInfoKrTit = ({ data }) => {
 export const MvInfoOgTit = ({ data }) => {
   return <p className="mvInfoOgTit">{data.original_title}</p>;
 };
+export const MvInfoTagLine = ({ data }) => {
+  return <p className="mvInfoTagLine">{data.tagline}</p>;
+};
 export const MvInfoOverview = ({ data }) => {
   return (
     <p className="mvInfoOverview">
@@ -17,7 +20,6 @@ export const MvInfoOverview = ({ data }) => {
     </p>
   );
 };
-
 export const MvGenre = ({ data }) => {
   const {
     data: genre,
@@ -43,5 +45,19 @@ export const MvGenre = ({ data }) => {
         );
       })}
     </p>
+  );
+};
+export const MvCreditSection = ({ title, items }) => {
+  return (
+    <section className="mvCreditBlock">
+      <h3>{title}</h3>
+      <ul className="creditList">
+        {items.map(person => (
+          <li className="character" key={person.id || person.cast_id}>
+            {person.original_name || person.name}
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 };

@@ -40,3 +40,8 @@ export const fetchMovieImage = async ({ queryKey }) => {
   if (!movieId) return [];
   return fetchFromApi(`/movie/${movieId}/images`);
 };
+export const fetchMovieCredit = async ({ queryKey }) => {
+  const [, movieId] = queryKey;
+  if (!movieId) return [];
+  return fetchFromApi(`/movie/${movieId}/credits`);
+};
