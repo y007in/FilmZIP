@@ -54,8 +54,8 @@ const RecordFilter = ({
   };
 
   return (
-    <aside className={`RecordFilter ${isRecord ? '' : 'hide'}`}>
-      <div className="overlay" onClick={handleFilterDialog}></div>
+    // <aside className={`RecordFilter ${isRecord ? '' : 'hide'}`}>
+    <>
       <section className="filterList">
         <form onSubmit={handleSubmit}>
           {formField.map((field, idx) => (
@@ -169,10 +169,11 @@ const RecordFilter = ({
             text="저장"
             onClick={handleSubmit}
             disabled={!isDisable}
-          />{' '}
+          />
         </form>
       </section>
-    </aside>
+      {/* </aside> */}
+    </>
   );
 };
 

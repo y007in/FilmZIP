@@ -1,77 +1,51 @@
-.RecordFilter {
+.filterList {
   width: 100%;
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 100;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    opacity: 0.9;
+  height: 100%;
+  position: inherit;
+  top: 0;
+  background-color: var(--bg-color);
+  padding: $pagePadding;
+  overflow: scroll;
+  z-index: 101;
+  &::-webkit-scrollbar {
+    display: none;
   }
-  .filterList {
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    bottom: 0;
+  form {
     width: 100%;
-    height: calc(100% - $headerHeight * 1);
-    background-color: var(--bg-color);
-    padding: $pagePadding;
-    overflow: scroll;
-    transform: translateY(0%);
-    transition: transform 0.3s ease;
-    z-index: 101;
-    &::-webkit-scrollbar {
+    max-width: $px * 1280;
+    display: flex;
+    flex-direction: column;
+    gap: $px * 30;
+    input[type='radio'],
+    input[type='checkbox'] {
       display: none;
     }
-    form {
+    textarea {
       width: 100%;
-      max-width: $px * 1280;
+      height: $px * 100;
+      outline: none;
+      resize: none;
+      padding: $px * 16;
+
+      background-color: var(--bg-div-color);
+      border: $px solid var(--divider);
+      color: var(--text-color);
+    }
+    .dateContent {
+      width: 100%;
       display: flex;
-      flex-direction: column;
-      gap: $px * 30;
-      input[type='radio'],
-      input[type='checkbox'] {
-        display: none;
-      }
-      textarea {
-        width: 100%;
-        height: $px * 100;
-        outline: none;
-        resize: none;
-        padding: $px * 16;
-        background-color: var(--bg-div-color);
-        border: $px solid var(--divider);
-        color: var(--text-color);
-      }
-      .dateContent {
-        width: 100%;
-        display: flex;
-        gap: $px * 3;
-        .dates {
-          input[type='date'] {
-            border: $px solid var(--divider);
-            background-color: var(--bg-div-color);
-            color: var(--text-detail);
-          }
-          .subLabel {
-            font-size: $px * 14;
-            margin-bottom: $px * 3;
-          }
+      gap: $px * 3;
+      .dates {
+        input[type='date'] {
+          border: $px solid var(--divider);
+          background-color: var(--bg-div-color);
+          color: var(--text-detail);
+        }
+        .subLabel {
+          font-size: $px * 14;
+          margin-bottom: $px * 3;
         }
       }
-    }
-  }
-  &.hide {
-    .overlay {
-      display: none;
-    }
-    .filterList {
-      transform: translateY(200%);
-      transition: transform 0.3s ease;
     }
   }
 }

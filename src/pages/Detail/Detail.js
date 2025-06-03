@@ -112,20 +112,27 @@ const Detail = () => {
             <MovieInfo />
           </section>
         </div>
-      </Page>
-      <RecordFilter
-        handleFilterDialog={handleFilterDialog}
-        handleSubmit={handleSubmit}
-        isRecord={isRecord}
-        setIsRecord={setIsRecord}
-        watch={watch}
-        setWatch={setWatch}
-      />
+      </Page>{' '}
+      <div
+        className={`filterOverlay ${isRecord ? '' : 'hide'}`}
+        onClick={handleFilterDialog}
+      ></div>
+      <aside className={`RecordFilter ${isRecord ? '' : 'hide'}`}>
+        <RecordFilter
+          handleFilterDialog={handleFilterDialog}
+          handleSubmit={handleSubmit}
+          isRecord={isRecord}
+          setIsRecord={setIsRecord}
+          watch={watch}
+          setWatch={setWatch}
+        />
+      </aside>
       {isAlert && (
         <AlertBox
           alertText={'저장되었습니다.'}
           onSubmit={() => navigate(`/review/${id}`)}
           submitText={'보러가기'}
+          onCancel={() => setIsAlert(false)}
         />
       )}
     </div>

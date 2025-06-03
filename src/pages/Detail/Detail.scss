@@ -1,7 +1,7 @@
 .DetailPage {
+  width: 100%;
   position: relative;
   overflow: hidden;
-
   .container {
     position: relative;
     width: 100%;
@@ -11,7 +11,6 @@
     justify-content: center;
     align-items: flex-start;
     gap: $px * 5;
-    // padding: $pagePadding;
 
     .posterWrapper {
       width: 100vw;
@@ -27,30 +26,58 @@
         object-fit: cover;
       }
     }
+    .backOverlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        #0000 0%,
+        #0000004d 32.47%,
+        #0009 67.36% 67.36%,
+        #000c 100%
+      );
+    }
+    .titleBox {
+      width: 100%;
+      max-width: $max-width;
+      position: absolute;
+      bottom: $footerHeight;
+      left: 50%;
+      transform: translateX(-50%);
+      color: $white;
+      padding: $px * 50 $pagePadding $px * 10;
+      .banner {
+        color: $white;
+      }
+    }
   }
-  .backOverlay {
-    position: absolute;
+  .filterOverlay {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      #0000 0%,
-      #0000004d 32.47%,
-      #0009 67.36% 67.36%,
-      #000c 100%
-    );
-  }
-  .titleBox {
-    width: 100%;
-    max-width: $max-width;
-    position: absolute;
-    bottom: $footerHeight;
-    left: 50%;
-    transform: translateX(-50%);
 
-    color: $white;
-    padding: $px * 50 0 $px * 10;
-    .banner {
-      color: $white;
+    &.hide {
+      display: none;
+    }
+  }
+  .RecordFilter {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - $headerHeight);
+    transform: translateY(0%);
+    transition: transform 0.3s ease;
+    z-index: 101;
+
+    &.hide {
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
     }
   }
 }
