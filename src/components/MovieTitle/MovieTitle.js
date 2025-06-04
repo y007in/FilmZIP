@@ -20,7 +20,7 @@ export const MvInfoOverview = ({ data }) => {
     </p>
   );
 };
-export const MvGenre = ({ data }) => {
+export const MvGenre = ({ data, slice }) => {
   const {
     data: genre,
     isLoading,
@@ -34,7 +34,7 @@ export const MvGenre = ({ data }) => {
   const genreList = genre.genres ? genre.genres : [];
   return (
     <p className="mvInfoGenre">
-      {data.map(item => {
+      {data.slice(0, slice).map(item => {
         const genreId = typeof item === 'object' ? item.id : item;
         return (
           <Banner

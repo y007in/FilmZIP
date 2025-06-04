@@ -8,15 +8,18 @@
     justify-content: center;
     align-items: center;
     .moviePoster {
-      width: 100%;
+      width: 18%;
+      min-width: $px * 200;
+      aspect-ratio: 2/3;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: $px * 16;
+      gap: $px * 15;
       margin-bottom: $px * 20;
       padding: $pagePadding;
       img {
+        width: 100%;
         border-radius: $px * 5;
       }
     }
@@ -24,6 +27,13 @@
       width: 100%;
       padding: $pagePadding;
       max-width: $max-width;
+      .infoTab {
+        position: relative;
+        .btnBox {
+          position: absolute;
+          right: 0;
+        }
+      }
     }
   }
 }

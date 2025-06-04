@@ -7,6 +7,7 @@ import { getNoDupRecordList } from '../../utils/recordList';
 const Main = () => {
   const navigate = useNavigate();
   const noDupRecordLists = getNoDupRecordList();
+  console.log(noDupRecordLists);
 
   // const {
   //   data,
@@ -53,12 +54,14 @@ const Main = () => {
         {noDupRecordLists.length !== 0 ? (
           <div className="recordList">
             {noDupRecordLists.map((item, i) => (
-              <Poster
-                key={i}
-                item={item}
-                onClick={() => navigate(`/review/${item.movieId}`)}
-                count={item.count}
-              />
+              <div className="test" key={i}>
+                <Poster
+                  key={i}
+                  item={item}
+                  onClick={() => navigate(`/review/${item.movieId}`)}
+                  count={item.count}
+                />
+              </div>
             ))}
           </div>
         ) : (

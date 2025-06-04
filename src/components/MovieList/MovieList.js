@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { MvGenre, MvInfoKrTit, MvInfoOgTit } from '../MovieTitle/MovieTitle';
 import Poster from '../Poster/Poster';
+import { MvGenre, MvInfoKrTit, MvInfoOgTit } from '../MovieTitle/MovieTitle';
 
 const MovieList = ({ list }) => {
   const navigate = useNavigate();
@@ -13,12 +13,19 @@ const MovieList = ({ list }) => {
           key={item.id}
           onClick={() => navigate(`/movie/${item.id}`)}
         >
-          <Poster
-            key={item.id}
-            item={item}
-            onClick={() => navigate(`/review/${item.movieId}`)}
-            count={item.count}
-          />
+          <aside className="imgBox">
+            <Poster
+              key={item.id}
+              item={item}
+              onClick={() => navigate(`/review/${item.movieId}`)}
+              count={item.count}
+            />
+          </aside>
+          <aside className="mvInfoTit">
+            <MvInfoKrTit data={item} />
+            <MvInfoOgTit data={item} />
+            <MvGenre data={item.genre_ids} slice={3} />
+          </aside>
         </li>
       ))}
     </ul>

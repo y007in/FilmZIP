@@ -32,7 +32,6 @@ const Review = () => {
 
   if (dataLoading) return <Loading />;
   if (dataError) return <div>오류 발생</div>;
-  console.log(records.watchStatus);
 
   return (
     <div className="Review">
@@ -40,7 +39,7 @@ const Review = () => {
         <div className="container">
           <section className="moviePoster">
             <img
-              src={`https://image.tmdb.org/t/p/w200${movieData.poster_path}`}
+              src={`https://image.tmdb.org/t/p/w1280${movieData.poster_path}`}
               alt={`${movieData.title} 포스터`}
             />
             <Banner
@@ -55,14 +54,17 @@ const Review = () => {
           <div className="tabContent">
             {selectedTab === TabReview.REVIEW && <ReviewData id={id} />}
             {selectedTab === TabReview.INFO && (
-              <>
+              <article className="infoTab">
+                <div className="btnBox">
+                  <Button
+                    text={'기록하러 가기'}
+                    styleType={'brandSolid'}
+                    onClick={() => navigate(`/movie/${id}`)}
+                  />
+                </div>
+
                 <MovieInfo direction={'col'} />
-                <Button
-                  text={'영화 저장하러 가기'}
-                  styleType={'fullSolid'}
-                  onClick={() => navigate(`/movie/${id}`)}
-                />
-              </>
+              </article>
             )}
           </div>
         </div>

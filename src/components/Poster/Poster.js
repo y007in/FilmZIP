@@ -1,4 +1,5 @@
 import React from 'react';
+import { MvInfoKrTit } from '../MovieTitle/MovieTitle';
 
 const Poster = ({ item, count, onClick }) => {
   return (

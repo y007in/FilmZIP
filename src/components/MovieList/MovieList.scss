@@ -1,49 +1,59 @@
 .mvCard {
   width: 100%;
+  max-width: $max-width;
+
   .mvInfo {
     width: 100%;
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
     gap: $px * 10;
     border-bottom: 0.063rem solid var(--divider);
     padding: calc($px * 15);
-    .mvInfoImg {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    min-width: 0;
+
+    .imgBox {
       width: 30%;
-      min-width: $px * 103;
-      aspect-ratio: 3/4;
-      border-radius: 0.313rem;
       overflow: hidden;
-      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .noImage {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 0.188rem;
-      }
     }
+
     .mvInfoTit {
-      width: 60%;
-      min-width: calc(55% - $px * 103);
+      width: 100%;
+      min-width: 0;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 0.25rem;
+      gap: $px * 8;
       padding: 0.313rem 0;
     }
-    .movieBtn {
-      width: 10%;
+  }
+}
+
+@media (min-width: 768px) {
+  .mvCard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    min-width: 0;
+    gap: $px * 10;
+    .mvInfo {
       display: flex;
-      justify-content: flex-end;
+      flex-direction: column;
+      width: 100%;
+      min-width: 0;
+      border-bottom: none;
+      padding: calc($px * 8);
+      .imgBox {
+        width: 100%;
+      }
     }
+
+    .mvInfoTit {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .mvCard {
+    grid-template-columns: repeat(5, 1fr);
   }
 }

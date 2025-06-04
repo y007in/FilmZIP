@@ -35,19 +35,25 @@
     grid-template-columns: repeat(4, 1fr);
     gap: $px * 8;
     padding: $pagePadding;
-    .image {
+    .test {
       width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      overflow: hidden;
-      border-radius: $px * 5;
-      img {
-        width: 100%;
-      }
+      min-width: 0;
     }
   }
   // .spinner {
   //   margin: 0 auto;
   //   padding: calc($px * 48);
   // }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .MainPage .recordList {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .MainPage .recordList {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
