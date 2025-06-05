@@ -54,125 +54,129 @@ const RecordFilter = ({
   };
 
   return (
-    // <aside className={`RecordFilter ${isRecord ? '' : 'hide'}`}>
     <>
-      <section className="filterList">
-        <form onSubmit={handleSubmit}>
-          {formField.map((field, idx) => (
-            <FormControl key={idx} label={field.label} inputType={field.type}>
-              {field.type === 'buttons' &&
-                field.options.map((option, i) => (
-                  <span key={i}>
-                    <Button
-                      styleType={
-                        checked[field.label] === (option.value || option)
-                          ? 'brandSolid'
-                          : ''
-                      }
-                      styleSize={'small'}
-                      text={option.label || option}
-                      onClick={e => {
-                        e.preventDefault();
-                        handleRadio(field.label, option.value || option);
-                      }}
-                    />
-                    <input
-                      type="radio"
-                      name={field.label}
-                      id={`${field.label}-${option.value || option}`}
-                      value={option.value || option}
-                      checked={
-                        checked[field.label] === (option.value || option)
-                      }
-                      onChange={() =>
-                        handleRadio(field.label, option.value || option)
-                      }
-                    />
-                  </span>
-                ))}
-              {field.type === 'buttonsCheck' &&
-                field.options.map((option, i) => {
-                  const selected = (checked[field.label] || [])?.includes(
-                    option,
-                  );
-                  return (
+      <div
+        className={`filterOverlay ${isRecord ? '' : 'hide'}`}
+        onClick={handleFilterDialog}
+      ></div>
+      <aside className={`RecordFilter ${isRecord ? '' : 'hide'}`}>
+        <section className="filterList">
+          <form onSubmit={handleSubmit}>
+            {formField.map((field, idx) => (
+              <FormControl key={idx} label={field.label} inputType={field.type}>
+                {field.type === 'buttons' &&
+                  field.options.map((option, i) => (
                     <span key={i}>
                       <Button
-                        styleType={selected ? 'brandSolid' : ''}
+                        styleType={
+                          checked[field.label] === (option.value || option)
+                            ? 'brandSolid'
+                            : ''
+                        }
                         styleSize={'small'}
-                        text={option}
+                        text={option.label || option}
                         onClick={e => {
                           e.preventDefault();
-                          handleCheckbox(field.label, option);
+                          handleRadio(field.label, option.value || option);
                         }}
                       />
                       <input
-                        type="checkbox"
+                        type="radio"
                         name={field.label}
-                        id={`${field.label}-${option}`}
-                        value={option}
-                        checked={selected}
-                        onChange={() => handleCheckbox(field.label, option)}
+                        id={`${field.label}-${option.value || option}`}
+                        value={option.value || option}
+                        checked={
+                          checked[field.label] === (option.value || option)
+                        }
+                        onChange={() =>
+                          handleRadio(field.label, option.value || option)
+                        }
                       />
                     </span>
-                  );
-                })}
-              {field.type === 'dates' && (
-                <section className="dateContent">
-                  <div className="dates">
-                    <label htmlFor="start-date" className="subLabel">
-                      시작일
-                    </label>
-                    <input
-                      type="date"
-                      id="start-date"
-                      name="start-date"
-                      max={watch.endDate}
-                      value={watch.startDate}
-                      onChange={e =>
-                        setWatch({ ...watch, startDate: e.target.value })
-                      }
-                    />
-                  </div>
-                  <div className="dates">
-                    <label htmlFor="end-date" className="subLabel">
-                      종료일
-                    </label>
-                    <input
-                      type="date"
-                      id="end-date"
-                      name="end-date"
-                      value={watch.endDate}
-                      min={watch.startDate}
-                      max={watch.endDate}
-                      onChange={e =>
-                        setWatch({ ...watch, endDate: e.target.value })
-                      }
-                    />
-                  </div>
-                </section>
-              )}
-              {field.type === 'textarea' && (
-                <textarea
-                  value={watch.comment}
-                  placeholder="추가적으로 남기고 싶은 코멘트가 있다면 자유롭게 작성해주세요!"
-                  onChange={e =>
-                    setWatch({ ...watch, comment: e.target.value })
-                  }
-                />
-              )}
-            </FormControl>
-          ))}
-          <Button
-            styleType={isDisable ? 'full' : 'disabled'}
-            styleSize="large"
-            text="저장"
-            onClick={handleSubmit}
-            disabled={!isDisable}
-          />
-        </form>
-      </section>
-      {/* </aside> */}
+                  ))}
+                {field.type === 'buttonsCheck' &&
+                  field.options.map((option, i) => {
+                    const selected = (checked[field.label] || [])?.includes(
+                      option,
+                    );
+                    return (
+                      <span key={i}>
+                        <Button
+                          styleType={selected ? 'brandSolid' : ''}
+                          styleSize={'small'}
+                          text={option}
+                          onClick={e => {
+                            e.preventDefault();
+                            handleCheckbox(field.label, option);
+                          }}
+                        />
+                        <input
+                          type="checkbox"
+                          name={field.label}
+                          id={`${field.label}-${option}`}
+                          value={option}
+                          checked={selected}
+                          onChange={() => handleCheckbox(field.label, option)}
+                        />
+                      </span>
+                    );
+                  })}
+                {field.type === 'dates' && (
+                  <section className="dateContent">
+                    <div className="dates">
+                      <label htmlFor="start-date" className="subLabel">
+                        시작일
+                      </label>
+                      <input
+                        type="date"
+                        id="start-date"
+                        name="start-date"
+                        max={watch.endDate}
+                        value={watch.startDate}
+                        onChange={e =>
+                          setWatch({ ...watch, startDate: e.target.value })
+                        }
+                      />
+                    </div>
+                    <div className="dates">
+                      <label htmlFor="end-date" className="subLabel">
+                        종료일
+                      </label>
+                      <input
+                        type="date"
+                        id="end-date"
+                        name="end-date"
+                        value={watch.endDate}
+                        min={watch.startDate}
+                        max={watch.endDate}
+                        onChange={e =>
+                          setWatch({ ...watch, endDate: e.target.value })
+                        }
+                      />
+                    </div>
+                  </section>
+                )}
+                {field.type === 'textarea' && (
+                  <textarea
+                    value={watch.comment}
+                    placeholder="추가적으로 남기고 싶은 코멘트가 있다면 자유롭게 작성해주세요!"
+                    onChange={e =>
+                      setWatch({ ...watch, comment: e.target.value })
+                    }
+                  />
+                )}
+              </FormControl>
+            ))}
+            <Button
+              styleType={isDisable ? 'full' : 'disabled'}
+              styleSize="large"
+              text="저장"
+              onClick={handleSubmit}
+              disabled={!isDisable}
+            />
+          </form>
+        </section>
+      </aside>
     </>
   );
 };

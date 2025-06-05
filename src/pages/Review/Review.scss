@@ -1,6 +1,8 @@
 .Review {
   width: 100%;
+  position: relative;
   padding-top: $headerHeight;
+  overflow: hidden;
   .container {
     width: 100%;
     display: flex;
@@ -27,6 +29,7 @@
       width: 100%;
       padding: $pagePadding;
       max-width: $max-width;
+
       .infoTab {
         position: relative;
         .btnBox {
