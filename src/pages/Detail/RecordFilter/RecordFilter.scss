@@ -96,7 +96,7 @@
       background-color: var(--baseBg-color);
       .close {
         display: block;
-        position: absolute;
+        position: fixed;
         top: $px * 20;
         right: $px * 25;
         padding: $px * 5 $px * 10;
