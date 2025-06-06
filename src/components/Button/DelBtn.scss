@@ -1,9 +1,8 @@
-// .delBtn {
-//   display: inline-block;
-//   background-color: transparent;
-//   border: none;
-//   cursor: pointer;
-//   padding: 0;
-//   color: $detail;
-//   font-size: $px * 12;
-// }
+.delBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--text-color);
+  font-size: $font-tit-pc;
+}

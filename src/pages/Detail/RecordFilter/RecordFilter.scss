@@ -34,6 +34,9 @@
     &::-webkit-scrollbar {
       display: none;
     }
+    .close {
+      display: none;
+    }
     form {
       width: 100%;
       max-width: $px * 1280;
@@ -51,7 +54,6 @@
         outline: none;
         resize: none;
         padding: $px * 16;
-
         background-color: var(--bg-div-color);
         border: $px solid var(--divider);
         color: var(--text-color);
@@ -72,6 +74,38 @@
           }
         }
       }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .filterOverlay {
+    background-color: rgba($black, 0.6);
+  }
+  .RecordFilter {
+    width: 85%;
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    transition: none;
+    translate: -50% -50%;
+    .filterList {
+      border-radius: $px * 5;
+      padding: $px * 30;
+      background-color: var(--baseBg-color);
+      .close {
+        display: block;
+        position: absolute;
+        top: $px * 20;
+        right: $px * 25;
+        padding: $px * 5 $px * 10;
+        cursor: pointer;
+      }
+    }
+    &.hide {
+      display: none;
+      transition: none;
     }
   }
 }

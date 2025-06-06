@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Button from '../../../components/Button/Button';
+import DelBtn from '../../../components/Button/DelBtn';
 import FormControl from '../../../components/FormControl/FormControl';
+
 import { formField } from '../../../constants/formField';
 
 const RecordFilter = ({
@@ -61,6 +63,10 @@ const RecordFilter = ({
       ></div>
       <aside className={`RecordFilter ${isRecord ? '' : 'hide'}`}>
         <section className="filterList">
+          <span className="close" onClick={handleFilterDialog}>
+            <DelBtn />
+          </span>
+
           <form onSubmit={handleSubmit}>
             {formField.map((field, idx) => (
               <FormControl key={idx} label={field.label} inputType={field.type}>
