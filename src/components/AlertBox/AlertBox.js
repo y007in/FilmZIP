@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 
 const AlertBox = ({ alertText, onSubmit, submitText, onCancel }) => {
   return (
-    <div className="overlay">
+    <div className="alertOverlay">
       <div className={'alertBox'}>
         <p className="alertTxt">{alertText}</p>
         <div className="selectBtn">
