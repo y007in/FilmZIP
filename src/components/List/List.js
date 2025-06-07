@@ -1,7 +1,7 @@
 import BasicList from './BasicList';
 import SlideList from './SlideList';
 
-const List = ({ title, type, data, onClick, renderItem, allDel }) => {
+const List = ({ title, type, data, onClick, renderItem, allDel, onDelete }) => {
   return (
     <div className="List">
       <div className="listHeader">
@@ -9,9 +9,19 @@ const List = ({ title, type, data, onClick, renderItem, allDel }) => {
         {allDel}
       </div>
       {type === 'slide' ? (
-        <SlideList data={data} renderItem={renderItem} onClick={onClick} />
+        <SlideList
+          data={data}
+          renderItem={renderItem}
+          onClick={onClick}
+          onDelete={onDelete}
+        />
       ) : (
-        <BasicList data={data} renderItem={renderItem} onClick={onClick} />
+        <BasicList
+          data={data}
+          renderItem={renderItem}
+          onClick={onClick}
+          onDelete={onDelete}
+        />
       )}
     </div>
   );

@@ -2,12 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import Page from '../../components/Page/Page';
 import Poster from '../../components/Poster/Poster';
 import NoResult from '../../components/NoResult/NoResult';
-import { getNoDupRecordList } from '../../utils/recordList';
+import { useRecordList } from '../../hooks/useRecordList';
 
 const Main = () => {
   const navigate = useNavigate();
+  const { getNoDupRecordList } = useRecordList();
   const noDupRecordLists = getNoDupRecordList();
-  console.log(noDupRecordLists);
 
   // const {
   //   data,

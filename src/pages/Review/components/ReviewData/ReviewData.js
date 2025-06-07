@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Banner from '../../../../components/Banner/Banner';
-import { getRecordList } from '../../../../utils/recordList';
+import { useRecordList } from '../../../../hooks/useRecordList';
 import { setMovieRecords } from '../../../../utils/storage';
 import { getWatchStatusLabel } from '../../../../constants/formField';
 import AlertBox from '../../../../components/AlertBox/AlertBox';
 
 const ReviewData = ({ id }) => {
   const [isAlert, setIsAlert] = useState(false);
+  const { recordList, setRecordList, getRecordList } = useRecordList();
   const records = getRecordList(id);
   const navigate = useNavigate();
   const handleAlert = () => {
@@ -15,15 +16,18 @@ const ReviewData = ({ id }) => {
   };
 
   const handleDelMovie = targetCreateId => {
-    const updatedRecords = records.filter(
+    const updatedRecords = recordList.filter(
       item => item.createId !== targetCreateId,
     );
+
     setMovieRecords(updatedRecords);
-    if (updatedRecords.length === 0) {
+    setRecordList(updatedRecords);
+    if (
+      updatedRecords.filter(item => item.movieId === Number(id)).length === 0
+    ) {
       navigate('/');
     }
     setIsAlert(false);
-    window.location.reload();
   };
 
   return (

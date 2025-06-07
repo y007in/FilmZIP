@@ -8,12 +8,7 @@ import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 import MovieInfo from '../../components/MovieInfo/MovieInfo';
 import RecordFilter from './RecordFilter/RecordFilter';
-import {
-  fetchMovieDetail,
-  fetchMovieVideo,
-  fetchMovieImage,
-  fetchMovieCredit,
-} from '../../api/api';
+import { fetchMovieDetail, fetchMovieImage } from '../../api/api';
 import { setMovieRecords, getMovieRecords } from '../../utils/storage';
 import { useMovieForm } from '../../hooks/useMovieForm';
 import AlertBox from '../../components/AlertBox/AlertBox';
@@ -23,14 +18,13 @@ const Detail = () => {
   const navigate = useNavigate();
   const [isRecord, setIsRecord] = useState(false);
   const [isAlert, setIsAlert] = useState(false);
+  const [review, setReview] = useState(getMovieRecords());
   const { watch, setWatch, getFormData, initialData } = useMovieForm();
 
   //영화 상세 정보, 영상 정보 가져오기
   const [
     { data: movieData, isLoading: dataLoading, error: dataError },
-    { data: movieVideo, isLoading: videoLoading, error: videoError },
     { data: movieImage, isLoading: imageLoading, error: imageError },
-    { data: movieCredit, isLoading: creditLoading, error: creditError },
   ] = useQueries({
     queries: [
       {
@@ -38,21 +32,11 @@ const Detail = () => {
         queryFn: () => fetchMovieDetail({ queryKey: ['movieDetail', id] }),
       },
       {
-        queryKey: ['movieVideo', id],
-        queryFn: () => fetchMovieVideo({ queryKey: ['movieVideo', id] }),
-      },
-      {
         queryKey: ['movieImage', id],
         queryFn: () => fetchMovieImage({ queryKey: ['movieImage', id] }),
       },
-      {
-        queryKey: ['movieCredit', id],
-        queryFn: () => fetchMovieCredit({ queryKey: ['movieCredit', id] }),
-      },
     ],
   });
-
-  console.log(movieCredit);
 
   //기록 입력 폼 열/닫기
   const handleFilterDialog = () => {
@@ -61,11 +45,11 @@ const Detail = () => {
   //기록 저장
   const handleSubmit = e => {
     e.preventDefault();
-
     const formData = getFormData(movieData);
-    const existingRecords = getMovieRecords();
-    const updatedRecords = [...existingRecords, formData];
+    const updatedRecords = [...review, formData];
+    setReview(updatedRecords);
     setMovieRecords(updatedRecords);
+
     setIsRecord(false);
     if (onsubmit) onsubmit(formData);
 
@@ -73,10 +57,8 @@ const Detail = () => {
     setWatch(initialData);
   };
 
-  if (dataLoading || videoLoading || imageLoading || creditLoading)
-    return <Loading />;
-  if (dataError || videoError || imageError || creditError)
-    return <div>오류 발생</div>;
+  if (dataLoading || imageLoading) return <Loading />;
+  if (dataError || imageError) return <div>오류 발생</div>;
 
   return (
     <div className="DetailPage">

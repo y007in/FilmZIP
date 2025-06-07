@@ -1,7 +1,7 @@
 const DelBtn = ({ onClick }) => {
   return (
     <button className="delBtn" onClick={onClick}>
-      x
+      &chi;
     </button>
   );
 };
