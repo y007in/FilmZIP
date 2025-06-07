@@ -5,7 +5,7 @@ import Page from '../../components/Page/Page';
 import Header from '../../components/Header/Header';
 import Loading from '../../components/Loading/Loading';
 import MovieInfo from '../../components/MovieInfo/MovieInfo';
-import Banner from '../../components/Banner/Banner';
+import Badge from '../../components/Badge/Badge';
 import Button from '../../components/Button/Button';
 import Tabs from './components/Tabs/Tabs';
 import ReviewData from './components/ReviewData/ReviewData';
@@ -40,9 +40,9 @@ const Review = () => {
         <div className="container">
           <figure className="moviePoster">
             <MvInfoImage data={movieData} path={movieData.poster_path} />
-            <Banner
+            <Badge
               text={getWatchStatusLabel(records[0]?.watchStatus)}
-              bannerType={`${records[0]?.watchStatus}`}
+              badgeType={`${records[0]?.watchStatus}`}
             />
           </figure>
           <Tabs

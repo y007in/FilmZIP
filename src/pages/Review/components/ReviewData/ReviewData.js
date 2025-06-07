@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Banner from '../../../../components/Banner/Banner';
+import Badge from '../../../../components/Badge/Badge';
 import { useRecordList } from '../../../../hooks/useRecordList';
 import { setMovieRecords } from '../../../../utils/storage';
 import { getWatchStatusLabel } from '../../../../constants/formField';
@@ -36,9 +36,9 @@ const ReviewData = ({ id }) => {
         {records.map((record, idx) => (
           <section className="reviewBox" key={idx}>
             <div className="head">
-              <Banner
+              <Badge
                 text={getWatchStatusLabel(record.watchStatus)}
-                bannerType={`${record.watchStatus}`}
+                badgeType={`${record.watchStatus}`}
               />
               <article>
                 <button className="reviewBtn" onClick={handleAlert}>
@@ -72,7 +72,7 @@ const ReviewData = ({ id }) => {
             </article>
             <article className="selection">
               {record.watchReview?.map((review, i) => (
-                <Banner key={i} bannerType={'sub'} text={review} />
+                <Badge key={i} badgeType={'sub'} text={review} />
               ))}
             </article>
             {record.watchComment && (

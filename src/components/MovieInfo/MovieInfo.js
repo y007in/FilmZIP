@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useQueries } from '@tanstack/react-query';
-import Banner from '../Banner/Banner';
+import Badge from '../Badge/Badge';
 import Loading from '../Loading/Loading';
 import {
   fetchMovieDetail,
@@ -43,8 +43,8 @@ const MovieInfo = ({ direction }) => {
     <section className="movieInfo">
       <div className="movieMeta">
         <MvCertification id={id} />
-        <Banner text={movieData.release_date.substr(0, 4)} />
-        <Banner text={`${movieData.runtime}분`} />
+        <Badge text={movieData.release_date.substr(0, 4)} />
+        <Badge text={`${movieData.runtime}분`} />
         <MvGenre data={movieData?.genres} />
       </div>
       <article className="movieDescription">

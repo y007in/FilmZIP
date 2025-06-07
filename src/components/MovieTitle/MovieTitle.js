@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import Loading from '../Loading/Loading';
-import Banner from '../Banner/Banner';
+import Badge from '../Badge/Badge';
 import { fetchGenre, fetchMovieRelease } from '../../api/api';
 
 export const MvInfoImage = ({ data, path }) => {
@@ -46,9 +46,9 @@ export const MvGenre = ({ data, slice }) => {
       {data.slice(0, slice).map(item => {
         const genreId = typeof item === 'object' ? item.id : item;
         return (
-          <Banner
+          <Badge
             key={genreId}
-            bannerType={'brandSolid'}
+            badgeType={'brandSolid'}
             text={genreList?.find(item => item.id === genreId)?.name}
           />
         );
@@ -83,5 +83,5 @@ export const MvCertification = ({ id }) => {
     ?.release_dates[0]?.certification;
   if (isLoading) return <Loading />;
   if (error) return <p>Error: {error.message}</p>;
-  return age && <Banner text={age} bannerType={'age'} />;
+  return age && <Badge text={age} badgeType={'age'} />;
 };
