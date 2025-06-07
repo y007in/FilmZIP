@@ -1,15 +1,11 @@
-import React from 'react';
-import { MvInfoKrTit } from '../MovieTitle/MovieTitle';
+import { MvInfoImage } from '../MovieTitle/MovieTitle';
 
 const Poster = ({ item, count, onClick }) => {
   return (
     <article className="mvInfoImg" onClick={onClick}>
       {item.poster_path !== null ? (
         <>
-          <img
-            src={`https://image.tmdb.org/t/p/w1280${item.poster_path}`}
-            alt={item.title}
-          />
+          <MvInfoImage data={item} path={item.poster_path} />
           {count > 1 && <span className="countBadge">{count}</span>}
           {item.watchStatus === 'STOPPED' && (
             <span className="countBadge no">{'❌'}</span>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useQueries } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useQueries } from '@tanstack/react-query';
 
 import Loading from '../../components/Loading/Loading';
 import Page from '../../components/Page/Page';
@@ -8,20 +8,20 @@ import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 import MovieInfo from '../../components/MovieInfo/MovieInfo';
 import RecordFilter from './RecordFilter/RecordFilter';
+import AlertBox from '../../components/AlertBox/AlertBox';
+import { MvInfoImage } from '../../components/MovieTitle/MovieTitle';
 import { fetchMovieDetail, fetchMovieImage } from '../../api/api';
 import { setMovieRecords, getMovieRecords } from '../../utils/storage';
 import { useMovieForm } from '../../hooks/useMovieForm';
-import AlertBox from '../../components/AlertBox/AlertBox';
 
 const Detail = () => {
   const { id } = useParams();
+  const { watch, setWatch, getFormData, initialData } = useMovieForm();
   const navigate = useNavigate();
+  const [review, setReview] = useState(getMovieRecords());
   const [isRecord, setIsRecord] = useState(false);
   const [isAlert, setIsAlert] = useState(false);
-  const [review, setReview] = useState(getMovieRecords());
-  const { watch, setWatch, getFormData, initialData } = useMovieForm();
 
-  //영화 상세 정보, 영상 정보 가져오기
   const [
     { data: movieData, isLoading: dataLoading, error: dataError },
     { data: movieImage, isLoading: imageLoading, error: imageError },
@@ -49,10 +49,7 @@ const Detail = () => {
     const updatedRecords = [...review, formData];
     setReview(updatedRecords);
     setMovieRecords(updatedRecords);
-
     setIsRecord(false);
-    if (onsubmit) onsubmit(formData);
-
     setIsAlert(true);
     setWatch(initialData);
   };
@@ -74,25 +71,19 @@ const Detail = () => {
         }
       >
         <div className="container">
-          <section className="posterWrapper">
-            {movieImage.backdrops?.[1]?.file_path ? (
-              <img
-                className="posterBackground"
-                src={`https://image.tmdb.org/t/p/w1280${movieImage.backdrops[0].file_path}`}
-                alt={`${movieData.title} 배경 이미지`}
+          <figure className="posterWrapper">
+            {movieImage.backdrops[0]?.file_path ? (
+              <MvInfoImage
+                data={movieImage}
+                path={movieImage.backdrops[0].file_path}
               />
             ) : (
-              <img
-                className="posterBackground"
-                src={`https://image.tmdb.org/t/p/w1280${movieData.backdrop_path}`}
-                alt={`${movieData.title} 포스터 이미지`}
-              />
+              <MvInfoImage data={movieData} path={movieData.backdrop_path} />
             )}
-          </section>
-          <div className="backOverlay"></div>
-          <section className="titleBox">
+          </figure>
+          <article className="titleBox">
             <MovieInfo />
-          </section>
+          </article>
         </div>
       </Page>
       <RecordFilter

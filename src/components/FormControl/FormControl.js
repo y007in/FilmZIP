@@ -7,7 +7,6 @@ const FormControl = ({ label, htmlFor, inputType, sr_only, children }) => {
           {inputType === 'buttonsCheck' && '중복 선택 가능'}
         </span>
       </label>
-
       <div className="inputBox">{children}</div>
     </div>
   );

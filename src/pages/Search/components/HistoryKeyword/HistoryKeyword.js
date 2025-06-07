@@ -1,9 +1,10 @@
 import { useState } from 'react';
+
+import List from '../../../../components/List/List';
 import {
   getSearchKeywordList,
   setSearchKeywordList,
 } from '../../../../utils/storage';
-import List from '../../../../components/List/List';
 import { TabType } from '../../../../constants/tabs';
 
 const HistoryKeyword = ({ handleRecommend }) => {

@@ -1,14 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useQueries } from '@tanstack/react-query';
-
 import Banner from '../Banner/Banner';
 import Loading from '../Loading/Loading';
-import {
-  fetchMovieDetail,
-  fetchMovieCredit,
-  fetchMovieImage,
-  fetchMovieVideo,
-} from '../../api/api';
+import { fetchMovieDetail, fetchMovieCredit } from '../../api/api';
 import {
   MvCreditSection,
   MvGenre,
@@ -24,8 +18,6 @@ const MovieInfo = ({ direction }) => {
   const [
     { data: movieData, isLoading: dataLoading, error: dataError },
     { data: movieCredit, isLoading: creditLoading, error: creditError },
-    { data: movieVideo, isLoading: videoLoading, error: videoError },
-    { data: movieImage, isLoading: imageLoading, error: imageError },
   ] = useQueries({
     queries: [
       {
@@ -36,22 +28,11 @@ const MovieInfo = ({ direction }) => {
         queryKey: ['movieCredit', id],
         queryFn: () => fetchMovieCredit({ queryKey: ['movieCredit', id] }),
       },
-      {
-        queryKey: ['movieVideo', id],
-        queryFn: () => fetchMovieVideo({ queryKey: ['movieVideo', id] }),
-      },
-      {
-        queryKey: ['movieImage', id],
-        queryFn: () => fetchMovieImage({ queryKey: ['movieImage', id] }),
-      },
     ],
   });
-  console.log(movieData);
 
-  if (dataLoading || creditLoading || videoLoading || imageLoading)
-    return <Loading />;
-  if (dataError || creditError || videoError || imageError)
-    return <div>오류 발생</div>;
+  if (dataLoading || creditLoading) return <Loading />;
+  if (dataError || creditError) return <div>오류 발생</div>;
 
   return (
     <section className="movieInfo">

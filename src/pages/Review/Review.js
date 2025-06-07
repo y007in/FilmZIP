@@ -9,6 +9,7 @@ import Banner from '../../components/Banner/Banner';
 import Button from '../../components/Button/Button';
 import Tabs from './components/Tabs/Tabs';
 import ReviewData from './components/ReviewData/ReviewData';
+import { MvInfoImage } from '../../components/MovieTitle/MovieTitle';
 import { fetchMovieDetail } from '../../api/api';
 import { TabReview } from '../../constants/tabs';
 import { useRecordList } from '../../hooks/useRecordList';
@@ -18,6 +19,8 @@ const Review = () => {
   const { id } = useParams();
   const { getRecordList } = useRecordList();
   const records = getRecordList(id);
+  const [selectedTab, setSelectedTab] = useState(TabReview.REVIEW);
+  const navigate = useNavigate();
 
   const {
     data: movieData,
@@ -27,8 +30,6 @@ const Review = () => {
     queryKey: ['movieDetail', id],
     queryFn: () => fetchMovieDetail({ queryKey: ['movieDetail', id] }),
   });
-  const [selectedTab, setSelectedTab] = useState(TabReview.REVIEW);
-  const navigate = useNavigate();
 
   if (dataLoading) return <Loading />;
   if (dataError) return <div>오류 발생</div>;
@@ -37,16 +38,13 @@ const Review = () => {
     <div className="Review">
       <Page header={<Header movieData={movieData} />}>
         <div className="container">
-          <section className="moviePoster">
-            <img
-              src={`https://image.tmdb.org/t/p/w1280${movieData.poster_path}`}
-              alt={`${movieData.title} 포스터`}
-            />
+          <figure className="moviePoster">
+            <MvInfoImage data={movieData} path={movieData.poster_path} />
             <Banner
               text={getWatchStatusLabel(records[0]?.watchStatus)}
               bannerType={`${records[0]?.watchStatus}`}
             />
-          </section>
+          </figure>
           <Tabs
             selectedTab={selectedTab}
             onChange={selectedTab => setSelectedTab(selectedTab)}
@@ -62,7 +60,6 @@ const Review = () => {
                     onClick={() => navigate(`/movie/${id}`)}
                   />
                 </div>
-
                 <MovieInfo direction={'col'} />
               </article>
             )}

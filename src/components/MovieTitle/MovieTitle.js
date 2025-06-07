@@ -4,6 +4,15 @@ import Loading from '../Loading/Loading';
 import Banner from '../Banner/Banner';
 import { fetchGenre } from '../../api/api';
 
+export const MvInfoImage = ({ data, path }) => {
+  return (
+    <img
+      className="mvInfoImage"
+      src={`https://image.tmdb.org/t/p/w1280${path}`}
+      alt={`${data.title} 배경 이미지`}
+    />
+  );
+};
 export const MvInfoKrTit = ({ data }) => {
   return <p className="mvInfoKrTit">{data.title}</p>;
 };

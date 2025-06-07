@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import List from '../../../../components/List/List';
+import Poster from '../../../../components/Poster/Poster';
 import {
   MvInfoKrTit,
   MvInfoOgTit,
 } from '../../../../components/MovieTitle/MovieTitle';
 import { TabType } from '../../../../constants/tabs';
-import Poster from '../../../../components/Poster/Poster';
 
 const RecommendKeyword = ({ data }) => {
   const movie = data?.results || [];

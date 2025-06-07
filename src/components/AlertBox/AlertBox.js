@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Button from '../Button/Button';
 
 const AlertBox = ({ alertText, onSubmit, submitText, onCancel }) => {
