@@ -2,8 +2,13 @@ import { useParams } from 'react-router-dom';
 import { useQueries } from '@tanstack/react-query';
 import Banner from '../Banner/Banner';
 import Loading from '../Loading/Loading';
-import { fetchMovieDetail, fetchMovieCredit } from '../../api/api';
 import {
+  fetchMovieDetail,
+  fetchMovieCredit,
+  fetchMovieRelease,
+} from '../../api/api';
+import {
+  MvCertification,
   MvCreditSection,
   MvGenre,
   MvInfoKrTit,
@@ -18,6 +23,7 @@ const MovieInfo = ({ direction }) => {
   const [
     { data: movieData, isLoading: dataLoading, error: dataError },
     { data: movieCredit, isLoading: creditLoading, error: creditError },
+    { data: movieRelease, isLoading: releaseLoading, error: releaseError },
   ] = useQueries({
     queries: [
       {
@@ -28,15 +34,20 @@ const MovieInfo = ({ direction }) => {
         queryKey: ['movieCredit', id],
         queryFn: () => fetchMovieCredit({ queryKey: ['movieCredit', id] }),
       },
+      {
+        queryKey: ['movieRelease', id],
+        queryFn: () => fetchMovieRelease({ queryKey: ['movieRelease', id] }),
+      },
     ],
   });
 
-  if (dataLoading || creditLoading) return <Loading />;
-  if (dataError || creditError) return <div>오류 발생</div>;
+  if (dataLoading || creditLoading || releaseLoading) return <Loading />;
+  if (dataError || creditError || releaseError) return <div>오류 발생</div>;
 
   return (
     <section className="movieInfo">
       <div className="movieMeta">
+        <MvCertification data={movieRelease} />
         <Banner text={movieData.release_date.substr(0, 4)} />
         <Banner text={`${movieData.runtime}분`} />
         <MvGenre data={movieData?.genres} />

@@ -5,7 +5,7 @@
   white-space: nowrap;
   font-size: $font-caption-mobile;
   &.brandSolid {
-    border: 0.063rem solid var(--main-color);
+    border: $px solid var(--main-color);
     padding: 0.313rem 0.5rem;
     border-radius: $px * 5;
 
@@ -39,6 +39,11 @@
     color: $white;
     border: none;
     font-size: $font-tit-mobile;
+  }
+  &.age {
+    background-color: $black;
+    color: $white;
+    border: $px solid $black;
   }
 }
 

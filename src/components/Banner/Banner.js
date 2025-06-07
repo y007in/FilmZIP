@@ -6,6 +6,7 @@ const Banner = ({ text, bannerType }) => {
     'STOPPED',
     'REWATCHED',
     'FINISHED',
+    'age',
   ].includes(bannerType)
     ? bannerType
     : '';

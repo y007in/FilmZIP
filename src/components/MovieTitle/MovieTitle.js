@@ -70,3 +70,8 @@ export const MvCreditSection = ({ title, items }) => {
     </section>
   );
 };
+export const MvCertification = ({ data }) => {
+  const age = data?.results?.find(age => age.iso_3166_1 === 'KR')
+    ?.release_dates[0]?.certification;
+  return age && <Banner text={age} bannerType={'age'} />;
+};

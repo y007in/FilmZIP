@@ -16,20 +16,21 @@ export const fetchTopRated = async () => {
   return fetchFromApi(`/movie/popular?language=ko-KR&page=1`);
 };
 
-export const fetchGenre = async () => {
-  return fetchFromApi(`/genre/movie/list?language=ko-KR`);
-};
-
 export const fetchSearch = async ({ queryKey }) => {
   const [, searchKeyword] = queryKey;
   if (!searchKeyword) return [];
   return fetchFromApi(`/search/movie?query=${searchKeyword}&language=ko-KR}`);
 };
+
 export const fetchMovieDetail = async ({ queryKey }) => {
   const [, movieId] = queryKey;
   if (!movieId) return [];
   return fetchFromApi(`/movie/${movieId}?language=ko-KR`);
 };
+export const fetchGenre = async () => {
+  return fetchFromApi(`/genre/movie/list?language=ko-KR`);
+};
+
 export const fetchMovieVideo = async ({ queryKey }) => {
   const [, movieId] = queryKey;
   if (!movieId) return [];
@@ -44,4 +45,9 @@ export const fetchMovieCredit = async ({ queryKey }) => {
   const [, movieId] = queryKey;
   if (!movieId) return [];
   return fetchFromApi(`/movie/${movieId}/credits`);
+};
+export const fetchMovieRelease = async ({ queryKey }) => {
+  const [, movieId] = queryKey;
+  if (!movieId) return [];
+  return fetchFromApi(`/movie/${movieId}/release_dates`);
 };
