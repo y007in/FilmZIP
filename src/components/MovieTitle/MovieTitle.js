@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import Loading from '../Loading/Loading';
 import Banner from '../Banner/Banner';
-import { fetchGenre } from '../../api/api';
+import { fetchGenre, fetchMovieRelease } from '../../api/api';
 
 export const MvInfoImage = ({ data, path }) => {
   return (
@@ -70,8 +70,18 @@ export const MvCreditSection = ({ title, items }) => {
     </section>
   );
 };
-export const MvCertification = ({ data }) => {
-  const age = data?.results?.find(age => age.iso_3166_1 === 'KR')
+export const MvCertification = ({ id }) => {
+  const {
+    data: movieRelease,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['movieRelease', id],
+    queryFn: () => fetchMovieRelease({ queryKey: ['movieRelease', id] }),
+  });
+  const age = movieRelease?.results?.find(age => age.iso_3166_1 === 'KR')
     ?.release_dates[0]?.certification;
+  if (isLoading) return <Loading />;
+  if (error) return <p>Error: {error.message}</p>;
   return age && <Banner text={age} bannerType={'age'} />;
 };

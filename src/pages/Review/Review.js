@@ -53,6 +53,7 @@ const Review = () => {
             {selectedTab === TabReview.REVIEW && <ReviewData id={id} />}
             {selectedTab === TabReview.INFO && (
               <article className="infoTab">
+                <MovieInfo direction={'col'} />
                 <div className="btnBox">
                   <Button
                     text={'기록하러 가기'}
@@ -60,7 +61,6 @@ const Review = () => {
                     onClick={() => navigate(`/movie/${id}`)}
                   />
                 </div>
-                <MovieInfo direction={'col'} />
               </article>
             )}
           </div>

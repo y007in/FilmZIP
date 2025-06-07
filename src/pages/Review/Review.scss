@@ -33,8 +33,9 @@
       .infoTab {
         position: relative;
         .btnBox {
-          position: absolute;
-          right: 0;
+          display: flex;
+          justify-content: flex-end;
+          margin-top: $px * 16;
         }
       }
     }
