@@ -1,5 +1,7 @@
 .titleHeader {
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
   max-width: $px * 1280;
   margin: 0 auto;
