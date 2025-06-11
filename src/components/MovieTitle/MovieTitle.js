@@ -40,7 +40,7 @@ export const MvGenre = ({ data, slice }) => {
     queryKey: ['genre'],
     queryFn: fetchGenre,
   });
-  if (isLoading) return <Loading />;
+  if (isLoading) return <span className="genre" />;
   if (error) return <p>Error: {error.message}</p>;
   const genreList = genre.genres ? genre.genres : [];
   return (
@@ -85,7 +85,7 @@ export const MvCertification = ({ id }) => {
   const age = movieRelease?.results?.find(r => r.iso_3166_1 === 'KR')
     ?.release_dates?.[0]?.certification;
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <span className="certification" />;
   if (error) return <p>Error: {error.message}</p>;
 
   const getAgeBadgeType = age => {

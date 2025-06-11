@@ -55,7 +55,6 @@ const Detail = () => {
   };
 
   if (dataLoading || (imageLoading && !isLoaded)) return <Loading />;
-
   if (dataError || imageError) return <div>오류 발생</div>;
 
   return (
@@ -80,11 +79,7 @@ const Detail = () => {
                 setIsLoaded={setIsLoaded}
               />
             ) : (
-              <MvInfoImage
-                data={movieData}
-                path={movieData.backdrop_path}
-                setIsLoaded={setIsLoaded}
-              />
+              <MvInfoImage data={movieData} path={movieData.backdrop_path} />
             )}
           </figure>
           <article className="titleBox">

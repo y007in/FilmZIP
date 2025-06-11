@@ -34,6 +34,11 @@
   gap: $px * 5;
   overflow: hidden;
 }
+.genre {
+  display: inline-block;
+  width: 50%;
+  height: 25px;
+}
 
 .mvCreditBlock {
   width: 100%;
@@ -46,6 +51,12 @@
       content: ':';
       margin: 0 $px * 3;
     }
+  }
+
+  .certification {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
   }
   .creditList {
     display: flex;
