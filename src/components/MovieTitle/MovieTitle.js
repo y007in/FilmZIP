@@ -1,15 +1,17 @@
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import Loading from '../Loading/Loading';
 import Badge from '../Badge/Badge';
 import { fetchGenre, fetchMovieRelease } from '../../api/api';
 
-export const MvInfoImage = ({ data, path }) => {
+export const MvInfoImage = ({ data, path, setIsLoaded }) => {
   return (
     <img
       className="mvInfoImage"
       src={`https://image.tmdb.org/t/p/w1280${path}`}
       alt={`${data.title} 배경 이미지`}
+      onLoad={() => setIsLoaded && setIsLoaded(true)}
     />
   );
 };
@@ -79,9 +81,29 @@ export const MvCertification = ({ id }) => {
     queryKey: ['movieRelease', id],
     queryFn: () => fetchMovieRelease({ queryKey: ['movieRelease', id] }),
   });
-  const age = movieRelease?.results?.find(age => age.iso_3166_1 === 'KR')
-    ?.release_dates[0]?.certification;
+
+  const age = movieRelease?.results?.find(r => r.iso_3166_1 === 'KR')
+    ?.release_dates?.[0]?.certification;
+
   if (isLoading) return <Loading />;
   if (error) return <p>Error: {error.message}</p>;
-  return age && <Badge text={age} badgeType={'age'} />;
+
+  const getAgeBadgeType = age => {
+    const lowerAge = age?.toLowerCase();
+
+    if (lowerAge === 'all') return { badgeType: 'age ageAll', label: 'ALL' };
+    if (lowerAge === '12') return { badgeType: 'age age12', label: '12' };
+    if (lowerAge === '15') return { badgeType: 'age age15', label: '15' };
+    if (['19', '19+', '청소년관람불가'].includes(lowerAge)) {
+      return { badgeType: 'age age19', label: '19' };
+    }
+
+    return null;
+  };
+
+  const badgeType = getAgeBadgeType(age);
+
+  return badgeType ? (
+    <Badge text={badgeType.label} badgeType={badgeType.badgeType} />
+  ) : null;
 };

@@ -1,14 +1,15 @@
-.banner {
+.badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: $px * 1 solid $white;
-  padding: 0.313rem 0.5rem;
+  padding: $px * 5;
   border-radius: $px * 5;
   white-space: nowrap;
   font-size: $font-caption-mobile;
   &.brandSolid {
     border: $px solid var(--main-color);
-    padding: 0.313rem 0.5rem;
     border-radius: $px * 5;
-
     white-space: nowrap;
     color: var(--text-softBold);
   }
@@ -41,19 +42,42 @@
     font-size: $font-tit-mobile;
   }
   &.age {
-    background-color: $black;
+    width: $px * 23;
+    height: $px * 23;
     color: $white;
-    border: $px solid $black;
+    &.ageAll {
+      background-color: #22c55e;
+      border: $px solid #22c55e;
+    }
+
+    &.age12 {
+      background-color: #facc15;
+      border: $px solid #facc15;
+    }
+
+    &.age15 {
+      background-color: #f97316;
+      border: $px solid #f97316;
+    }
+
+    &.age19 {
+      background-color: #dc2626;
+      border: $px solid #dc2626;
+    }
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
-  .banner {
+@media (min-width: 768px) {
+  .badge {
     font-size: $font-caption-tablet;
+    &.age {
+      width: $px * 25;
+      height: $px * 25;
+    }
   }
 }
 @media (min-width: 1024px) {
-  .banner {
+  .badge {
     font-size: $font-caption-pc;
   }
 }

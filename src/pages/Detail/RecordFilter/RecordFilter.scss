@@ -83,7 +83,7 @@
     background-color: rgba($black, 0.6);
   }
   .RecordFilter {
-    width: 85%;
+    width: $px * 750;
     left: 50%;
     top: 50%;
     bottom: auto;

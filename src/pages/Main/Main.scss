@@ -3,7 +3,6 @@
   max-width: $max-width;
   background-color: var(--bg-color);
   padding-top: $headerHeight;
-
   .searchBox {
     max-width: calc($px * 1280);
     padding: calc($px * 5) $pagePadding;
@@ -28,6 +27,10 @@
         color: var(--text-detail);
       }
     }
+  }
+  .recordTit {
+    margin: $pagePadding $pagePadding 0;
+    font-size: $px * 28;
   }
   .recordList {
     width: 100%;

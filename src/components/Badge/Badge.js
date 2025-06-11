@@ -1,16 +1,20 @@
-const Banner = ({ text, badgeType }) => {
+const Badge = ({ text, badgeType }) => {
   const bad_type = [
     'brandSolid',
     'brand',
     'sub',
+    //watchStatus
     'STOPPED',
     'REWATCHED',
     'FINISHED',
-    'age',
+    'age age12',
+    'age age15',
+    'age age19',
+    'age ageAll',
   ].includes(badgeType)
     ? badgeType
     : '';
-  return <span className={[`banner ${bad_type}`]}>{text}</span>;
+  return <div className={[`badge ${bad_type}`]}>{text}</div>;
 };
 
-export default Banner;
+export default Badge;

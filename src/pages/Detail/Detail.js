@@ -21,7 +21,7 @@ const Detail = () => {
   const [review, setReview] = useState(getMovieRecords());
   const [isRecord, setIsRecord] = useState(false);
   const [isAlert, setIsAlert] = useState(false);
-
+  const [isLoaded, setIsLoaded] = useState(false);
   const [
     { data: movieData, isLoading: dataLoading, error: dataError },
     { data: movieImage, isLoading: imageLoading, error: imageError },
@@ -54,7 +54,8 @@ const Detail = () => {
     setWatch(initialData);
   };
 
-  if (dataLoading || imageLoading) return <Loading />;
+  if (dataLoading || (imageLoading && !isLoaded)) return <Loading />;
+
   if (dataError || imageError) return <div>오류 발생</div>;
 
   return (
@@ -76,9 +77,14 @@ const Detail = () => {
               <MvInfoImage
                 data={movieImage}
                 path={movieImage.backdrops[0].file_path}
+                setIsLoaded={setIsLoaded}
               />
             ) : (
-              <MvInfoImage data={movieData} path={movieData.backdrop_path} />
+              <MvInfoImage
+                data={movieData}
+                path={movieData.backdrop_path}
+                setIsLoaded={setIsLoaded}
+              />
             )}
           </figure>
           <article className="titleBox">
