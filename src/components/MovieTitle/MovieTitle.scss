@@ -36,7 +36,7 @@
 }
 .genre {
   display: inline-block;
-  width: 50%;
+  width: 10%;
   height: 25px;
 }
 
@@ -55,9 +55,10 @@
 
   .certification {
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: $px * 23;
+    height: $px * 23;
   }
+
   .creditList {
     display: flex;
     flex-wrap: wrap;
@@ -89,6 +90,13 @@
   .mvCreditBlock {
     font-size: $font-caption-tablet;
   }
+  .certification {
+    width: $px * 25;
+    height: $px * 25;
+  }
+  .genre {
+    height: $px * 25;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -102,5 +110,12 @@
   }
   .mvCreditBlock {
     font-size: $font-caption-pc;
+  }
+  .certification {
+    width: $px * 26;
+    height: $px * 26;
+  }
+  .genre {
+    height: $px * 26;
   }
 }

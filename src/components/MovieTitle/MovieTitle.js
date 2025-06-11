@@ -44,7 +44,7 @@ export const MvGenre = ({ data, slice }) => {
   if (error) return <p>Error: {error.message}</p>;
   const genreList = genre.genres ? genre.genres : [];
   return (
-    <p className="mvInfoGenre">
+    <div className="mvInfoGenre">
       {data.slice(0, slice).map(item => {
         const genreId = typeof item === 'object' ? item.id : item;
         return (
@@ -55,7 +55,7 @@ export const MvGenre = ({ data, slice }) => {
           />
         );
       })}
-    </p>
+    </div>
   );
 };
 export const MvCreditSection = ({ title, items }) => {
@@ -85,7 +85,7 @@ export const MvCertification = ({ id }) => {
   const age = movieRelease?.results?.find(r => r.iso_3166_1 === 'KR')
     ?.release_dates?.[0]?.certification;
 
-  if (isLoading) return <span className="certification" />;
+  if (isLoading) return <div className="certification" />;
   if (error) return <p>Error: {error.message}</p>;
 
   const getAgeBadgeType = age => {
@@ -97,7 +97,6 @@ export const MvCertification = ({ id }) => {
     if (['19', '19+', '청소년관람불가'].includes(lowerAge)) {
       return { badgeType: 'age age19', label: '19' };
     }
-
     return null;
   };
 

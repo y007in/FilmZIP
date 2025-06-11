@@ -45,6 +45,7 @@
     width: $px * 23;
     height: $px * 23;
     color: $white;
+    font-size: $font-base-mobile;
     &.ageAll {
       background-color: #22c55e;
       border: $px solid #22c55e;
@@ -73,11 +74,17 @@
     &.age {
       width: $px * 25;
       height: $px * 25;
+      font-size: $font-base-tablet;
     }
   }
 }
 @media (min-width: 1024px) {
   .badge {
     font-size: $font-caption-pc;
+    &.age {
+      width: $px * 26;
+      height: $px * 26;
+      font-size: $font-base-pc;
+    }
   }
 }
