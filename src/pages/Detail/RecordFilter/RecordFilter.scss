@@ -90,17 +90,19 @@
     right: auto;
     transition: none;
     translate: -50% -50%;
+    background-color: var(--baseBg-color);
+    border-radius: $px * 5;
     .filterList {
       border-radius: $px * 5;
       padding: $px * 30;
-      background-color: var(--baseBg-color);
       .close {
         display: block;
         position: fixed;
         top: $px * 20;
         right: $px * 25;
-        padding: $px * 5 $px * 10;
         cursor: pointer;
+        color: var(--text-color);
+        z-index: inherit;
       }
     }
     &.hide {

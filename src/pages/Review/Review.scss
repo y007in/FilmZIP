@@ -32,6 +32,9 @@
 
       .infoTab {
         position: relative;
+        .runtime .badge {
+          border: $px solid $gray;
+        }
         .btnBox {
           display: flex;
           justify-content: flex-end;

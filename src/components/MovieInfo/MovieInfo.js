@@ -42,9 +42,12 @@ const MovieInfo = ({ direction }) => {
   return (
     <section className="movieInfo">
       <div className="movieMeta">
+        {' '}
         <MvCertification id={id} />
-        <Badge text={movieData.release_date.substr(0, 4)} />
-        <Badge text={`${movieData.runtime}분`} />
+        <div className="runtime">
+          <Badge text={movieData.release_date.substr(0, 4)} />
+          <Badge text={`${movieData.runtime}분`} />
+        </div>
         <MvGenre data={movieData?.genres} />
       </div>
       <article className="movieDescription">

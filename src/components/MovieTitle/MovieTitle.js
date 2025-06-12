@@ -81,20 +81,19 @@ export const MvCertification = ({ id }) => {
     queryKey: ['movieRelease', id],
     queryFn: () => fetchMovieRelease({ queryKey: ['movieRelease', id] }),
   });
-
+  console.log(movieRelease);
   const age = movieRelease?.results?.find(r => r.iso_3166_1 === 'KR')
     ?.release_dates?.[0]?.certification;
 
   if (isLoading) return <div className="certification" />;
-  if (error) return <p>Error: {error.message}</p>;
+  if (error || !age) return null;
 
   const getAgeBadgeType = age => {
     const lowerAge = age?.toLowerCase();
-
     if (lowerAge === 'all') return { badgeType: 'age ageAll', label: 'ALL' };
     if (lowerAge === '12') return { badgeType: 'age age12', label: '12' };
     if (lowerAge === '15') return { badgeType: 'age age15', label: '15' };
-    if (['19', '19+', '청소년관람불가'].includes(lowerAge)) {
+    if (['19', '19+', '18', '청소년관람불가'].includes(lowerAge)) {
       return { badgeType: 'age age19', label: '19' };
     }
     return null;

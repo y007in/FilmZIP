@@ -36,8 +36,8 @@
 }
 .genre {
   display: inline-block;
-  width: 10%;
-  height: 25px;
+  width: $px * 25;
+  height: $px * 25;
 }
 
 .mvCreditBlock {

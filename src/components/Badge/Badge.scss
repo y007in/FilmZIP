@@ -23,6 +23,9 @@
     border: $px * 1 solid var(--main-color);
     color: var(--main-color);
   }
+  &.solid {
+    border: $px solid black;
+  }
   &.STOPPED {
     background-color: $stopWatch;
     color: $white;
