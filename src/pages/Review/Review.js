@@ -45,25 +45,27 @@ const Review = () => {
               badgeType={`${records[0]?.watchStatus}`}
             />
           </figure>
-          <Tabs
-            selectedTab={selectedTab}
-            onChange={selectedTab => setSelectedTab(selectedTab)}
-          />
-          <div className="tabContent">
-            {selectedTab === TabReview.REVIEW && <ReviewData id={id} />}
-            {selectedTab === TabReview.INFO && (
-              <article className="infoTab">
-                <MovieInfo direction={'col'} />
-                <div className="btnBox">
-                  <Button
-                    text={'기록하러 가기'}
-                    styleType={'brandSolid'}
-                    onClick={() => navigate(`/movie/${id}`)}
-                  />
-                </div>
-              </article>
-            )}
-          </div>
+          <section className="tabContainer">
+            <Tabs
+              selectedTab={selectedTab}
+              onChange={selectedTab => setSelectedTab(selectedTab)}
+            />
+            <div className="tabContent">
+              {selectedTab === TabReview.REVIEW && <ReviewData id={id} />}
+              {selectedTab === TabReview.INFO && (
+                <article className="infoTab">
+                  <MovieInfo direction={'col'} />
+                  <div className="btnBox">
+                    <Button
+                      text={'기록하러 가기'}
+                      styleType={'brandSolid'}
+                      onClick={() => navigate(`/movie/${id}`)}
+                    />
+                  </div>
+                </article>
+              )}
+            </div>
+          </section>
         </div>
       </Page>
     </div>

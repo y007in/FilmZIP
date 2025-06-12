@@ -25,20 +25,62 @@
         border-radius: $px * 5;
       }
     }
-    .tabContent {
+    .tabContainer {
       width: 100%;
-      padding: $pagePadding;
-      max-width: $max-width;
+      .tabContent {
+        width: 100%;
+        padding: $pagePadding;
+        max-width: $max-width;
 
-      .infoTab {
-        position: relative;
-        .runtime .badge {
-          border: $px solid $gray;
+        .infoTab {
+          position: relative;
+          .runtime .badge {
+            border: $px solid $gray;
+          }
+          .btnBox {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: $px * 16;
+          }
         }
-        .btnBox {
-          display: flex;
-          justify-content: flex-end;
-          margin-top: $px * 16;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .Review {
+    height: 100vh;
+    overflow: hidden;
+    .container {
+      max-width: $px * 1280;
+      flex-direction: row;
+      align-items: flex-start;
+      overflow: hidden;
+      .moviePoster {
+        width: 30%;
+        flex-shrink: 0;
+        justify-content: flex-start;
+        padding-top: $px * 50;
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+      .tabContainer {
+        width: 70%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .tabs {
+          flex-shrink: 0;
+        }
+        .tabContent {
+          overflow: scroll;
+          flex-shrink: 1;
+          overflow: hidden auto;
+          padding-bottom: $pagePadding;
         }
       }
     }
