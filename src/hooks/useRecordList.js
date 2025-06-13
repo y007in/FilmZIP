@@ -12,7 +12,15 @@ export const useRecordList = () => {
   const getRecordList = id => {
     return recordList
       .filter(item => item.movieId === Number(id))
-      .sort((a, b) => new Date(b.watchEndDate) - new Date(a.watchEndDate));
+      .sort((a, b) => {
+        const dateA = new Date(a.watchEndDate);
+        const dateB = new Date(b.watchEndDate);
+
+        if (dateA.getTime() === dateB.getTime()) return b.createId - a.createId;
+
+        // 날짜 최신순 정렬
+        return dateB - dateA;
+      });
   };
 
   const getNoDupRecordList = () => {
