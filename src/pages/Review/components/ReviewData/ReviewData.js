@@ -7,27 +7,21 @@ import { getWatchStatusLabel } from '../../../../constants/formField';
 import AlertBox from '../../../../components/AlertBox/AlertBox';
 
 const ReviewData = ({ id }) => {
-  const [isAlert, setIsAlert] = useState(false);
+  const [alertTargetId, setAlertTargetId] = useState(null);
   const { recordList, setRecordList, getRecordList } = useRecordList();
   const records = getRecordList(id);
   const navigate = useNavigate();
-  const handleAlert = () => {
-    setIsAlert(true);
-  };
+  const openAlert = id => setAlertTargetId(id);
 
-  const handleDelMovie = targetCreateId => {
+  const handleDelMovie = createId => {
     const updatedRecords = recordList.filter(
-      item => item.createId !== targetCreateId,
+      item => item.createId !== createId,
     );
-
     setMovieRecords(updatedRecords);
     setRecordList(updatedRecords);
-    if (
-      updatedRecords.filter(item => item.movieId === Number(id)).length === 0
-    ) {
+    updatedRecords.filter(item => item.movieId === Number(id)).length === 0 &&
       navigate('/');
-    }
-    setIsAlert(false);
+    setAlertTargetId(null);
   };
 
   return (
@@ -41,15 +35,20 @@ const ReviewData = ({ id }) => {
                 badgeType={`${record.watchStatus}`}
               />
               <article>
-                <button className="reviewBtn" onClick={handleAlert}>
+                <button
+                  className="reviewBtn"
+                  onClick={() => openAlert(record.createId)}
+                >
                   삭제
                 </button>
-                {isAlert && (
+                {alertTargetId === record.createId && (
                   <AlertBox
                     alertText={'정말 삭제하시겠습니까?'}
-                    submitText={'확인'}
-                    onSubmit={() => handleDelMovie(record.createId)}
-                    onCancel={() => setIsAlert(false)}
+                    submitText={'삭제'}
+                    onSubmit={() => {
+                      handleDelMovie(record.createId);
+                    }}
+                    onCancel={() => setAlertTargetId(null)}
                   />
                 )}
               </article>
