@@ -30,10 +30,16 @@ const Detail = () => {
       {
         queryKey: ['movieDetail', id],
         queryFn: () => fetchMovieDetail({ queryKey: ['movieDetail', id] }),
+        staleTime: 1000 * 60 * 10,
+        cacheTime: 1000 * 60 * 30,
+        refetchOnWindowFocus: false,
       },
       {
         queryKey: ['movieImage', id],
         queryFn: () => fetchMovieImage({ queryKey: ['movieImage', id] }),
+        staleTime: 1000 * 60 * 10,
+        cacheTime: 1000 * 60 * 30,
+        refetchOnWindowFocus: false,
       },
     ],
   });

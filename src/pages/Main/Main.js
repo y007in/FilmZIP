@@ -52,23 +52,25 @@ const Main = () => {
             <ClipLoader color="#5db996" />
           </div>
         )} */}
-        <h1 className="recordTit">영화 감상 보관함</h1>
-        {noDupRecordLists.length !== 0 ? (
-          <div className="recordList">
-            {noDupRecordLists.map((item, i) => (
-              <div className="test" key={i}>
-                <Poster
-                  key={i}
-                  item={item}
-                  onClick={() => navigate(`/review/${item.movieId}`)}
-                  count={item.count}
-                />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <NoResult noResultData={'관람한 영화를 저장해 보세요!'} />
-        )}
+        <div className="recordContainer">
+          <h1 className="recordTit">영화 감상 보관함</h1>
+          {noDupRecordLists.length !== 0 ? (
+            <div className="recordList">
+              {noDupRecordLists.map((item, i) => (
+                <div className="test" key={i}>
+                  <Poster
+                    key={i}
+                    item={item}
+                    onClick={() => navigate(`/review/${item.movieId}`)}
+                    count={item.count}
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <NoResult noResultData={'관람한 영화를 저장해 보세요!'} />
+          )}
+        </div>
       </Page>
     </div>
   );

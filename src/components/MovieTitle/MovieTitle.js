@@ -37,8 +37,11 @@ export const MvGenre = ({ data, slice }) => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['genre'],
+    queryKey: ['movieGenre'],
     queryFn: fetchGenre,
+    staleTime: 1000 * 60 * 10,
+    cacheTime: 1000 * 60 * 30,
+    refetchOnWindowFocus: false,
   });
   if (isLoading) return <span className="genre" />;
   if (error) return <p>Error: {error.message}</p>;
@@ -80,6 +83,9 @@ export const MvCertification = ({ id }) => {
   } = useQuery({
     queryKey: ['movieRelease', id],
     queryFn: () => fetchMovieRelease({ queryKey: ['movieRelease', id] }),
+    staleTime: 1000 * 60 * 10,
+    cacheTime: 1000 * 60 * 30,
+    refetchOnWindowFocus: false,
   });
   console.log(movieRelease);
   const age = movieRelease?.results?.find(r => r.iso_3166_1 === 'KR')

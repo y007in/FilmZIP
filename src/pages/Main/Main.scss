@@ -28,19 +28,23 @@
       }
     }
   }
-  .recordTit {
-    margin: $pagePadding $pagePadding 0;
-    font-size: $px * 28;
-  }
-  .recordList {
+  .recordContainer {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: $px * 8;
-    padding: $pagePadding;
-    .test {
+    height: calc(100vh - $headerHeight);
+    .recordTit {
+      margin: $pagePadding $pagePadding 0;
+      font-size: $px * 28;
+    }
+    .recordList {
       width: 100%;
-      min-width: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: $px * 8;
+      padding: $pagePadding;
+      .test {
+        width: 100%;
+        min-width: 0;
+      }
     }
   }
   // .spinner {
