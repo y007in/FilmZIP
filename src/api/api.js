@@ -8,15 +8,15 @@ const fetchFromApi = async endpoint => {
   });
   return response.json();
 };
-
+//인기 영화 목록
 export const fetchTopRated = async () => {
   return fetchFromApi(`/movie/popular?language=ko-KR&page=1`);
 };
-
 //장르 목록
 export const fetchGenre = async () => {
   return fetchFromApi(`/genre/movie/list?language=ko-KR`);
 };
+
 export const fetchSearch = async ({ queryKey }) => {
   const [, searchKeyword] = queryKey;
   if (!searchKeyword) return [];

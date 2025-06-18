@@ -82,12 +82,11 @@ export const MvCertification = ({ id }) => {
     error,
   } = useQuery({
     queryKey: ['movieRelease', id],
-    queryFn: () => fetchMovieRelease({ queryKey: ['movieRelease', id] }),
+    queryFn: ({ queryKey }) => fetchMovieRelease({ queryKey }),
     staleTime: 1000 * 60 * 10,
     cacheTime: 1000 * 60 * 30,
     refetchOnWindowFocus: false,
   });
-  console.log(movieRelease);
   const age = movieRelease?.results?.find(r => r.iso_3166_1 === 'KR')
     ?.release_dates?.[0]?.certification;
 

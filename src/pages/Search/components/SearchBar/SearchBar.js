@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import { filterMovies } from '../../../../utils/filterMovies';
@@ -5,38 +6,29 @@ import { fetchSearch } from '../../../../api/api';
 import { setSearchKeywordList } from '../../../../utils/storage';
 
 const SearchBar = ({
+  searchMovie,
   searchKeyword,
   setSearchKeyword,
   setSearchResult,
   setSubmitted,
   historyList,
 }) => {
-  const {
-    data: searchMovie,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ['search', searchKeyword], // 검색어가 변경될 때마다 새로운 요청 수행
-    queryFn: fetchSearch,
-  });
-
-  // if (isLoading) return <Loading />;
-  if (error) return <p>Error: {error.message}</p>;
+  const navigate = useNavigate();
 
   const handleSearchKeyword = e => {
-    if (e.target.value.length <= 0) {
-      handleReset();
-    }
+    if (e.target.value.length <= 0) handleReset();
     setSearchKeyword(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e, keyword) => {
     e.preventDefault();
     if (searchKeyword.trim() === '') {
       handleReset();
+      navigate('/search');
       return;
     }
     setSearchKeyword(searchKeyword);
+    navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
     const filteredList = filterMovies(searchMovie?.results, searchKeyword);
     setSearchResult(filteredList);
     setSubmitted(true);
@@ -45,8 +37,6 @@ const SearchBar = ({
 
   const handleReset = () => {
     setSearchKeyword('');
-    setSearchResult([]);
-    setSubmitted(false);
   };
 
   //최근 검색어
@@ -60,7 +50,7 @@ const SearchBar = ({
   };
 
   return (
-    <form onSubmit={e => handleSubmit(e)} onReset={handleReset}>
+    <form onSubmit={e => handleSubmit(e, searchKeyword)} onReset={handleReset}>
       <input
         className="searchInput"
         type="text"

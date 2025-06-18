@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useQueries } from '@tanstack/react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,34 +13,61 @@ import Page from '../../../components/Page/Page';
 import NoResult from '../../../components/NoResult/NoResult';
 
 import { filterMovies } from '../../../utils/filterMovies';
-import { fetchTopRated } from '../../../api/api';
+import { fetchTopRated, fetchSearch } from '../../../api/api';
 import { getSearchKeywordList } from '../../../utils/storage';
 
 const Search = () => {
-  const [searchKeyword, setSearchKeyword] = useState('');
+  const navigate = useNavigate();
+  const query = new URLSearchParams(useLocation().search);
+  const keywordFromUrl = query.get('keyword') || '';
+  const [searchKeyword, setSearchKeyword] = useState(keywordFromUrl);
+
+  const [
+    { data: topRatedData, isLoading: topRatedLoading, error: topRatedError },
+    { data: searchMovie, isLoading: searchLoading, error: searchError },
+  ] = useQueries({
+    queries: [
+      {
+        queryKey: ['top-rated'],
+        queryFn: fetchTopRated,
+        staleTime: 1000 * 60 * 1,
+        cacheTime: 1000 * 60 * 5,
+      },
+      {
+        queryKey: ['search', keywordFromUrl],
+        queryFn: ({ queryKey }) => fetchSearch({ queryKey }),
+        enabled: !!keywordFromUrl,
+        staleTime: 1000 * 60 * 1,
+      },
+    ],
+  });
+
   const [searchResult, setSearchResult] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const historyKeywordList = getSearchKeywordList();
 
-  const navigate = useNavigate();
-  const {
-    data: top_rated,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ['top-rated'],
-    queryFn: fetchTopRated,
-  });
+  useEffect(() => {
+    setSearchKeyword(keywordFromUrl);
+    setSubmitted(!!keywordFromUrl);
+  }, [keywordFromUrl]);
 
-  if (isLoading) return <Loading />;
-  if (error) return <p>Error: {error.message}</p>;
+  useEffect(() => {
+    if (!submitted || !keywordFromUrl || !searchMovie) {
+      setSearchResult([]);
+      return;
+    }
+
+    const filteredList = filterMovies(searchMovie.results, keywordFromUrl);
+    setSearchResult(filteredList);
+  }, [submitted, keywordFromUrl, searchMovie]);
 
   const handleRecommend = keyword => {
-    const recommendList = filterMovies(top_rated?.results, keyword);
-    setSearchKeyword(keyword); //검색창에 키워드 출력
-    setSearchResult(recommendList);
-    setSubmitted(true);
+    navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
   };
+
+  if (topRatedLoading || searchLoading) return <Loading />;
+  if (topRatedError || searchError)
+    return <p>Error: {(topRatedError || searchError).message}</p>;
 
   return (
     <div className="SearchPage">
@@ -49,22 +76,23 @@ const Search = () => {
           <div className="search">
             <FontAwesomeIcon icon={faAngleLeft} onClick={() => navigate('/')} />
             <SearchBar
+              searchMovie={searchMovie}
               searchKeyword={searchKeyword}
               setSearchKeyword={setSearchKeyword}
               setSearchResult={setSearchResult}
-              setSubmitted={setSubmitted}
               historyList={historyKeywordList}
+              setSubmitted={setSubmitted}
             />
           </div>
         }
       >
         <div className="content">
           {submitted ? (
-            searchResult ? (
+            searchResult.length > 0 ? (
               <MovieList list={searchResult} />
             ) : (
               <NoResult
-                noResultData={`앗! "${historyKeywordList[0].text}" 검색결과가 없어요`}
+                noResultData={`앗! "${keywordFromUrl}" 검색결과가 없어요`}
               />
             )
           ) : (
@@ -76,8 +104,7 @@ const Search = () => {
               <RecommendKeyword
                 setSearchKeyword={setSearchKeyword}
                 setSearchResult={setSearchResult}
-                setSubmitted={setSubmitted}
-                data={top_rated}
+                data={topRatedData}
               />
             </>
           )}
