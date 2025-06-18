@@ -32,7 +32,7 @@ const Search = () => {
         queryKey: ['top-rated'],
         queryFn: fetchTopRated,
         staleTime: 1000 * 60 * 1,
-        cacheTime: 1000 * 60 * 5,
+        gcTime: 1000 * 60 * 5,
       },
       {
         queryKey: ['search', keywordFromUrl],

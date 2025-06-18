@@ -38,7 +38,7 @@ export const MvGenre = ({ data, slice }) => {
     queryKey: ['movieGenre'],
     queryFn: fetchGenre,
     staleTime: 1000 * 60 * 10,
-    cacheTime: 1000 * 60 * 30,
+    gcTime: 1000 * 60 * 30,
     refetchOnWindowFocus: false,
   });
   if (isLoading) return <span className="genre" />;
@@ -82,7 +82,7 @@ export const MvCertification = ({ id }) => {
     queryKey: ['movieRelease', id],
     queryFn: ({ queryKey }) => fetchMovieRelease({ queryKey }),
     staleTime: 1000 * 60 * 10,
-    cacheTime: 1000 * 60 * 30,
+    gcTime: 1000 * 60 * 30,
     refetchOnWindowFocus: false,
   });
   const age = movieRelease?.results?.find(r => r.iso_3166_1 === 'KR')
