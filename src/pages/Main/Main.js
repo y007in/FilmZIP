@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Page from '../../components/Page/Page';
 import Poster from '../../components/Poster/Poster';
 import NoResult from '../../components/NoResult/NoResult';
-import Loading from '../../components/Loading/Loading';
 import { useRecordList } from '../../hooks/useRecordList';
 
 const Main = () => {

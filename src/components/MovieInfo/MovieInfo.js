@@ -1,12 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useQueries } from '@tanstack/react-query';
 import Badge from '../Badge/Badge';
-import Loading from '../Loading/Loading';
-import {
-  fetchMovieDetail,
-  fetchMovieCredit,
-  fetchMovieRelease,
-} from '../../api/api';
+import Loading from '../StatusPage/Loading/Loading';
+import ErrorPage from '../StatusPage/ErrorPage/ErrorPage';
+import { fetchMovieDetail, fetchMovieCredit } from '../../api/api';
 import {
   MvCertification,
   MvCreditSection,
@@ -43,7 +40,10 @@ const MovieInfo = ({ direction }) => {
   });
 
   if (dataLoading || creditLoading) return <Loading />;
-  if (dataError || creditError) return <div>오류 발생</div>;
+  if (dataError || creditError) {
+    const error = dataError || creditError;
+    return <ErrorPage statusCode={error.status} />;
+  }
 
   return (
     <section className="movieInfo">

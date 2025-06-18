@@ -4,7 +4,8 @@ import { useQueries } from '@tanstack/react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
-import Loading from '../../../components/Loading/Loading';
+import Loading from '../../../components/StatusPage/Loading/Loading';
+import ErrorPage from '../../../components/StatusPage/ErrorPage/ErrorPage';
 import SearchBar from '../components/SearchBar/SearchBar';
 import MovieList from '../../../components/MovieList/MovieList';
 import RecommendKeyword from '../components/RecommendKeyword/RecommendKeyword';
@@ -48,7 +49,7 @@ const Search = () => {
 
   useEffect(() => {
     setSearchKeyword(keywordFromUrl);
-    setSubmitted(!!keywordFromUrl);
+    setSubmitted(!!keywordFromUrl); //검색화면 새로고침해도 searchResult 초기화 방지
   }, [keywordFromUrl]);
 
   useEffect(() => {
@@ -66,8 +67,10 @@ const Search = () => {
   };
 
   if (topRatedLoading || searchLoading) return <Loading />;
-  if (topRatedError || searchError)
-    return <p>Error: {(topRatedError || searchError).message}</p>;
+  if (topRatedError || searchError) {
+    const error = topRatedError || searchError;
+    return <ErrorPage statusCode={error.status} />;
+  }
 
   return (
     <div className="SearchPage">

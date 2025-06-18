@@ -3,7 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Page from '../../components/Page/Page';
 import Header from '../../components/Header/Header';
-import Loading from '../../components/Loading/Loading';
+import Loading from '../../components/StatusPage/Loading/Loading';
+import ErrorPage from '../../components/StatusPage/ErrorPage/ErrorPage';
 import MovieInfo from '../../components/MovieInfo/MovieInfo';
 import Badge from '../../components/Badge/Badge';
 import Button from '../../components/Button/Button';
@@ -35,7 +36,7 @@ const Review = () => {
   });
 
   if (dataLoading) return <Loading />;
-  if (dataError) return <div>오류 발생</div>;
+  if (dataError) return <ErrorPage statusCode={dataError.status} />;
 
   return (
     <div className="Review">

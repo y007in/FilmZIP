@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQueries } from '@tanstack/react-query';
 
-import Loading from '../../components/Loading/Loading';
+import Loading from '../../components/StatusPage/Loading/Loading';
+import ErrorPage from '../../components/StatusPage/ErrorPage/ErrorPage';
 import Page from '../../components/Page/Page';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
@@ -61,7 +62,10 @@ const Detail = () => {
   };
 
   if (dataLoading || (imageLoading && !isLoaded)) return <Loading />;
-  if (dataError || imageError) return <div>오류 발생</div>;
+  if (dataError || imageError) {
+    const error = dataError || imageError;
+    return <ErrorPage statusCode={error.status} />;
+  }
 
   return (
     <div className="DetailPage">

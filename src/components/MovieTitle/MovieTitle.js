@@ -1,7 +1,5 @@
-import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-import Loading from '../Loading/Loading';
 import Badge from '../Badge/Badge';
 import { fetchGenre, fetchMovieRelease } from '../../api/api';
 
@@ -44,7 +42,7 @@ export const MvGenre = ({ data, slice }) => {
     refetchOnWindowFocus: false,
   });
   if (isLoading) return <span className="genre" />;
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) return null;
   const genreList = genre.genres ? genre.genres : [];
   return (
     <div className="mvInfoGenre">

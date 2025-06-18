@@ -6,6 +6,11 @@ const fetchFromApi = async endpoint => {
       Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
     },
   });
+  if (!response.ok) {
+    throw {
+      status: response.status,
+    };
+  }
   return response.json();
 };
 //인기 영화 목록
