@@ -1,11 +1,34 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCheckCircle,
+  faSyncAlt,
+  faStopCircle,
+} from '@fortawesome/free-solid-svg-icons';
+
 export const WATCH_STATUS = [
-  { value: 'FINISHED', label: '👏 다 본 영화' },
-  { value: 'REWATCHED', label: '👍 재관람 영화' },
-  { value: 'STOPPED', label: '👎 중단한 영화' },
+  {
+    value: 'FINISHED',
+    label: '다 본 영화',
+    icon: <FontAwesomeIcon icon={faCheckCircle} />,
+  },
+  {
+    value: 'REWATCHED',
+    label: '재관람 영화',
+    icon: <FontAwesomeIcon icon={faSyncAlt} />,
+  },
+  {
+    value: 'STOPPED',
+    label: '중단한 영화',
+    icon: <FontAwesomeIcon icon={faStopCircle} />,
+  },
 ];
 
-export const getWatchStatusLabel = status =>
-  WATCH_STATUS.find(s => s.value === status)?.label || '';
+export const getWatchStatusLabel = (status, type) => {
+  const found = WATCH_STATUS.find(s => s.value === status);
+  if (!found) return '';
+
+  return type === 'icon' ? found.icon : found.label;
+};
 
 export const formField = [
   {

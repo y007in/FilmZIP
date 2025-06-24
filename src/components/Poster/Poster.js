@@ -1,15 +1,11 @@
 import { MvCertification, MvInfoImage } from '../MovieTitle/MovieTitle';
 
-const Poster = ({ item, count, age, onClick }) => {
+const Poster = ({ item, age }) => {
   return (
-    <article className="mvInfoImg" onClick={onClick}>
+    <article className="mvInfoImg">
       {item.poster_path !== null ? (
         <>
           <MvInfoImage data={item} path={item.poster_path} />
-          {count > 1 && <span className="countBadge">{count}</span>}
-          {item.watchStatus === 'STOPPED' && (
-            <span className="countBadge no">{'❌'}</span>
-          )}
           {item.watchStatus}
           {age && (
             <div className="age">

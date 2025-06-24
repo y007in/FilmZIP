@@ -23,7 +23,7 @@ export const useRecordList = () => {
       });
   };
 
-  const getNoDupRecordList = () => {
+  const getNoDupRecordList = recordList => {
     const deduplicated = recordList.reduce((acc, curr) => {
       const existing = acc.find(item => item.movieId === curr.movieId);
       if (existing) {

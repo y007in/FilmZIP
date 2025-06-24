@@ -23,6 +23,10 @@
       align-items: flex-start;
       gap: $px * 8;
       padding: 0.313rem 0;
+      .statusData {
+        display: flex;
+        gap: $px * 8;
+      }
     }
   }
 }
@@ -39,7 +43,7 @@
       width: 100%;
       min-width: 0;
       border-bottom: none;
-      padding: calc($px * 8);
+      padding: 0;
       .imgBox {
         width: 100%;
       }

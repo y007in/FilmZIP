@@ -1,10 +1,23 @@
-const Button = ({ text, styleType, styleSize, onClick, form, disabled }) => {
+const Button = ({
+  text,
+  icon,
+  styleType,
+  styleSize,
+  onClick,
+  form,
+  disabled,
+  active,
+}) => {
   const btnType = [
     'brand',
     'brandSolid',
     'full',
     'fullSolid',
     'disabled',
+    'square',
+    'stat STOPPED',
+    'stat REWATCHED',
+    'stat FINISHED',
   ].includes(styleType)
     ? styleType
     : '';
@@ -12,12 +25,13 @@ const Button = ({ text, styleType, styleSize, onClick, form, disabled }) => {
 
   return (
     <button
-      className={[`btn ${btnSize} ${btnType} `]}
+      className={[`btn ${btnSize} ${btnType} ${active ? 'active' : ''}`]}
       onClick={onClick}
       form={form}
       disabled={disabled}
     >
-      {text}
+      {icon && <span>{icon}</span>}
+      <span>{text}</span>
     </button>
   );
 };

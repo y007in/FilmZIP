@@ -4,7 +4,6 @@ const Badge = ({ text, badgeType }) => {
     'brand',
     'sub',
     'solid',
-    //watchStatus
     'STOPPED',
     'REWATCHED',
     'FINISHED',

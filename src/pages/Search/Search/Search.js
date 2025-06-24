@@ -92,7 +92,11 @@ const Search = () => {
         <div className="content">
           {submitted ? (
             searchResult.length > 0 ? (
-              <MovieList list={searchResult} />
+              <MovieList
+                list={searchResult}
+                onClick={item => navigate(`/movie/${item.id}`)}
+                search
+              />
             ) : (
               <NoResult
                 noResultData={`앗! "${keywordFromUrl}" 검색결과가 없어요`}

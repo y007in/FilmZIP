@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import Poster from '../Poster/Poster';
 import { MvGenre, MvInfoKrTit, MvInfoOgTit } from '../MovieTitle/MovieTitle';
+import Badge from '../Badge/Badge';
+import { getWatchStatusLabel, WATCH_STATUS } from '../../constants/formField';
 
-const MovieList = ({ list }) => {
+const MovieList = ({ list, search, onClick }) => {
   const navigate = useNavigate();
 
   return (
@@ -10,22 +12,31 @@ const MovieList = ({ list }) => {
       {list?.map(item => (
         <li
           className="mvInfo"
-          key={item.id}
-          onClick={() => navigate(`/movie/${item.id}`)}
+          key={item.createId}
+          onClick={() => onClick(item)}
         >
           <aside className="imgBox">
-            <Poster
-              key={item.id}
-              item={item}
-              onClick={() => navigate(`/review/${item.movieId}`)}
-              count={item.count}
-              age
-            />
+            <Poster key={item.id} item={item} age />
           </aside>
           <aside className="mvInfoTit">
             <MvInfoKrTit data={item} />
-            <MvInfoOgTit data={item} />
-            <MvGenre data={item.genre_ids} slice={3} />
+            {search ? (
+              <>
+                <MvInfoOgTit data={item} />
+                <MvGenre data={item.genre_ids} slice={3} />
+              </>
+            ) : (
+              <div className="statusData">
+                <Badge
+                  text={getWatchStatusLabel(item.watchStatus, 'icon')}
+                  badgeType={`${item.watchStatus}`}
+                />
+
+                {item.count > 1 && (
+                  <Badge text={`+ ${item.count}`} badgeType={'solid'} />
+                )}
+              </div>
+            )}
           </aside>
         </li>
       ))}
