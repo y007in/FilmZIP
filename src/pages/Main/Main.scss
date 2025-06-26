@@ -73,14 +73,16 @@
       display: flex;
       flex-direction: column;
       gap: $px * 8;
-      width: 20%;
       padding-top: $pagePadding;
+      flex: 1;
       .statusBtn {
+        width: $px * 150;
         height: auto;
       }
     }
     .recordList {
       padding: $pagePadding;
+      flex: 7;
     }
   }
 }
