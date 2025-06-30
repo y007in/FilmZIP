@@ -29,6 +29,9 @@ const RecordFilter = ({
       if (field.type === 'buttonsCheck') {
         return Array.isArray(value) && value.length > 0;
       }
+      if (field.type === 'buttonsCheckGroup') {
+        return Array.isArray(value) && value.length > 0;
+      }
       if (field.type === 'dates') {
         return Boolean(watch.startDate) && Boolean(watch.endDate);
       }
