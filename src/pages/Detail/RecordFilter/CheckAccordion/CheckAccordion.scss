@@ -13,14 +13,13 @@
         border: none;
         background-color: transparent;
         border-radius: 0;
-        // padding: $pagePadding;
       }
     }
   }
   .groupedField {
     display: flex;
     flex-direction: column;
-    gap: $px * 15;
+    gap: $px * 8;
     position: relative;
     .groupLabel {
       font-size: $font-base-mobile;
@@ -64,6 +63,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: $px * 20;
     .acc {
       display: flex;
       justify-content: center;

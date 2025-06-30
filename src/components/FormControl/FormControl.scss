@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: $px * 8;
+  gap: $px * 12;
   justify-content: center;
   align-items: flex-start;
   padding: 0 $pagePadding;
@@ -17,7 +17,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: calc($px * 8);
+    gap: $px * 8;
     font-size: $font-tit-mobile;
     font-family: 'Pretendard-Medium', sans-serif;
   }
