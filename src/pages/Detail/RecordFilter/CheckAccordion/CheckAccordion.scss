@@ -1,0 +1,80 @@
+.CheckAccordion {
+  width: 100%;
+  position: relative;
+  .swiper {
+    padding: 0;
+    padding: 0 $pagePadding;
+    .swiper-wrapper {
+      width: 100%;
+      align-items: flex-start;
+      .swiper-slide {
+        width: 100vw;
+        padding: 0;
+        border: none;
+        background-color: transparent;
+        border-radius: 0;
+        // padding: $pagePadding;
+      }
+    }
+  }
+  .groupedField {
+    display: flex;
+    flex-direction: column;
+    gap: $px * 15;
+    position: relative;
+    .groupLabel {
+      font-size: $font-base-mobile;
+    }
+    .buttonGrid {
+      display: flex;
+      flex-direction: column;
+      gap: $px * 12;
+      position: relative;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: $px * (-5);
+        left: 0;
+        width: 100%;
+        height: $px * 50;
+        background: linear-gradient(
+          rgba(var(--bg-rgbColor), 0) 0%,
+          rgba(var(--bg-rgbColor), 0.2) 10%,
+          rgba(var(--bg-rgbColor), 0.4) 25%,
+          rgba(var(--bg-rgbColor), 0.7) 40%,
+          rgba(var(--bg-rgbColor), 0.9) 60%,
+          rgba(var(--bg-rgbColor), 1) 100%
+        );
+      }
+      &.ex {
+        &::after {
+          content: '';
+          background: none;
+        }
+      }
+    }
+  }
+  .buttonCheck {
+    display: flex;
+    gap: $px * 5;
+    flex-wrap: wrap;
+  }
+  .rightBtn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .acc {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: $px * 25;
+      height: $px * 25;
+      background-color: transparent;
+      border: none;
+      border-radius: $px * 50;
+      box-shadow: 1px 1px 4px 0px rgba($black, 0.1);
+      cursor: pointer;
+    }
+  }
+}

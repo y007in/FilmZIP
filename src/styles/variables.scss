@@ -10,17 +10,17 @@ $headerHeight: $px * 55;
 $footerHeight: $px * 80;
 $max-width: $px * 1280;
 //font-size
-$font-caption-mobile: 12px;
-$font-caption-tablet: 13px;
-$font-caption-pc: 14px;
+$font-caption-mobile: $px * 12;
+$font-caption-tablet: $px * 13;
+$font-caption-pc: $px * 14;
 
-$font-base-mobile: 14px;
-$font-base-tablet: 15px;
-$font-base-pc: 16px;
+$font-base-mobile: $px * 14;
+$font-base-tablet: $px * 15;
+$font-base-pc: $px * 16;
 
-$font-tit-mobile: 15px;
-$font-tit-tablet: 16px;
-$font-tit-pc: 18px;
+$font-tit-mobile: $px * 15;
+$font-tit-tablet: $px * 16;
+$font-tit-pc: $px * 18;
 
 //color
 $black: #222;
@@ -36,10 +36,10 @@ $stopWatch: #e57373;
   --sub-color: #ebf6e9;
   //bg
   --baseBg-color: #f1f3f5;
-  --bg-div-color: #f1f3f5;
-  --bg-color: #f8f9fa;
+  --bg-div-color: #fbfbfb;
+  --bg-rgbColor: 248, 249, 250;
+  --bg-color: rgb(var(--bg-rgbColor));
 
-  //line
   --divider: #dee2e6;
   //text
   --text-color: #222;
@@ -48,7 +48,7 @@ $stopWatch: #e57373;
   --text-softBold: #343a40;
   --text-white: #fafaf8;
   //button
-  --btn-back: #f5f5f5;
+  --btn-back: #fbfbfb;
   --btn-line: #ced4da;
 }
 
@@ -60,9 +60,8 @@ $stopWatch: #e57373;
     //bg
     --baseBg-color: #1e1e1e;
     --bg-div-color: #323232;
-    --bg-color: #2a2a2a;
-
-    //line
+    --bg-rgbColor: 42, 42, 42;
+    --bg-color: rgb(var(--bg-rgbColor));
     --divider: #3c3c3c;
     //text
     --text-color: #e0e0e0;
@@ -71,7 +70,7 @@ $stopWatch: #e57373;
     --text-detail: #999999;
     --text-white: #222;
     //button
-    --btn-back: #2f2f2f;
-    --btn-line: #4b4b4b;
+    --btn-back: #323232;
+    --btn-line: #404040;
   }
 }

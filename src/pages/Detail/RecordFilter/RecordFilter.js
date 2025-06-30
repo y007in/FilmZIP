@@ -4,6 +4,9 @@ import DelBtn from '../../../components/Button/DelBtn';
 import FormControl from '../../../components/FormControl/FormControl';
 
 import { formField } from '../../../constants/formField';
+import CheckAccordion from './CheckAccordion/CheckAccordion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 const RecordFilter = ({
   handleFilterDialog,
@@ -14,6 +17,7 @@ const RecordFilter = ({
 }) => {
   const checked = watch.checked;
   const [isDisable, setIsDisable] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   //버튼 활성화 & 유효성 검사
   useEffect(() => {
@@ -100,33 +104,20 @@ const RecordFilter = ({
                       />
                     </span>
                   ))}
-                {field.type === 'buttonsCheck' &&
-                  field.options.map((option, i) => {
-                    const selected = (checked[field.label] || [])?.includes(
-                      option,
-                    );
-                    return (
-                      <span key={i}>
-                        <Button
-                          styleType={selected ? 'brandSolid' : ''}
-                          styleSize={'small'}
-                          text={option}
-                          onClick={e => {
-                            e.preventDefault();
-                            handleCheckbox(field.label, option);
-                          }}
-                        />
-                        <input
-                          type="checkbox"
-                          name={field.label}
-                          id={`${field.label}-${option}`}
-                          value={option}
-                          checked={selected}
-                          onChange={() => handleCheckbox(field.label, option)}
-                        />
-                      </span>
-                    );
-                  })}
+                {field.type === 'buttonsCheck' && (
+                  <CheckAccordion
+                    field={field}
+                    setWatch={setWatch}
+                    checked={checked}
+                  />
+                )}
+                {field.type === 'buttonsCheckGroup' && (
+                  <CheckAccordion
+                    field={field}
+                    setWatch={setWatch}
+                    checked={checked}
+                  />
+                )}
                 {field.type === 'dates' && (
                   <section className="dateContent">
                     <div className="dates">
@@ -173,13 +164,15 @@ const RecordFilter = ({
                 )}
               </FormControl>
             ))}
-            <Button
-              styleType={isDisable ? 'full' : 'disabled'}
-              styleSize="large"
-              text="저장"
-              onClick={handleSubmit}
-              disabled={!isDisable}
-            />
+            <div className="saveBtn">
+              <Button
+                styleType={isDisable ? 'full' : 'disabled'}
+                styleSize="large"
+                text="저장"
+                onClick={handleSubmit}
+                disabled={!isDisable}
+              />
+            </div>
           </form>
         </section>
       </aside>

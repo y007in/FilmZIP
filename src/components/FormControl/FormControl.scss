@@ -5,17 +5,24 @@
   gap: $px * 8;
   justify-content: center;
   align-items: flex-start;
+  padding: 0 $pagePadding;
+  &:nth-child(6) {
+    padding: 0;
+    label {
+      padding: 0 $pagePadding;
+    }
+  }
   label {
     width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: calc($px * 8);
-    font-size: $px * 16;
+    font-size: $font-tit-mobile;
     font-family: 'Pretendard-Medium', sans-serif;
   }
   .limit {
-    font-size: $px * 12;
+    font-size: $font-caption-mobile;
     color: var(--text-detail);
   }
   .inputBox {
@@ -23,6 +30,35 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: $px * 5;
+    gap: $px * 8;
+  }
+}
+
+@media (min-width: 768px) {
+  .FormControl {
+    padding: 0 $px * 30;
+    label {
+      font-size: $font-tit-tablet;
+    }
+    .limit {
+      font-size: $font-caption-tablet;
+    }
+    &:nth-child(6) {
+      padding: 0;
+      label {
+        padding: 0 $px * 30;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .FormControl {
+    label {
+      font-size: $font-tit-pc;
+    }
+    .limit {
+      font-size: $font-caption-pc;
+    }
   }
 }

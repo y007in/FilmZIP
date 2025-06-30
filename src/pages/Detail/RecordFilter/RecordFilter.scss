@@ -28,7 +28,7 @@
     position: inherit;
     top: 0;
     background-color: var(--bg-color);
-    padding: $pagePadding;
+    padding: $pagePadding 0;
     overflow: scroll;
     z-index: 101;
     &::-webkit-scrollbar {
@@ -61,7 +61,7 @@
       .dateContent {
         width: 100%;
         display: flex;
-        gap: $px * 3;
+        gap: $px * 8;
         .dates {
           input[type='date'] {
             border: $px solid var(--divider);
@@ -69,12 +69,21 @@
             color: var(--text-detail);
           }
           .subLabel {
-            font-size: $px * 14;
+            font-size: $font-base-mobile;
             margin-bottom: $px * 3;
           }
         }
       }
+      .saveBtn {
+        width: 100%;
+        padding: 0 $pagePadding;
+      }
     }
+  }
+}
+@media (min-width: 768px) {
+  .RecordFilter .filterList form .saveBtn {
+    padding: 0 $px * 30;
   }
 }
 
@@ -94,7 +103,12 @@
     border-radius: $px * 5;
     .filterList {
       border-radius: $px * 5;
-      padding: $px * 30;
+      padding: $px * 30 0;
+      form {
+        .dateContent .dates .subLabel {
+          font-size: $font-base-pc;
+        }
+      }
       .close {
         display: block;
         position: fixed;
