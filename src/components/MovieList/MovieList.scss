@@ -34,7 +34,7 @@
 @media (min-width: 768px) {
   .mvCard {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     min-width: 0;
     gap: $px * 10;
     .mvInfo {
@@ -58,6 +58,6 @@
 
 @media (min-width: 1024px) {
   .mvCard {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 }
