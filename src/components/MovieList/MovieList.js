@@ -1,18 +1,15 @@
-import { useNavigate } from 'react-router-dom';
 import Poster from '../Poster/Poster';
 import { MvGenre, MvInfoKrTit, MvInfoOgTit } from '../MovieTitle/MovieTitle';
 import Badge from '../Badge/Badge';
-import { getWatchStatusLabel, WATCH_STATUS } from '../../constants/formField';
+import { getWatchStatusLabel } from '../../constants/formField';
 
 const MovieList = ({ list, search, onClick }) => {
-  const navigate = useNavigate();
-
   return (
     <ul className="mvCard">
       {list?.map(item => (
         <li
           className="mvInfo"
-          key={item.createId}
+          key={item.id || item.createId}
           onClick={() => onClick(item)}
         >
           <aside className="imgBox">

@@ -91,7 +91,7 @@ const Search = () => {
       >
         <div className="content">
           {submitted ? (
-            searchResult.length > 0 ? (
+            searchResult && searchResult.length > 0 ? (
               <MovieList
                 list={searchResult}
                 onClick={item => navigate(`/movie/${item.id}`)}
