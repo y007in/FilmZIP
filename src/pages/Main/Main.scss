@@ -8,7 +8,6 @@
     padding: calc($px * 5) $pagePadding;
     left: 50%;
     transform: translateX(-50%);
-
     svg {
       cursor: pointer;
     }
@@ -28,33 +27,42 @@
       }
     }
   }
-  .recordTit {
-    width: 100%;
-    padding: $pagePadding $pagePadding 0;
-    font-size: $px * 28;
-    font-size: $font-tit-mobile;
-  }
+
   .recordContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: calc(100vh - $headerHeight);
-
     .statusBox {
       display: flex;
-      gap: $px * 8;
       width: 100%;
-      padding: $pagePadding $pagePadding 0;
+      padding-top: $pagePadding;
       .statusBtn {
         width: 100%;
         height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: $px * 8;
+        padding: $pagePadding;
+        background-color: var(--btn-back);
+        border: $px solid var(--btn-line);
+        border-right: none;
+        cursor: pointer;
+        font-size: $font-base-mobile;
+        &:last-child {
+          border-right: $px solid var(--btn-line);
+        }
+        &.active {
+          border-top: $px * 2 solid var(--main-color);
+          border-bottom: none;
+          background-color: var(--bg-div-color);
+        }
       }
     }
     .recordList {
-      flex: 1;
-      width: 100%;
-      height: inherit;
       padding: $pagePadding 0;
+      background-color: var(--bg-div-color);
     }
   }
   // .spinner {
@@ -67,22 +75,49 @@
   .MainPage .recordContainer {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: flex-start;
+    margin: $pagePadding;
+    height: calc(100vh - $headerHeight - $pagePadding * 2);
     .statusBox {
+      position: relative;
+      width: auto;
       display: flex;
       flex-direction: column;
-      gap: $px * 8;
-      padding-top: $pagePadding;
-      flex: 1;
+      padding-top: 0;
+      padding-left: $pagePadding;
       .statusBtn {
-        width: $px * 150;
-        height: auto;
+        display: flex;
+        flex-direction: column;
+        width: $px * 100;
+        aspect-ratio: 1/1;
+        border: $px solid var(--btn-line);
+        border-bottom: none;
+        font-size: $font-caption-tablet;
+        padding: $px * 8;
+        margin-right: $px * -1;
+        &:last-child {
+          border-bottom: $px solid var(--btn-line);
+        }
+        &.active {
+          border-left: $px * 2 solid var(--main-color);
+          border-top: $px solid var(--btn-line);
+          border-right: none;
+        }
       }
     }
     .recordList {
+      width: 100%;
+      height: 100%;
       padding: $pagePadding;
-      flex: 7;
+      margin-right: $pagePadding;
+      border: $px solid var(--btn-line);
+      border-radius: 0 $px * 3 $px * 3;
     }
+  }
+}
+
+@media (min-width: 1024px) {
+  .MainPage .recordContainer .statusBtn {
+    font-size: $font-caption-pc;
   }
 }

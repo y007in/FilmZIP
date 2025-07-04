@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Page from '../../components/Page/Page';
 import MovieList from '../../components/MovieList/MovieList';
 import NoResult from '../../components/NoResult/NoResult';
-import Button from '../../components/Button/Button';
+import Badge from '../../components/Badge/Badge';
 import { useRecordList } from '../../hooks/useRecordList';
 import { WATCH_STATUS } from '../../constants/formField';
 
@@ -57,21 +57,16 @@ const Main = () => {
             <ClipLoader color="#5db996" />
           </div>
         )} */}{' '}
-        {/* <h1 className="recordTit">오늘은 어떤 영화를 기록해볼까요?🍿</h1> */}
         <div className="recordContainer">
           <ul className="statusBox">
             {WATCH_STATUS.map(label => (
               <li
                 key={label.label}
-                className="statusBtn"
+                className={`statusBtn ${selectedStatus === label.value ? 'active' : ''}`}
                 onClick={() => setSelectedStatus(label.value)}
               >
-                <Button
-                  icon={label.icon}
-                  text={label.label}
-                  styleType={`stat ${label.value}`}
-                  active={selectedStatus === label.value}
-                />
+                <Badge text={label.icon} badgeType={label.value} />
+                <span>{label.label}</span>
               </li>
             ))}
           </ul>
