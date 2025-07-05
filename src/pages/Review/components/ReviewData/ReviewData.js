@@ -5,7 +5,6 @@ import ReviewAction from './ReviewAction';
 
 const ReviewData = ({ id }) => {
   const { recordList, setRecordList, getRecordList } = useRecordList();
-
   const records = getRecordList(id);
 
   return (

@@ -3,7 +3,7 @@ import { MvGenre, MvInfoKrTit, MvInfoOgTit } from '../MovieTitle/MovieTitle';
 import Badge from '../Badge/Badge';
 import { getWatchStatusLabel } from '../../constants/formField';
 
-const MovieList = ({ list, search, onClick }) => {
+const MovieList = ({ list, date, search, onClick }) => {
   return (
     <ul className="mvCard">
       {list?.map(item => (
@@ -24,14 +24,22 @@ const MovieList = ({ list, search, onClick }) => {
               </>
             ) : (
               <div className="statusData">
-                <Badge
-                  text={getWatchStatusLabel(item.watchStatus, 'icon')}
-                  badgeType={`${item.watchStatus}`}
-                />
-
-                {item.count > 1 && (
-                  <Badge text={`+ ${item.count}`} badgeType={'solid'} />
+                {date && (
+                  <p className="date">
+                    {item.watchStartDate === item.watchEndDate
+                      ? item.watchEndDate
+                      : `${item.watchStartDate} ~ ${item.watchEndDate}`}
+                  </p>
                 )}
+                <div className="statusBadge">
+                  <Badge
+                    text={getWatchStatusLabel(item.watchStatus, 'icon')}
+                    badgeType={`${item.watchStatus}`}
+                  />
+                  {item.count > 1 && (
+                    <Badge text={`+ ${item.count}`} badgeType={'solid'} />
+                  )}
+                </div>
               </div>
             )}
           </aside>

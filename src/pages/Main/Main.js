@@ -15,7 +15,7 @@ const Main = () => {
     item => item.watchStatus === selectedStatus,
   );
   const noDupRecordLists = getNoDupRecordList(filteredList);
-
+  console.log(noDupRecordLists);
   // const {
   //   data,
   //   isLoading,
@@ -76,6 +76,7 @@ const Main = () => {
                 {noDupRecordLists.length !== 0 ? (
                   <MovieList
                     list={noDupRecordLists}
+                    date
                     onClick={item => navigate(`/review/${item.movieId}`)}
                   />
                 ) : (

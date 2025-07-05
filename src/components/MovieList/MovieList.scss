@@ -21,11 +21,26 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: $px * 8;
-      padding: 0.313rem 0;
+      gap: $px * 5;
+      padding-bottom: $px * 3;
       .statusData {
+        width: 100%;
         display: flex;
+        flex-direction: column;
         gap: $px * 8;
+        .date {
+          width: 100%;
+          color: var(--text-detail);
+          font-size: $font-caption-mobile;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          word-break: break-all;
+        }
+        .statusBadge {
+          display: flex;
+          gap: $px * 5;
+        }
       }
     }
   }
@@ -34,7 +49,7 @@
 @media (min-width: 768px) {
   .mvCard {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     min-width: 0;
     gap: $px * 10;
     .mvInfo {
@@ -47,17 +62,22 @@
       .imgBox {
         width: 100%;
       }
-    }
-
-    .mvInfoTit {
-      width: 100%;
-      min-width: 0;
+      .mvInfoTit {
+        width: 100%;
+        min-width: 0;
+        .statusData .date {
+          font-size: $font-caption-tablet;
+        }
+      }
     }
   }
 }
 
 @media (min-width: 1024px) {
   .mvCard {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    .mvInfo .mvInfoTit .statusData .date {
+      font-size: $font-caption-pc;
+    }
   }
 }
