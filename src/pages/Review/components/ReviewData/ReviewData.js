@@ -1,58 +1,24 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Badge from '../../../../components/Badge/Badge';
 import { useRecordList } from '../../../../hooks/useRecordList';
-import { setMovieRecords } from '../../../../utils/storage';
-import { getWatchStatusLabel } from '../../../../constants/formField';
-import AlertBox from '../../../../components/AlertBox/AlertBox';
+
+import ReviewAction from './ReviewAction';
 
 const ReviewData = ({ id }) => {
-  const [alertTargetId, setAlertTargetId] = useState(null);
   const { recordList, setRecordList, getRecordList } = useRecordList();
-  const records = getRecordList(id);
-  const navigate = useNavigate();
-  const openAlert = id => setAlertTargetId(id);
 
-  const handleDelMovie = createId => {
-    const updatedRecords = recordList.filter(
-      item => item.createId !== createId,
-    );
-    setMovieRecords(updatedRecords);
-    setRecordList(updatedRecords);
-    updatedRecords.filter(item => item.movieId === Number(id)).length === 0 &&
-      navigate('/');
-    setAlertTargetId(null);
-  };
+  const records = getRecordList(id);
 
   return (
     <>
       <section className="reviewData">
-        {records.map((record, idx) => (
-          <section className="reviewBox" key={idx}>
-            <div className="head">
-              <Badge
-                text={getWatchStatusLabel(record.watchStatus)}
-                badgeType={`${record.watchStatus}`}
-              />
-              <article>
-                <button
-                  className="reviewBtn"
-                  onClick={() => openAlert(record.createId)}
-                >
-                  삭제
-                </button>
-                {alertTargetId === record.createId && (
-                  <AlertBox
-                    alertText={'정말 삭제하시겠습니까?'}
-                    submitText={'삭제'}
-                    onSubmit={() => {
-                      handleDelMovie(record.createId);
-                    }}
-                    onCancel={() => setAlertTargetId(null)}
-                  />
-                )}
-              </article>
-            </div>
+        {records.map(record => (
+          <section className="reviewBox" key={record.createId}>
+            <ReviewAction
+              id={id}
+              recordList={recordList}
+              setRecordList={setRecordList}
+              record={record}
+            />
             <article className="viewSection viewDate">
               <span>관람일</span>
               <p>

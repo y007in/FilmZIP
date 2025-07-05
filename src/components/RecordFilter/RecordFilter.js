@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
-import Button from '../../../components/Button/Button';
-import DelBtn from '../../../components/Button/DelBtn';
-import FormControl from '../../../components/FormControl/FormControl';
-
-import { formField } from '../../../constants/formField';
-import CheckAccordion from './CheckAccordion/CheckAccordion';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import Button from '../Button/Button';
+import DelBtn from '../Button/DelBtn';
+import FormControl from '../FormControl/FormControl';
+import { formField } from '../../constants/formField';
+import CheckAccordion from '../CheckAccordion/CheckAccordion';
 
 const RecordFilter = ({
   handleFilterDialog,
@@ -17,7 +14,6 @@ const RecordFilter = ({
 }) => {
   const checked = watch.checked;
   const [isDisable, setIsDisable] = useState(false);
-  const [expanded, setExpanded] = useState(false);
 
   //버튼 활성화 & 유효성 검사
   useEffect(() => {
@@ -47,17 +43,6 @@ const RecordFilter = ({
       checked: {
         ...prev.checked,
         [label]: option,
-      },
-    }));
-  };
-  const handleCheckbox = (label, option) => {
-    setWatch(prev => ({
-      ...prev,
-      checked: {
-        ...prev.checked,
-        [label]: checked[label]?.includes(option)
-          ? checked[label].filter(item => item !== option)
-          : [...(checked[label] || []), option],
       },
     }));
   };

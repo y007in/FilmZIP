@@ -8,7 +8,7 @@ import Page from '../../components/Page/Page';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 import MovieInfo from '../../components/MovieInfo/MovieInfo';
-import RecordFilter from './RecordFilter/RecordFilter';
+import RecordFilter from '../../components/RecordFilter/RecordFilter';
 import AlertBox from '../../components/AlertBox/AlertBox';
 import { MvInfoImage } from '../../components/MovieTitle/MovieTitle';
 import { fetchMovieDetail, fetchMovieImage } from '../../api/api';
