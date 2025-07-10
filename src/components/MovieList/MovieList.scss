@@ -23,6 +23,11 @@
       align-items: flex-start;
       gap: $px * 5;
       padding-bottom: $px * 3;
+      .typeBadge {
+        font-size: $font-caption-mobile;
+        color: var(--text-softBold);
+        padding: $px * 2;
+      }
       .statusData {
         width: 100%;
         display: flex;
@@ -51,7 +56,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     min-width: 0;
-    gap: $px * 10;
+    gap: $px * 25;
     .mvInfo {
       display: flex;
       flex-direction: column;
@@ -65,6 +70,9 @@
       .mvInfoTit {
         width: 100%;
         min-width: 0;
+        .typeBadge {
+          font-size: $font-caption-tablet;
+        }
         .statusData .date {
           font-size: $font-caption-tablet;
         }
@@ -76,8 +84,13 @@
 @media (min-width: 1024px) {
   .mvCard {
     grid-template-columns: repeat(5, 1fr);
-    .mvInfo .mvInfoTit .statusData .date {
-      font-size: $font-caption-pc;
+    .mvInfo .mvInfoTit {
+      .typeBadge {
+        font-size: $font-caption-pc;
+      }
+      .statusData .date {
+        font-size: $font-caption-pc;
+      }
     }
   }
 }

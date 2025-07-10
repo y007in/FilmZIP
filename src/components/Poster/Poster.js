@@ -1,6 +1,6 @@
 import { MvCertification, MvInfoImage } from '../MovieTitle/MovieTitle';
 
-const Poster = ({ item, age }) => {
+const Poster = ({ item, age, contentType }) => {
   return (
     <article className="mvInfoImg">
       {item.poster_path !== null ? (
@@ -9,7 +9,7 @@ const Poster = ({ item, age }) => {
           {item.watchStatus}
           {age && (
             <div className="age">
-              <MvCertification id={item.id} />
+              <MvCertification id={item.id} contentType={contentType} />
             </div>
           )}
         </>

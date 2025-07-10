@@ -15,7 +15,7 @@ const Main = () => {
     item => item.watchStatus === selectedStatus,
   );
   const noDupRecordLists = getNoDupRecordList(filteredList);
-  console.log(noDupRecordLists);
+
   // const {
   //   data,
   //   isLoading,

@@ -11,33 +11,50 @@ import MovieInfo from '../../components/MovieInfo/MovieInfo';
 import RecordFilter from '../../components/RecordFilter/RecordFilter';
 import AlertBox from '../../components/AlertBox/AlertBox';
 import { MvInfoImage } from '../../components/MovieTitle/MovieTitle';
-import { fetchMovieDetail, fetchMovieImage } from '../../api/api';
+import {
+  fetchMovieDetail,
+  fetchTvDetail,
+  fetchMovieImage,
+  fetchTvImage,
+} from '../../api/api';
 import { setMovieRecords, getMovieRecords } from '../../utils/storage';
 import { useMovieForm } from '../../hooks/useMovieForm';
+import { getBoolContentType } from '../../utils/getContentType';
 
 const Detail = () => {
-  const { id } = useParams();
+  const { id, contentType } = useParams();
   const { watch, setWatch, getFormData, initialData } = useMovieForm();
   const navigate = useNavigate();
   const [review, setReview] = useState(getMovieRecords());
   const [isRecord, setIsRecord] = useState(false);
   const [isAlert, setIsAlert] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+
   const [
-    { data: movieData, isLoading: dataLoading, error: dataError },
-    { data: movieImage, isLoading: imageLoading, error: imageError },
+    { data: contentData, isLoading: contentLoading, error: contentError },
+    { data: contentImage, isLoading: imageLoading, error: imageError },
   ] = useQueries({
     queries: [
       {
-        queryKey: ['movieDetail', id],
-        queryFn: () => fetchMovieDetail({ queryKey: ['movieDetail', id] }),
+        queryKey: [`${contentType}Detail`, id],
+        queryFn: () =>
+          getBoolContentType(
+            contentType,
+            () => fetchMovieDetail({ queryKey: ['movieDetail', id] }),
+            () => fetchTvDetail({ queryKey: ['tvDetail', id] }),
+          )(),
         staleTime: 1000 * 60 * 10,
         gcTime: 1000 * 60 * 30,
         refetchOnWindowFocus: false,
       },
       {
-        queryKey: ['movieImage', id],
-        queryFn: () => fetchMovieImage({ queryKey: ['movieImage', id] }),
+        queryKey: [`${contentType}Image`, id],
+        queryFn: () =>
+          getBoolContentType(
+            contentType,
+            () => fetchMovieImage({ queryKey: ['movieImage', id] }),
+            () => fetchTvImage({ queryKey: ['tvImage', id] }),
+          )(),
         staleTime: 1000 * 60 * 10,
         gcTime: 1000 * 60 * 30,
         refetchOnWindowFocus: false,
@@ -52,7 +69,7 @@ const Detail = () => {
   //기록 저장
   const handleSubmit = e => {
     e.preventDefault();
-    const formData = getFormData(movieData);
+    const formData = getFormData(contentData);
     const updatedRecords = [...review, formData];
     setReview(updatedRecords);
     setMovieRecords(updatedRecords);
@@ -61,16 +78,16 @@ const Detail = () => {
     setWatch(initialData);
   };
 
-  if (dataLoading || (imageLoading && !isLoaded)) return <Loading />;
-  if (dataError || imageError) {
-    const error = dataError || imageError;
-    return <ErrorPage statusCode={error.status} />;
-  }
+  if (contentLoading || (imageLoading && !isLoaded)) return <Loading />;
+  if (contentError || imageError)
+    return (
+      <ErrorPage statusCode={contentError?.status || imageError?.status} />
+    );
 
   return (
     <div className="DetailPage">
       <Page
-        header={<Header movieData={movieData} />}
+        header={<Header movieData={contentData} />}
         footer={
           <Button
             styleType={'full'}
@@ -82,14 +99,17 @@ const Detail = () => {
       >
         <div className="container">
           <figure className="posterWrapper">
-            {movieImage.backdrops[0]?.file_path ? (
+            {contentImage.backdrops[0]?.file_path ? (
               <MvInfoImage
-                data={movieImage}
-                path={movieImage.backdrops[0].file_path}
+                data={contentImage}
+                path={contentImage.backdrops[0].file_path}
                 setIsLoaded={setIsLoaded}
               />
             ) : (
-              <MvInfoImage data={movieData} path={movieData.backdrop_path} />
+              <MvInfoImage
+                data={contentData}
+                path={contentData.backdrops_path}
+              />
             )}
           </figure>
           <article className="titleBox">

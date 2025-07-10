@@ -1,23 +1,30 @@
 import { useQuery } from '@tanstack/react-query';
-
 import Badge from '../Badge/Badge';
-import { fetchGenre, fetchMovieRelease } from '../../api/api';
+import {
+  fetchMovieGenre,
+  fetchTVGenre,
+  fetchMovieRelease,
+  fetchTvRelease,
+} from '../../api/api';
+import { getBoolContentType } from '../../utils/getContentType';
 
 export const MvInfoImage = ({ data, path, setIsLoaded }) => {
   return (
     <img
       className="mvInfoImage"
       src={`https://image.tmdb.org/t/p/w1280${path}`}
-      alt={`${data.title} 배경 이미지`}
+      alt={`${data.title || data.name} 배경 이미지`}
       onLoad={() => setIsLoaded && setIsLoaded(true)}
     />
   );
 };
 export const MvInfoKrTit = ({ data }) => {
-  return <p className="mvInfoKrTit">{data.title}</p>;
+  return <p className="mvInfoKrTit">{data.title || data.name}</p>;
 };
 export const MvInfoOgTit = ({ data }) => {
-  return <p className="mvInfoOgTit">{data.original_title}</p>;
+  return (
+    <p className="mvInfoOgTit">{data.original_title || data.original_name}</p>
+  );
 };
 export const MvInfoTagLine = ({ data }) => {
   return <p className="mvInfoTagLine">{data.tagline}</p>;
@@ -29,32 +36,37 @@ export const MvInfoOverview = ({ data }) => {
     </p>
   );
 };
-export const MvGenre = ({ data, slice }) => {
+export const MvGenre = ({ data, slice = 3, contentType }) => {
   const {
-    data: genre,
+    data: genreData,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['movieGenre'],
-    queryFn: fetchGenre,
+    queryKey: ['genreList', contentType],
+    queryFn: () =>
+      getBoolContentType(
+        contentType,
+        () => fetchMovieGenre(),
+        () => fetchTVGenre(),
+      )(),
     staleTime: 1000 * 60 * 10,
     gcTime: 1000 * 60 * 30,
     refetchOnWindowFocus: false,
   });
+
   if (isLoading) return <span className="genre" />;
-  if (error) return null;
-  const genreList = genre.genres ? genre.genres : [];
+  if (error || !genreData?.genres) return null;
+
+  const genreList = genreData.genres;
+
   return (
     <div className="mvInfoGenre">
       {data.slice(0, slice).map(item => {
         const genreId = typeof item === 'object' ? item.id : item;
-        return (
-          <Badge
-            key={genreId}
-            badgeType={'brandSolid'}
-            text={genreList?.find(item => item.id === genreId)?.name}
-          />
-        );
+        const genreName = genreList.find(g => g.id === genreId)?.name;
+        return genreName ? (
+          <Badge key={genreId} badgeType="brandSolid" text={genreName} />
+        ) : null;
       })}
     </div>
   );
@@ -73,23 +85,34 @@ export const MvCreditSection = ({ title, items }) => {
     </section>
   );
 };
-export const MvCertification = ({ id }) => {
+export const MvCertification = ({ id, contentType }) => {
   const {
-    data: movieRelease,
-    isLoading,
-    error,
+    data: contentRelease,
+    releaseLoading,
+    releaseError,
   } = useQuery({
-    queryKey: ['movieRelease', id],
-    queryFn: ({ queryKey }) => fetchMovieRelease({ queryKey }),
+    queryKey: [`${contentType}Release`, id],
+    queryFn: () =>
+      getBoolContentType(
+        contentType,
+        () => fetchMovieRelease({ queryKey: ['movieRelease', id] }),
+        () => fetchTvRelease({ queryKey: ['tvRelease', id] }),
+      )(),
+
     staleTime: 1000 * 60 * 10,
     gcTime: 1000 * 60 * 30,
     refetchOnWindowFocus: false,
   });
-  const age = movieRelease?.results?.find(r => r.iso_3166_1 === 'KR')
-    ?.release_dates?.[0]?.certification;
 
-  if (isLoading) return <div className="certification" />;
-  if (error || !age) return null;
+  const krRelease = contentRelease?.results?.find(r => r.iso_3166_1 === 'KR');
+  const age = getBoolContentType(
+    contentType,
+    krRelease?.release_dates?.[0]?.certification,
+    krRelease?.rating,
+  );
+
+  if (releaseLoading) return <div className="certification" />;
+  if (releaseError || !age) return null;
 
   const getAgeBadgeType = age => {
     const lowerAge = age?.toLowerCase();

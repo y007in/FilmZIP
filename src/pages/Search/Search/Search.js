@@ -14,8 +14,14 @@ import Page from '../../../components/Page/Page';
 import NoResult from '../../../components/NoResult/NoResult';
 
 import { filterMovies } from '../../../utils/filterMovies';
-import { fetchTopRated, fetchSearch } from '../../../api/api';
+import {
+  fetchTopRated,
+  fetchTvTopRated,
+  fetchSearch,
+  fetchTvSearch,
+} from '../../../api/api';
 import { getSearchKeywordList } from '../../../utils/storage';
+import { getContentType } from '../../../utils/getContentType';
 
 const Search = () => {
   const navigate = useNavigate();
@@ -25,7 +31,13 @@ const Search = () => {
 
   const [
     { data: topRatedData, isLoading: topRatedLoading, error: topRatedError },
+    {
+      data: topTvRatedData,
+      isLoading: topTvRatedLoading,
+      error: topTvRatedError,
+    },
     { data: searchMovie, isLoading: searchLoading, error: searchError },
+    { data: searchTv, isLoading: searchTvLoading, error: searchTvError },
   ] = useQueries({
     queries: [
       {
@@ -35,8 +47,20 @@ const Search = () => {
         gcTime: 1000 * 60 * 5,
       },
       {
+        queryKey: ['tv-top-rated'],
+        queryFn: fetchTvTopRated,
+        staleTime: 1000 * 60 * 1,
+        gcTime: 1000 * 60 * 5,
+      },
+      {
         queryKey: ['search', keywordFromUrl],
         queryFn: ({ queryKey }) => fetchSearch({ queryKey }),
+        enabled: !!keywordFromUrl,
+        staleTime: 1000 * 60 * 1,
+      },
+      {
+        queryKey: ['tvSearch', keywordFromUrl],
+        queryFn: ({ queryKey }) => fetchTvSearch({ queryKey }),
         enabled: !!keywordFromUrl,
         staleTime: 1000 * 60 * 1,
       },
@@ -53,22 +77,28 @@ const Search = () => {
   }, [keywordFromUrl]);
 
   useEffect(() => {
-    if (!submitted || !keywordFromUrl || !searchMovie) {
+    if (!submitted || !keywordFromUrl || !searchMovie || !searchTv) {
       setSearchResult([]);
       return;
     }
 
-    const filteredList = filterMovies(searchMovie.results, keywordFromUrl);
+    const movieResults = searchMovie?.results || [];
+    const tvResults = searchTv?.results || [];
+
+    const mergedResults = [...movieResults, ...tvResults];
+    const filteredList = filterMovies(mergedResults, keywordFromUrl);
     setSearchResult(filteredList);
-  }, [submitted, keywordFromUrl, searchMovie]);
+  }, [submitted, keywordFromUrl, searchMovie, searchTv]);
 
   const handleRecommend = keyword => {
     navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
   };
 
-  if (topRatedLoading || searchLoading) return <Loading />;
-  if (topRatedError || searchError) {
-    const error = topRatedError || searchError;
+  if (topRatedLoading || topTvRatedLoading || searchLoading || searchTvLoading)
+    return <Loading />;
+  if (topRatedError || topTvRatedError || searchError || searchTvError) {
+    const error =
+      topRatedError || topTvRatedError || searchError || searchTvError;
     return <ErrorPage statusCode={error.status} />;
   }
 
@@ -94,7 +124,11 @@ const Search = () => {
             searchResult && searchResult.length > 0 ? (
               <MovieList
                 list={searchResult}
-                onClick={item => navigate(`/movie/${item.id}`)}
+                onClick={item => {
+                  navigate(
+                    `/detail/${getContentType(item, 'movie', 'tv')}/${item.id}`,
+                  );
+                }}
                 search
               />
             ) : (
@@ -108,11 +142,20 @@ const Search = () => {
                 historyList={historyKeywordList}
                 handleRecommend={handleRecommend}
               />
-              <RecommendKeyword
-                setSearchKeyword={setSearchKeyword}
-                setSearchResult={setSearchResult}
-                data={topRatedData}
-              />
+              <section className="recommendKey">
+                <RecommendKeyword
+                  setSearchKeyword={setSearchKeyword}
+                  setSearchResult={setSearchResult}
+                  data={topRatedData}
+                  contentType={'movie'}
+                />
+                <RecommendKeyword
+                  setSearchKeyword={setSearchKeyword}
+                  setSearchResult={setSearchResult}
+                  data={topTvRatedData}
+                  contentType={'tv'}
+                />
+              </section>
             </>
           )}
         </div>

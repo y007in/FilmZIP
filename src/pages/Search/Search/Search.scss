@@ -27,5 +27,10 @@
 @media (min-width: 768px) {
   .SearchPage .content {
     padding: $pagePadding;
+    .recommendKey {
+      max-width: $px * 1280;
+      display: flex;
+      gap: $px * 16;
+    }
   }
 }

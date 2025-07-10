@@ -6,17 +6,22 @@ import {
   MvInfoOgTit,
 } from '../../../../components/MovieTitle/MovieTitle';
 import { TabType } from '../../../../constants/tabs';
+import { getBoolContentType } from '../../../../utils/getContentType';
 
-const RecommendKeyword = ({ data }) => {
+const RecommendKeyword = ({ data, contentType }) => {
   const movie = data?.results || [];
   const navigate = useNavigate();
 
   return (
     <>
       <List
-        title={TabType.KEYWORD}
+        title={getBoolContentType(
+          contentType,
+          TabType.MOVIE_KEYWORD,
+          TabType.TV_KEYWORD,
+        )}
         data={movie.slice(0, 5)}
-        onClick={item => navigate(`/movie/${item.id}`)}
+        onClick={item => navigate(`/detail/${contentType}/${item.id}`)}
         renderItem={(item, i) => (
           <div className="recommendList">
             <span className="topNum">{i + 1}</span>

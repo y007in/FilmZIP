@@ -2,6 +2,7 @@ import Poster from '../Poster/Poster';
 import { MvGenre, MvInfoKrTit, MvInfoOgTit } from '../MovieTitle/MovieTitle';
 import Badge from '../Badge/Badge';
 import { getWatchStatusLabel } from '../../constants/formField';
+import { getContentType } from '../../utils/getContentType';
 
 const MovieList = ({ list, date, search, onClick }) => {
   return (
@@ -13,14 +14,26 @@ const MovieList = ({ list, date, search, onClick }) => {
           onClick={() => onClick(item)}
         >
           <aside className="imgBox">
-            <Poster key={item.id} item={item} age />
+            <Poster
+              key={item.id}
+              item={item}
+              age
+              contentType={getContentType(item, 'movie', 'tv')}
+            />
           </aside>
           <aside className="mvInfoTit">
             <MvInfoKrTit data={item} />
             {search ? (
               <>
                 <MvInfoOgTit data={item} />
-                <MvGenre data={item.genre_ids} slice={3} />
+                {/* <MvGenre
+                  data={item.genre_ids}
+                  slice={3}
+                  contentType={getContentType(item, 'movie', 'tv')}
+                /> */}
+                <p className="typeBadge">
+                  {getContentType(item, '영화', '시리즈')}
+                </p>
               </>
             ) : (
               <div className="statusData">

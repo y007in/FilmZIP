@@ -8,17 +8,17 @@ import {
 export const WATCH_STATUS = [
   {
     value: 'FINISHED',
-    label: '다 본 영화',
+    label: '다 본 작품',
     icon: <FontAwesomeIcon icon={faCheckCircle} />,
   },
   {
     value: 'REWATCHED',
-    label: '재관람 영화',
+    label: '재관람 작품',
     icon: <FontAwesomeIcon icon={faSyncAlt} />,
   },
   {
     value: 'STOPPED',
-    label: '중단한 영화',
+    label: '중단한 작품',
     icon: <FontAwesomeIcon icon={faStopCircle} />,
   },
 ];

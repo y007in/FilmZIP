@@ -8,7 +8,7 @@ const Header = ({ movieData }) => {
   return (
     <div className="titleHeader">
       <FontAwesomeIcon icon={faAngleLeft} onClick={() => navigate(-1)} />
-      <span>{movieData.title}</span>
+      <span>{movieData.title || movieData.name}</span>
     </div>
   );
 };

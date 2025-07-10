@@ -11,39 +11,45 @@ import Button from '../../components/Button/Button';
 import Tabs from './components/Tabs/Tabs';
 import ReviewData from './components/ReviewData/ReviewData';
 import { MvInfoImage } from '../../components/MovieTitle/MovieTitle';
-import { fetchMovieDetail } from '../../api/api';
+import { fetchMovieDetail, fetchTvDetail } from '../../api/api';
 import { TabReview } from '../../constants/tabs';
 import { useRecordList } from '../../hooks/useRecordList';
 import { getWatchStatusLabel } from '../../constants/formField';
+import { getBoolContentType } from '../../utils/getContentType';
 
 const Review = () => {
-  const { id } = useParams();
+  const { id, contentType } = useParams();
   const { getRecordList } = useRecordList();
   const records = getRecordList(id);
   const [selectedTab, setSelectedTab] = useState(TabReview.REVIEW);
   const navigate = useNavigate();
 
   const {
-    data: movieData,
-    isLoading: dataLoading,
-    error: dataError,
+    data: contentData,
+    isLoading: contentLoading,
+    error: contentError,
   } = useQuery({
-    queryKey: ['movieDetail', id],
-    queryFn: () => fetchMovieDetail({ queryKey: ['movieDetail', id] }),
+    queryKey: [`${contentType}Detail`, id],
+    queryFn: () =>
+      getBoolContentType(
+        contentType,
+        () => fetchMovieDetail({ queryKey: ['movieDetail', id] }),
+        () => fetchTvDetail({ queryKey: ['tvDetail', id] }),
+      )(),
     staleTime: 1000 * 60 * 10,
     gcTime: 1000 * 60 * 30,
     refetchOnWindowFocus: false,
   });
 
-  if (dataLoading) return <Loading />;
-  if (dataError) return <ErrorPage statusCode={dataError.status} />;
+  if (contentLoading) return <Loading />;
+  if (contentError) return <ErrorPage statusCode={contentError.status} />;
 
   return (
     <div className="Review">
-      <Page header={<Header movieData={movieData} />}>
+      <Page header={<Header movieData={contentData} />}>
         <div className="container">
           <figure className="moviePoster">
-            <MvInfoImage data={movieData} path={movieData.poster_path} />
+            <MvInfoImage data={contentData} path={contentData.poster_path} />
             <Badge
               text={getWatchStatusLabel(records[0]?.watchStatus)}
               badgeType={`${records[0]?.watchStatus}`}
@@ -63,7 +69,7 @@ const Review = () => {
                     <Button
                       text={'기록하러 가기'}
                       styleType={'brandSolid'}
-                      onClick={() => navigate(`/movie/${id}`)}
+                      onClick={() => navigate(`/detail/${contentType}/${id}`)}
                     />
                   </div>
                 </article>
