@@ -15,7 +15,7 @@ function App() {
             <Route path="/" element={<Main />}></Route>
             <Route path="/search" element={<Search />}></Route>
             <Route path="/detail/:contentType/:id" element={<Detail />}></Route>
-            <Route path="/review/:id" element={<Review />}></Route>
+            <Route path="/review/:contentType/:id" element={<Review />}></Route>
           </Routes>
         </BrowserRouter>
       </LayoutProvider>

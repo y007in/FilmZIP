@@ -3,11 +3,19 @@ import { getMovieRecords } from '../utils/storage';
 
 export const useRecordList = () => {
   const [recordList, setRecordList] = useState([]);
-
+  const records = getMovieRecords();
   useEffect(() => {
-    const records = getMovieRecords();
     setRecordList(records);
   }, []);
+  const getLatestRecord = () => {
+    return recordList.sort((a, b) => {
+      const dateA = new Date(a.watchEndDate);
+      const dateB = new Date(b.watchEndDate);
+      return dateA.getTime() === dateB.getTime()
+        ? b.createId - a.createId
+        : dateB - dateA;
+    });
+  };
 
   const getRecordList = id => {
     return recordList
@@ -15,11 +23,9 @@ export const useRecordList = () => {
       .sort((a, b) => {
         const dateA = new Date(a.watchEndDate);
         const dateB = new Date(b.watchEndDate);
-
-        if (dateA.getTime() === dateB.getTime()) return b.createId - a.createId;
-
-        // 날짜 최신순 정렬
-        return dateB - dateA;
+        return dateA.getTime() === dateB.getTime()
+          ? b.createId - a.createId
+          : dateB - dateA;
       });
   };
 
@@ -33,11 +39,12 @@ export const useRecordList = () => {
       }
       return acc;
     }, []);
-    return deduplicated.reverse();
+    return deduplicated;
   };
 
   return {
     recordList,
+    getLatestRecord,
     setRecordList,
     getRecordList,
     getNoDupRecordList,

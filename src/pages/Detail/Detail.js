@@ -83,7 +83,6 @@ const Detail = () => {
     return (
       <ErrorPage statusCode={contentError?.status || imageError?.status} />
     );
-
   return (
     <div className="DetailPage">
       <Page
@@ -108,7 +107,7 @@ const Detail = () => {
             ) : (
               <MvInfoImage
                 data={contentData}
-                path={contentData.backdrops_path}
+                path={contentData.backdrops_path || contentData.poster_path}
               />
             )}
           </figure>
@@ -128,7 +127,7 @@ const Detail = () => {
       {isAlert && (
         <AlertBox
           alertText={'저장되었습니다.'}
-          onSubmit={() => navigate(`/review/${id}`)}
+          onSubmit={() => navigate(`/review/${contentType}/${id}`)}
           submitText={'보러가기'}
           onCancel={() => setIsAlert(false)}
         />

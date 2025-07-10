@@ -75,7 +75,9 @@ const MovieInfo = ({ direction }) => {
           {contentData.first_air_date && (
             <Badge text={contentData.first_air_date.substr(0, 4)} />
           )}
-          {contentData.runtime && <Badge text={`${contentData.runtime}분 `} />}
+          {contentData.runtime !== 0 && (
+            <Badge text={`${contentData.runtime}분 `} />
+          )}
           {contentData.number_of_seasons && (
             <Badge text={`시즌 ${contentData.number_of_seasons}개 `} />
           )}
@@ -101,12 +103,16 @@ const MovieInfo = ({ direction }) => {
               )}
             />
           )}
-          <MvCreditSection
-            title="출연"
-            items={contentCredit.cast
-              ?.filter(person => person.known_for_department === 'Acting')
-              .slice(0, 10)}
-          />
+          {contentCredit.cast?.filter(
+            person => person.known_for_department === 'Acting',
+          ).length > 0 && (
+            <MvCreditSection
+              title="출연"
+              items={contentCredit.cast
+                ?.filter(person => person.known_for_department === 'Acting')
+                .slice(0, 10)}
+            />
+          )}
         </article>
       </div>
     </section>

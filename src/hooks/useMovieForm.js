@@ -39,7 +39,8 @@ export const useMovieForm = (movieRecord = null) => {
   const getFormData = movieData => ({
     createId: Date.now(),
     movieId: movieData.id,
-    title: movieData.title || movieData.name,
+    title: movieData.title,
+    name: movieData.name,
     poster_path: movieData.poster_path,
     ...baseFormData(),
   });

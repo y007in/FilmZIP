@@ -1,20 +1,29 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList } from '@fortawesome/free-solid-svg-icons';
 import Page from '../../components/Page/Page';
 import MovieList from '../../components/MovieList/MovieList';
 import NoResult from '../../components/NoResult/NoResult';
 import Badge from '../../components/Badge/Badge';
 import { useRecordList } from '../../hooks/useRecordList';
 import { WATCH_STATUS } from '../../constants/formField';
+import { getContentType } from '../../utils/getContentType';
+import { getMovieRecords } from '../../utils/storage';
 
 const Main = () => {
-  const [selectedStatus, setSelectedStatus] = useState('FINISHED');
+  const [selectedStatus, setSelectedStatus] = useState('ALL');
   const navigate = useNavigate();
-  const { recordList, getNoDupRecordList } = useRecordList();
+
+  const { recordList, getLatestRecord, getNoDupRecordList } = useRecordList();
   const filteredList = recordList.filter(
     item => item.watchStatus === selectedStatus,
   );
-  const noDupRecordLists = getNoDupRecordList(filteredList);
+
+  const noDupRecordLists =
+    selectedStatus !== 'ALL'
+      ? getNoDupRecordList(filteredList)
+      : getLatestRecord();
 
   // const {
   //   data,
@@ -59,6 +68,16 @@ const Main = () => {
         )} */}{' '}
         <div className="recordContainer">
           <ul className="statusBox">
+            <li
+              className={`statusBtn ${selectedStatus === 'ALL' ? 'active' : ''}`}
+              onClick={() => setSelectedStatus('ALL')}
+            >
+              <Badge
+                text={<FontAwesomeIcon icon={faList} />}
+                badgeType={'brand'}
+              />
+              <span>전체보기</span>
+            </li>
             {WATCH_STATUS.map(label => (
               <li
                 key={label.label}
@@ -77,7 +96,11 @@ const Main = () => {
                   <MovieList
                     list={noDupRecordLists}
                     date
-                    onClick={item => navigate(`/review/${item.movieId}`)}
+                    onClick={item =>
+                      navigate(
+                        `/review/${getContentType(item, 'movie', 'tv')}/${item.movieId}`,
+                      )
+                    }
                   />
                 ) : (
                   <NoResult noResultData={'아직 저장된 영화가 없어요.'} />

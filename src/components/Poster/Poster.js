@@ -6,7 +6,6 @@ const Poster = ({ item, age, contentType }) => {
       {item.poster_path !== null ? (
         <>
           <MvInfoImage data={item} path={item.poster_path} />
-          {item.watchStatus}
           {age && (
             <div className="age">
               <MvCertification id={item.id} contentType={contentType} />
