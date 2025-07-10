@@ -1,6 +1,7 @@
 .MainPage {
   width: 100%;
   max-width: $max-width;
+  height: 100%;
   background-color: var(--bg-color);
   padding-top: $headerHeight;
   .searchBox {
@@ -32,7 +33,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: calc(100vh - $headerHeight);
+    height: 100%;
     .statusBox {
       display: flex;
       width: 100%;
@@ -79,7 +80,7 @@
     flex-direction: row;
     align-items: flex-start;
     margin: $pagePadding;
-    height: calc(100vh - $headerHeight - $pagePadding * 2);
+
     .statusBox {
       position: relative;
       width: auto;
