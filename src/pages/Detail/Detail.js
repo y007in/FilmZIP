@@ -98,17 +98,19 @@ const Detail = () => {
       >
         <div className="container">
           <figure className="posterWrapper">
-            {contentImage.backdrops[0]?.file_path ? (
+            {contentImage.backdrops?.[0]?.file_path ? (
               <MvInfoImage
                 data={contentImage}
                 path={contentImage.backdrops[0].file_path}
                 setIsLoaded={setIsLoaded}
               />
-            ) : (
+            ) : contentData.backdrops_path || contentData.poster_path ? (
               <MvInfoImage
                 data={contentData}
                 path={contentData.backdrops_path || contentData.poster_path}
               />
+            ) : (
+              <div className="mvInfoImg noImage"></div>
             )}
           </figure>
           <article className="titleBox">

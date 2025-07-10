@@ -63,24 +63,25 @@ const MovieInfo = ({ direction }) => {
       <ErrorPage statusCode={contentError?.status || creditError?.status} />
     );
   }
+  console.log(contentData);
 
   return (
     <section className="movieInfo">
       <div className="movieMeta">
         <MvCertification id={id} contentType={contentType} />
         <div className="runtime">
-          {contentData.release_date && (
+          {contentData.release_date ? (
             <Badge text={contentData.release_date.substr(0, 4)} />
+          ) : (
+            contentData.first_air_date && (
+              <Badge text={contentData.first_air_date.substr(0, 4)} />
+            )
           )}
-          {contentData.first_air_date && (
-            <Badge text={contentData.first_air_date.substr(0, 4)} />
-          )}
-          {contentData.runtime !== 0 && (
-            <Badge text={`${contentData.runtime}분 `} />
-          )}
-          {contentData.number_of_seasons && (
-            <Badge text={`시즌 ${contentData.number_of_seasons}개 `} />
-          )}
+          {contentData.runtime > 0 ? (
+            <Badge text={`${contentData.runtime}분`} />
+          ) : contentData.number_of_seasons > 0 ? (
+            <Badge text={`시즌 ${contentData.number_of_seasons}개`} />
+          ) : null}
         </div>
         <MvGenre data={contentData?.genres} />
       </div>
