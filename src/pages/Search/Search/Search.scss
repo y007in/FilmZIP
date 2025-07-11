@@ -21,6 +21,10 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    .noResultContent {
+      width: 100%;
+      height: calc(100dvh - $headerHeight);
+    }
   }
 }
 

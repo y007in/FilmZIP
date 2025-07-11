@@ -132,9 +132,11 @@ const Search = () => {
                 search
               />
             ) : (
-              <NoResult
-                noResultData={`앗! "${keywordFromUrl}" 검색결과가 없어요`}
-              />
+              <div className="noResultContent">
+                <NoResult
+                  noResultData={`앗! "${keywordFromUrl}" 검색결과가 없어요`}
+                />
+              </div>
             )
           ) : (
             <>

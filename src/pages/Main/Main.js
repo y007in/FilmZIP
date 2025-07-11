@@ -48,14 +48,14 @@ const Main = () => {
     <div className="MainPage">
       <Page
         header={
-          <header className="searchBox">
+          <div className="searchBox">
             <input
               className="searchInput"
               type="text"
               placeholder="어떤 영화를 보셨나요?"
               onClick={() => navigate('/search')}
             />
-          </header>
+          </div>
         }
       >
         {/* {data?.pages.map((page, i) => (
@@ -90,7 +90,7 @@ const Main = () => {
             ))}
           </ul>
           <div className="recordList">
-            {recordList.length !== 0 ? (
+            {recordList.length !== 0 && (
               <>
                 {noDupRecordLists.length !== 0 ? (
                   <MovieList
@@ -103,11 +103,9 @@ const Main = () => {
                     }
                   />
                 ) : (
-                  <NoResult noResultData={'아직 저장된 영화가 없어요.'} />
+                  <NoResult noResultData={'아직 저장된 작품이 없어요.'} />
                 )}
               </>
-            ) : (
-              <NoResult noResultData={'관람한 영화를 저장해 보세요!'} />
             )}
           </div>
         </div>
