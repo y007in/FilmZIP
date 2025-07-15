@@ -1,46 +1,21 @@
-.MainPage {
+.ReviewArchive {
   width: 100%;
-  max-width: $max-width;
-  height: 100%;
-  background-color: var(--bg-color);
+  max-width: $px * 1280;
   padding-top: $headerHeight;
-  .searchBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    min-width: $px * 375;
-    max-width: $px * 1280;
-    padding: calc($px * 5) $pagePadding;
-    .searchInput {
-      width: 100%;
-      border: $px solid var(--divider);
-      outline: none;
-      border-radius: calc($px * 5);
-      padding: $px * 10 $px * 15;
-      font-size: calc($px * 14);
-      margin-bottom: 1rem 0;
-      cursor: pointer;
-      background-color: var(--bg-div-color);
-      color: var(--text-color);
-      &::placeholder {
-        color: var(--text-detail);
-      }
-    }
-  }
-
   .recordContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
+
     height: 100%;
     .statusBox {
+      position: fixed;
       display: flex;
       width: 100%;
-      padding-top: $pagePadding;
+      z-index: 1;
       .statusBtn {
         width: calc(100% / 4);
+        height: $tabHeight;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -51,6 +26,7 @@
         background-color: var(--btn-back);
         border: $px solid var(--btn-line);
         border-right: none;
+        border-top: none;
         cursor: pointer;
         font-size: $font-base-mobile;
         &:last-child {
@@ -63,23 +39,32 @@
         }
       }
     }
-    .recordList {
+    .recordResult {
       width: 100%;
-      padding: $pagePadding 0;
+      padding-top: $tabHeight;
       background-color: var(--bg-div-color);
       display: flex;
-      justify-content: flex-start;
-      align-items: center;
+      .recordList {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      .noResult {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        min-height: calc(100dvh - $headerHeight - $tabHeight);
+      }
     }
   }
-  // .spinner {
-  //   margin: 0 auto;
-  //   padding: calc($px * 48);
-  // }
 }
-
 @media (min-width: 768px) {
-  .MainPage .recordContainer {
+  .ReviewArchive .recordContainer {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -95,6 +80,7 @@
       .statusBtn {
         display: flex;
         width: $px * 100;
+        height: auto;
         aspect-ratio: 1/1;
         border: $px solid var(--btn-line);
         border-bottom: none;
@@ -111,7 +97,7 @@
         }
       }
     }
-    .recordList {
+    .recordResult {
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -126,7 +112,7 @@
 }
 
 @media (min-width: 1024px) {
-  .MainPage .recordContainer .statusBtn {
+  .ReviewArchive .recordContainer .statusBtn {
     font-size: $font-caption-pc;
   }
 }

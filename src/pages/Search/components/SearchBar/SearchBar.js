@@ -51,7 +51,7 @@ const SearchBar = ({
       <input
         className="searchInput"
         type="text"
-        placeholder="어떤 영화를 보셨나요?"
+        placeholder="어떤 작품을 보셨나요?"
         autoFocus
         value={searchKeyword}
         onChange={e => handleSearchKeyword(e)}

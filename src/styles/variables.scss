@@ -8,6 +8,7 @@ $px: calc(1rem / 16);
 $pagePadding: $px * 16;
 $headerHeight: $px * 55;
 $footerHeight: $px * 80;
+$tabHeight: $px * 80;
 $max-width: $px * 1280;
 //font-size
 $font-caption-mobile: $px * 12;
@@ -21,6 +22,10 @@ $font-base-pc: $px * 16;
 $font-tit-mobile: $px * 15;
 $font-tit-tablet: $px * 16;
 $font-tit-pc: $px * 18;
+
+$font-headline-mobile: $px * 28;
+$font-headline-tablet: $px * 30;
+$font-headline-pc: $px * 32;
 
 //color
 $black: #222;

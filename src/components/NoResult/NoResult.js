@@ -1,5 +1,5 @@
 const NoResult = ({ noResultData }) => {
-  return <div className="noResult">{noResultData}</div>;
+  return <span className="noResultText">{noResultData}</span>;
 };
 
 export default NoResult;
