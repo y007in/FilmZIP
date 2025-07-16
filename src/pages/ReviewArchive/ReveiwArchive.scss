@@ -1,15 +1,17 @@
 .ReviewArchive {
   width: 100%;
-  max-width: $px * 1280;
   padding-top: $headerHeight;
   .recordContainer {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-
     height: 100%;
     .statusBox {
       position: fixed;
+      top: $headerHeight;
+      left: 0;
       display: flex;
       width: 100%;
       z-index: 1;
@@ -40,10 +42,12 @@
       }
     }
     .recordResult {
+      display: flex;
       width: 100%;
+      max-width: $px * 1280;
       padding-top: $tabHeight;
       background-color: var(--bg-div-color);
-      display: flex;
+
       .recordList {
         width: 100%;
         height: 100%;
@@ -69,9 +73,9 @@
     flex-direction: row;
     align-items: flex-start;
     margin: $pagePadding;
-
     .statusBox {
       position: relative;
+      top: 0;
       width: auto;
       display: flex;
       flex-direction: column;

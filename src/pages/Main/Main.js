@@ -1,47 +1,69 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faList } from '@fortawesome/free-solid-svg-icons';
+import { useQueries } from '@tanstack/react-query';
 import Page from '../../components/Page/Page';
-import MovieList from '../../components/MovieList/MovieList';
-import NoResult from '../../components/NoResult/NoResult';
-import Badge from '../../components/Badge/Badge';
-import { useRecordList } from '../../hooks/useRecordList';
-import { WATCH_STATUS } from '../../constants/formField';
-import { getContentType } from '../../utils/getContentType';
-import { getMovieRecords } from '../../utils/storage';
+import Loading from '../../components/StatusPage/Loading/Loading';
+import SlideBox from '../../components/List/SlideBox';
+import Button from '../../components/Button/Button';
+import {
+  fetchNowPlaying,
+  fetchPopular,
+  fetchTopRated,
+  fetchTvTopRated,
+  fetchUpcoming,
+} from '../../api/api';
 
 const Main = () => {
-  const [selectedStatus, setSelectedStatus] = useState('ALL');
+  const [
+    { data: topRatedData, isLoading: topRatedLoading, error: topRatedError },
+    {
+      data: nowPlayingData,
+      isLoading: nowPlayingLoading,
+      error: nowPlayingError,
+    },
+    { data: popularData, isLoading: popularLoading, error: popularError },
+    { data: upcomingData, isLoading: upcomingLoading, error: upcomingError },
+    {
+      data: topTvRatedData,
+      isLoading: topTvRatedLoading,
+      error: topTvRatedError,
+    },
+  ] = useQueries({
+    queries: [
+      {
+        queryKey: ['top-rated'],
+        queryFn: fetchTopRated,
+        staleTime: 1000 * 60 * 1,
+        gcTime: 1000 * 60 * 5,
+      },
+      {
+        queryKey: ['now-playing'],
+        queryFn: fetchNowPlaying,
+        staleTime: 1000 * 60 * 1,
+        gcTime: 1000 * 60 * 5,
+      },
+      {
+        queryKey: ['popular'],
+        queryFn: fetchPopular,
+        staleTime: 1000 * 60 * 1,
+        gcTime: 1000 * 60 * 5,
+      },
+      {
+        queryKey: ['upcoming'],
+        queryFn: fetchUpcoming,
+        staleTime: 1000 * 60 * 1,
+        gcTime: 1000 * 60 * 5,
+      },
+      {
+        queryKey: ['tv-top-rated'],
+        queryFn: fetchTvTopRated,
+        staleTime: 1000 * 60 * 1,
+        gcTime: 1000 * 60 * 5,
+      },
+    ],
+  });
   const navigate = useNavigate();
 
-  const { recordList, getLatestRecord, getNoDupRecordList } = useRecordList();
-  const filteredList = recordList.filter(
-    item => item.watchStatus === selectedStatus,
-  );
-
-  const noDupRecordLists =
-    selectedStatus !== 'ALL'
-      ? getNoDupRecordList(filteredList)
-      : getLatestRecord();
-
-  // const {
-  //   data,
-  //   isLoading,
-  //   error,
-  //   fetchNextPage,
-  //   hasNextPage,
-  //   isFetchNextPage,
-  // } = useInfiniteScroll();
-
-  // const { ref, inView } = useInView();
-
-  // useEffect(() => {
-  //   if (inView && hasNextPage && !isFetchNextPage) {
-  //     fetchNextPage();
-  //   }
-  // }, [inView, hasNextPage, fetchNextPage, isFetchNextPage]);
-
+  if (topRatedLoading) return <Loading />;
   // if (error) return <p>Error: {error.message}</p>;
 
   return (
@@ -52,62 +74,48 @@ const Main = () => {
             <input
               className="searchInput"
               type="text"
-              placeholder="어떤 영화를 보셨나요?"
+              placeholder="작품 제목을 검색해 보세요"
               onClick={() => navigate('/search')}
             />
           </div>
         }
       >
-        {/* {data?.pages.map((page, i) => (
-          <MovieList key={i} list={page.results} onClick />
-        ))}
-        {hasNextPage && (
-          <div className="spinner" ref={ref}>
-            <ClipLoader color="#5db996" />
+        <div className="banner">
+          <div className="bannerHeadLine">
+            <h1>오늘의 관람 기록을 남겨보세요</h1>
+            <Button
+              text={'나의 기록'}
+              onClick={() => navigate('/review')}
+              styleType={'brand'}
+            />
           </div>
-        )} */}{' '}
-        <div className="recordContainer">
-          <ul className="statusBox">
-            <li
-              className={`statusBtn ${selectedStatus === 'ALL' ? 'active' : ''}`}
-              onClick={() => setSelectedStatus('ALL')}
-            >
-              <Badge
-                text={<FontAwesomeIcon icon={faList} />}
-                badgeType={'brand'}
-              />
-              <span>전체보기</span>
-            </li>
-            {WATCH_STATUS.map(label => (
-              <li
-                key={label.label}
-                className={`statusBtn ${selectedStatus === label.value ? 'active' : ''}`}
-                onClick={() => setSelectedStatus(label.value)}
-              >
-                <Badge text={label.icon} badgeType={label.value} />
-                <span>{label.label}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="recordList">
-            {recordList.length !== 0 && (
-              <>
-                {noDupRecordLists.length !== 0 ? (
-                  <MovieList
-                    list={noDupRecordLists}
-                    date
-                    onClick={item =>
-                      navigate(
-                        `/review/${getContentType(item, 'movie', 'tv')}/${item.movieId}`,
-                      )
-                    }
-                  />
-                ) : (
-                  <NoResult noResultData={'아직 저장된 작품이 없어요.'} />
-                )}
-              </>
-            )}
-          </div>
+        </div>
+        <div className="topList">
+          <SlideBox
+            title={'오늘의 영화 트렌드 랭킹'}
+            data={popularData?.results}
+            contentType={'movie'}
+          />
+          <SlideBox
+            title={'평점이 높은 영화'}
+            data={topRatedData?.results}
+            contentType={'movie'}
+          />
+          <SlideBox
+            title={'오늘의 상영작은?'}
+            data={nowPlayingData?.results}
+            contentType={'movie'}
+          />
+          <SlideBox
+            title={'개봉 예정작'}
+            data={upcomingData?.results}
+            contentType={'movie'}
+          />
+          <SlideBox
+            title={'오늘의 시리즈 트렌드 랭킹'}
+            data={topTvRatedData?.results}
+            contentType={'tv'}
+          />
         </div>
       </Page>
     </div>

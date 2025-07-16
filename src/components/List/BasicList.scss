@@ -1,13 +1,13 @@
 .BasicList {
   display: flex;
   flex-direction: column;
+  padding: 0 $pagePadding;
   .listItem {
     width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 0.313rem;
-    padding: $px * 10 $pagePadding;
     border-bottom: 0.063rem solid var(--divider);
     font-size: 1rem;
     cursor: pointer;

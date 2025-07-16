@@ -1,21 +1,37 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import DelBtn from '../Button/DelBtn';
+import Poster from '../Poster/Poster';
+import { MvInfoKrTit } from '../MovieTitle/MovieTitle';
+import { useNavigate } from 'react-router-dom';
 
-const SlideList = ({ data, onClick, onDelete }) => {
+const SlideList = ({ data, contentType, onClick, onDelete }) => {
+  const navigate = useNavigate();
   return (
-    <Swiper modules={[FreeMode]} spaceBetween={5} slidesPerView="auto">
+    <Swiper modules={[FreeMode]} spaceBetween={10} slidesPerView="auto">
       {data.map((item, i) => (
         <SwiperSlide key={item.id ?? `${item.text}-${i}`}>
-          <span className="listItem">
-            <span onClick={() => onClick(item)}>{item.text}</span>
-            <DelBtn
-              onClick={e => {
-                e.preventDefault();
-                onDelete(item.id ?? item.text);
-              }}
-            />
-          </span>
+          {contentType ? (
+            <div
+              className="listPoster"
+              onClick={() => navigate(`/detail/${contentType}/${item.id}`)}
+            >
+              <Poster item={item} contentType={contentType} />
+              <MvInfoKrTit data={item} />
+            </div>
+          ) : (
+            <span className="listItem">
+              <span onClick={() => onClick(item)}>{item.text}</span>
+              {onDelete && (
+                <DelBtn
+                  onClick={e => {
+                    e.preventDefault();
+                    onDelete(item.id ?? item.text);
+                  }}
+                />
+              )}
+            </span>
+          )}
         </SwiperSlide>
       ))}
     </Swiper>

@@ -15,7 +15,17 @@ const fetchFromApi = async endpoint => {
 };
 //인기 영화 목록
 export const fetchTopRated = async () => {
-  return fetchFromApi(`/movie/popular?language=ko-KR&page=1`);
+  return fetchFromApi(`/movie/top_rated?language=ko-KR&page=1&region=KR`);
+};
+//현재상영 영화 목록
+export const fetchNowPlaying = async () => {
+  return fetchFromApi(`/movie/now_playing?language=ko-KR&page=1&region=KR`);
+};
+export const fetchPopular = async () => {
+  return fetchFromApi(`/movie/popular?language=ko-KR&page=1&region=KR`);
+};
+export const fetchUpcoming = async () => {
+  return fetchFromApi(`/movie/upcoming?language=ko-KR&page=1&region=KR`);
 };
 //인기 티비 목록
 export const fetchTvTopRated = async () => {

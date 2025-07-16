@@ -1,0 +1,29 @@
+.slideBox {
+  width: 100%;
+  padding: $pagePadding 0;
+  display: flex;
+  flex-direction: column;
+  gap: $px * 10;
+
+  .contentTit {
+    width: 100%;
+    font-size: $font-tit-mobile;
+    font-weight: 700;
+    padding: 0 $pagePadding;
+  }
+}
+
+@media (min-width: 768px) {
+  .slideBox {
+    .contentTit {
+      font-size: $font-tit-tablet;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .slideBox {
+    .contentTit {
+      font-size: $font-tit-pc;
+    }
+  }
+}

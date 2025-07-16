@@ -1,17 +1,19 @@
 .swiper {
-  padding: 0 $pagePadding;
+  width: 100%;
   overflow: hidden;
+  padding: 0 $pagePadding;
   .swiper-wrapper {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
     .swiper-slide {
-      padding: $px * 4 $px * 9;
-      border: $px solid var(--btn-line);
-      background-color: var(--btn-back);
-      border-radius: $px * 50;
-      color: var(--text-softBold);
       .listItem {
+        border: $px solid var(--btn-line);
+        border-radius: $px * 50;
+        padding: $px * 4 $px * 9;
+        color: var(--text-softBold);
+        background-color: var(--btn-back);
         width: 100%;
         display: flex;
         gap: $px * 5;
@@ -30,17 +32,26 @@
           margin-bottom: $px * 5;
         }
       }
+      .listPoster {
+        display: flex;
+        flex-direction: column;
+        gap: $px * 10;
+        width: $px * 125;
+      }
     }
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) {
   .swiper .swiper-wrapper .swiper-slide {
     .listItem {
       font-size: $font-caption-tablet;
     }
     .delBtn {
       font-size: $font-caption-tablet;
+    }
+    .listPoster {
+      width: $px * 160;
     }
   }
 }
@@ -52,6 +63,9 @@
     }
     .delBtn {
       font-size: $font-caption-pc;
+    }
+    .listPoster {
+      width: $px * 180;
     }
   }
 }

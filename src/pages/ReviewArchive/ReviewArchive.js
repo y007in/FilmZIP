@@ -25,9 +25,7 @@ const ReviewArchive = () => {
       : getLatestRecord();
   return (
     <div className="ReviewArchive">
-      <Page
-      // header={<Header title={'나의 아카이빙'} />}
-      >
+      <Page header={<Header title={'나의 아카이빙'} />}>
         <div className="recordContainer">
           <ul className="statusBox">
             <li
