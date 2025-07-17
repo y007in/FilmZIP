@@ -6,7 +6,6 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-
     .swiper-slide {
       .listItem {
         border: $px solid var(--btn-line);
@@ -43,15 +42,20 @@
 }
 
 @media (min-width: 768px) {
-  .swiper .swiper-wrapper .swiper-slide {
-    .listItem {
-      font-size: $font-caption-tablet;
-    }
-    .delBtn {
-      font-size: $font-caption-tablet;
-    }
-    .listPoster {
-      width: $px * 160;
+  .swiper {
+    padding: 0;
+    .swiper-wrapper {
+      .swiper-slide {
+        .listItem {
+          font-size: $font-caption-tablet;
+        }
+        .delBtn {
+          font-size: $font-caption-tablet;
+        }
+        .listPoster {
+          width: $px * 160;
+        }
+      }
     }
   }
 }

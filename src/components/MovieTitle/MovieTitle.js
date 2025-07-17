@@ -7,6 +7,7 @@ import {
   fetchTvRelease,
 } from '../../api/api';
 import { getBoolContentType } from '../../utils/getContentType';
+import { getContentType } from '../../utils/getContentType';
 
 export const MvInfoImage = ({ data, path, setIsLoaded }) => {
   return (
@@ -130,4 +131,8 @@ export const MvCertification = ({ id, contentType }) => {
   return badgeType ? (
     <Badge text={badgeType.label} badgeType={badgeType.badgeType} />
   ) : null;
+};
+
+export const ContentType = data => {
+  return <p className="typeBadge">{getContentType(data, '영화', '시리즈')}</p>;
 };

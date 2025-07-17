@@ -77,7 +77,15 @@
     }
   }
 }
-
+.statusBadge {
+  display: flex;
+  gap: $px * 5;
+}
+.typeBadge {
+  font-size: $font-caption-mobile;
+  color: var(--text-softBold);
+  padding: $px * 2;
+}
 @media (min-width: 768px) and (max-width: 1023px) {
   .mvInfoKrTit {
     font-size: $font-tit-tablet;
@@ -96,6 +104,9 @@
   }
   .genre {
     height: $px * 25;
+  }
+  .typeBadge {
+    font-size: $font-caption-tablet;
   }
 }
 
@@ -117,5 +128,8 @@
   }
   .genre {
     height: $px * 26;
+  }
+  .typeBadge {
+    font-size: $font-caption-pc;
   }
 }

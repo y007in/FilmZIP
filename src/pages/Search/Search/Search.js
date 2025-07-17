@@ -15,7 +15,7 @@ import NoResult from '../../../components/NoResult/NoResult';
 
 import { filterMovies } from '../../../utils/filterMovies';
 import {
-  fetchTopRated,
+  fetchPopular,
   fetchTvTopRated,
   fetchSearch,
   fetchTvSearch,
@@ -42,7 +42,7 @@ const Search = () => {
     queries: [
       {
         queryKey: ['top-rated'],
-        queryFn: fetchTopRated,
+        queryFn: fetchPopular,
         staleTime: 1000 * 60 * 1,
         gcTime: 1000 * 60 * 5,
       },

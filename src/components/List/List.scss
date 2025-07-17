@@ -1,7 +1,7 @@
 .List {
   width: 100%;
   max-width: $max-width;
-  margin-bottom: $px * 15;
+  margin-bottom: $pagePadding;
   .listHeader {
     width: 100%;
     display: flex;
@@ -24,9 +24,11 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) {
   .List {
+    margin-bottom: $pagePadding * 2;
     .listHeader {
+      padding: 0 0 $px * 8 0;
       .listTit {
         font-size: $font-tit-tablet;
       }

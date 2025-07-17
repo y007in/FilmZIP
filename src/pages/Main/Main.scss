@@ -82,12 +82,14 @@
       align-items: center;
       gap: $px * 10;
       width: 100%;
-      height: $px * 300;
+      height: auto;
       background: linear-gradient(135deg, #5db996 0%, #ff6f91 100%);
       border-radius: $px * 10;
-      h1 {
-        font-size: $font-headline-mobile;
+      .introComment {
+        font-size: $font-tit-mobile;
         color: $white;
+        padding: $pagePadding;
+        text-align: left;
       }
     }
   }

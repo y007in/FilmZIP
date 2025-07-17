@@ -1,5 +1,10 @@
 import Poster from '../Poster/Poster';
-import { MvGenre, MvInfoKrTit, MvInfoOgTit } from '../MovieTitle/MovieTitle';
+import {
+  ContentType,
+  MvGenre,
+  MvInfoKrTit,
+  MvInfoOgTit,
+} from '../MovieTitle/MovieTitle';
 import Badge from '../Badge/Badge';
 import { getWatchStatusLabel } from '../../constants/formField';
 import { getContentType } from '../../utils/getContentType';
@@ -26,14 +31,7 @@ const MovieList = ({ list, date, search, onClick }) => {
             {search ? (
               <>
                 <MvInfoOgTit data={item} />
-                {/* <MvGenre
-                  data={item.genre_ids}
-                  slice={3}
-                  contentType={getContentType(item, 'movie', 'tv')}
-                /> */}
-                <p className="typeBadge">
-                  {getContentType(item, '영화', '시리즈')}
-                </p>
+                <ContentType data={item} />
               </>
             ) : (
               <div className="statusData">
