@@ -4,13 +4,11 @@ import DelBtn from '../Button/DelBtn';
 import Poster from '../Poster/Poster';
 import { ContentType, MvInfoKrTit } from '../MovieTitle/MovieTitle';
 import { useNavigate } from 'react-router-dom';
-import { getContentType } from '../../utils/getContentType';
-
 const SlideList = ({ data, contentType, onClick, onDelete }) => {
   const navigate = useNavigate();
   return (
     <Swiper modules={[FreeMode]} spaceBetween={10} slidesPerView="auto">
-      {data?.map((item, i) => (
+      {data?.results?.map((item, i) => (
         <SwiperSlide key={item.id ?? `${item.text}-${i}`}>
           {contentType ? (
             <div

@@ -1,20 +1,45 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import SlideList from './SlideList';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode } from 'swiper/modules';
+import DelBtn from '../Button/DelBtn';
+import Poster from '../Poster/Poster';
+import { ContentType, MvInfoKrTit } from '../MovieTitle/MovieTitle';
 import { useNavigate } from 'react-router-dom';
+import { getContentType } from '../../utils/getContentType';
 
-const SlideBox = ({ title, data, contentType, nav }) => {
+const SlideList = ({ data, contentType, onClick, onDelete }) => {
   const navigate = useNavigate();
   return (
-    <article className="slideBox">
-      <div className="slideBoxHead">
-        <h1 className="contentTit">{title}</h1>
-        <FontAwesomeIcon icon={faAngleRight} onClick={() => navigate(nav)} />
-      </div>
-
-      <SlideList data={data} contentType={contentType} />
-    </article>
+    <div className="slideBox">
+      <Swiper modules={[FreeMode]} spaceBetween={10} slidesPerView="auto">
+        {data?.map((item, i) => (
+          <SwiperSlide key={item.id ?? `${item.text}-${i}`}>
+            {contentType ? (
+              <div
+                className="listPoster"
+                onClick={() => navigate(`/detail/${contentType}/${item.id}`)}
+              >
+                <Poster item={item} contentType={contentType} />
+                <MvInfoKrTit data={item} />
+                <ContentType data={item} />
+              </div>
+            ) : (
+              <span className="listItem">
+                <span onClick={() => onClick(item)}>{item.text}</span>
+                {onDelete && (
+                  <DelBtn
+                    onClick={e => {
+                      e.preventDefault();
+                      onDelete(item.id ?? item.text);
+                    }}
+                  />
+                )}
+              </span>
+            )}
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   );
 };
 
-export default SlideBox;
+export default SlideList;

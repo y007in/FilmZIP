@@ -77,10 +77,7 @@
     }
   }
 }
-.statusBadge {
-  display: flex;
-  gap: $px * 5;
-}
+
 .typeBadge {
   font-size: $font-caption-mobile;
   color: var(--text-softBold);
