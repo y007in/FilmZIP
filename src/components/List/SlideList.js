@@ -8,7 +8,7 @@ const SlideList = ({ data, contentType, onClick, onDelete }) => {
   const navigate = useNavigate();
   return (
     <Swiper modules={[FreeMode]} spaceBetween={10} slidesPerView="auto">
-      {data?.results?.map((item, i) => (
+      {data?.map((item, i) => (
         <SwiperSlide key={item.id ?? `${item.text}-${i}`}>
           {contentType ? (
             <div

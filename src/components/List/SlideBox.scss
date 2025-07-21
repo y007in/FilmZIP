@@ -12,9 +12,11 @@
       width: 100%;
       font-size: $font-tit-mobile;
       font-weight: 700;
-      strong {
-        color: $stopWatch;
-      }
+    }
+    .fullList {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
     }
   }
 }
