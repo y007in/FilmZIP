@@ -5,13 +5,9 @@ import Loading from '../../components/StatusPage/Loading/Loading';
 import SlideBox from '../../components/List/SlideBox';
 import { fetchMovieTrend, fetchTvTrend, fetchUpcoming } from '../../api/api';
 import { useRecordList } from '../../hooks/useRecordList';
-import { useAllAiring } from '../../utils/apiFilter';
+import { useAiringList, latestComingList } from '../../utils/apiFilter';
 
 const Main = () => {
-  const { recordList, getNoDupRecordList } = useRecordList();
-  const { allAiring, airingLoading, airingError } = useAllAiring();
-
-  const noDupRecordLists = getNoDupRecordList(recordList);
   const [
     { data: upcomingData, isLoading: upcomingLoading, error: upcomingError },
 
@@ -44,11 +40,16 @@ const Main = () => {
       },
     ],
   });
+  const { recordList, getNoDupRecordList } = useRecordList();
+  const { allAiring, airingLoading, airingError } = useAiringList();
+  const noDupRecordLists = getNoDupRecordList(recordList);
+  const latestComing = latestComingList(upcomingData);
 
   const navigate = useNavigate();
 
-  if (airingLoading && movieTrendLoading && upcomingLoading) return <Loading />;
-  const error = airingError || movieTrendError || upcomingError;
+  if (airingLoading && movieTrendLoading && tvTrendLoading && upcomingLoading)
+    return <Loading />;
+  const error = airingError || movieTrendError || tvTrendError || upcomingError;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
@@ -66,8 +67,8 @@ const Main = () => {
         }
       >
         <div className="banner">
+          <h1 className="introComment">오늘의 관람 기록을 남겨보세요 📝</h1>
           <div className="bannerHeadLine">
-            {/* <h1 className="introComment">오늘의 관람 기록을 남겨보세요</h1> */}
             <SlideBox
               title={'나의 아카이빙'}
               data={noDupRecordLists}
@@ -77,16 +78,17 @@ const Main = () => {
           </div>
         </div>
         <div className="topList">
-          {' '}
           <SlideBox
             title={'이번주 영화 트렌드 랭킹'}
             data={movieTrendData?.results}
             contentType={'movie'}
+            nav={'/collection'}
           />
           <SlideBox
             title={'이번주 시리즈 트렌드 랭킹'}
             data={tvTrendData?.results}
-            contentType={'movie'}
+            contentType={'tv'}
+            nav={'/collection'}
           />
           <SlideBox
             title={'오늘은 이거 볼까요?'}
@@ -95,8 +97,10 @@ const Main = () => {
           />
           <SlideBox
             title={'영화 개봉 예정작'}
-            data={upcomingData?.results}
+            data={latestComing}
             contentType={'movie'}
+            nav={'/collection'}
+            dayCount
           />
         </div>
       </Page>

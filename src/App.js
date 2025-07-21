@@ -17,6 +17,7 @@ function App() {
             <Route path="/search" element={<Search />}></Route>
             <Route path="/detail/:contentType/:id" element={<Detail />}></Route>
             <Route path="/review" element={<ReviewArchive />}></Route>
+            <Route path="/collection" element={<ReviewArchive />}></Route>
             <Route path="/review/:contentType/:id" element={<Review />}></Route>
           </Routes>
         </BrowserRouter>

@@ -30,51 +30,14 @@
     }
   }
 
-  .recordContainer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    .statusBox {
-      display: flex;
-      width: 100%;
-      padding-top: $pagePadding;
-      .statusBtn {
-        width: calc(100% / 4);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: $px * 8;
-        padding: $pagePadding;
-        white-space: nowrap;
-        background-color: var(--btn-back);
-        border: $px solid var(--btn-line);
-        border-right: none;
-        cursor: pointer;
-        font-size: $font-base-mobile;
-        &:last-child {
-          border-right: $px solid var(--btn-line);
-        }
-        &.active {
-          border-top: $px * 2 solid var(--main-color);
-          border-bottom: none;
-          background-color: var(--bg-div-color);
-        }
-      }
-    }
-    .recordList {
-      width: 100%;
-      padding: $pagePadding 0;
-      background-color: var(--bg-div-color);
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-    }
-  }
   .banner {
     width: 100%;
     padding: $pagePadding;
+    .introComment {
+      font-size: $font-headline-mobile;
+      padding: 0 $pagePadding / 2 $pagePadding;
+      font-weight: 700;
+    }
     .bannerHeadLine {
       display: flex;
       flex-direction: column;
@@ -85,12 +48,6 @@
       height: auto;
       background: linear-gradient(135deg, #5db996 0%, #ff6f91 100%);
       border-radius: $px * 10;
-      .introComment {
-        font-size: $font-tit-mobile;
-        color: $white;
-        padding: $pagePadding;
-        text-align: left;
-      }
     }
   }
   .topList {
@@ -102,54 +59,17 @@
 }
 
 @media (min-width: 768px) {
-  .MainPage .recordContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    margin: $pagePadding;
-
-    .statusBox {
-      position: relative;
-      width: auto;
-      display: flex;
-      flex-direction: column;
-      padding-top: 0;
-      padding-left: $pagePadding;
-      .statusBtn {
-        display: flex;
-        width: $px * 100;
-        aspect-ratio: 1/1;
-        border: $px solid var(--btn-line);
-        border-bottom: none;
-        font-size: $font-caption-tablet;
-        padding: $px * 8;
-        margin-right: $px * -1;
-        &:last-child {
-          border-bottom: $px solid var(--btn-line);
-        }
-        &.active {
-          border-left: $px * 2 solid var(--main-color);
-          border-top: $px solid var(--btn-line);
-          border-right: none;
-        }
-      }
-    }
-    .recordList {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      width: 100%;
-      min-height: calc(100dvh - $headerHeight - $pagePadding * 2);
-      padding: $pagePadding;
-      margin-right: $pagePadding;
-      border: $px solid var(--btn-line);
-      border-radius: 0 $px * 3 $px * 3;
+  .MainPage {
+    .banner .introComment {
+      font-size: $font-headline-tablet;
     }
   }
 }
 
 @media (min-width: 1024px) {
-  .MainPage .recordContainer .statusBtn {
-    font-size: $font-caption-pc;
+  .MainPage {
+    .banner .introComment {
+      font-size: $font-headline-pc;
+    }
   }
 }

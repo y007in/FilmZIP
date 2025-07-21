@@ -1,10 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import DelBtn from '../Button/DelBtn';
 import Poster from '../Poster/Poster';
 import { ContentType, MvInfoKrTit } from '../MovieTitle/MovieTitle';
-import { useNavigate } from 'react-router-dom';
-const SlideList = ({ data, contentType, onClick, onDelete }) => {
+const SlideList = ({ data, contentType, onClick, onDelete, dayCount }) => {
   const navigate = useNavigate();
   return (
     <Swiper modules={[FreeMode]} spaceBetween={10} slidesPerView="auto">
@@ -15,7 +15,11 @@ const SlideList = ({ data, contentType, onClick, onDelete }) => {
               className="listPoster"
               onClick={() => navigate(`/detail/${contentType}/${item.id}`)}
             >
-              <Poster item={item} contentType={contentType} />
+              <Poster
+                item={item}
+                contentType={contentType}
+                dayCount={dayCount}
+              />
               <MvInfoKrTit data={item} />
               <ContentType data={item} />
             </div>

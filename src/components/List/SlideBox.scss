@@ -12,8 +12,11 @@
       width: 100%;
       font-size: $font-tit-mobile;
       font-weight: 700;
+      margin-left: $px * 5;
     }
     .fullList {
+      width: $px * 35;
+      height: 100%;
       background-color: transparent;
       border: none;
       cursor: pointer;
@@ -33,7 +36,7 @@
   }
 }
 @media (min-width: 1024px) {
-  .slideBox {
+  .slideBox .slideBoxHead {
     .contentTit {
       font-size: $font-tit-pc;
     }

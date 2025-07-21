@@ -66,6 +66,9 @@
       }
     }
   }
+  .rankContainer {
+    padding: $pagePadding;
+  }
 }
 @media (min-width: 768px) {
   .ReviewArchive .recordContainer {

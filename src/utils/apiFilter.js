@@ -1,7 +1,7 @@
 import { useQueries } from '@tanstack/react-query';
 import { fetchNowPlaying, fetchTvOnAir } from '../api/api';
 
-export const useAllAiring = () => {
+export const useAiringList = () => {
   const [
     {
       data: nowPlayingData,
@@ -31,20 +31,20 @@ export const useAllAiring = () => {
   const airingError = nowPlayingError || tvAiringError;
 
   const nowPlaying =
-    nowPlayingData?.results?.slice(0, 5).map(item => ({
+    nowPlayingData?.results?.map(item => ({
       ...item,
       contentType: 'movie',
     })) || [];
 
   const tvAiring =
-    tvAiringData?.results?.slice(0, 5).map(item => ({
+    tvAiringData?.results?.map(item => ({
       ...item,
       contentType: 'tv',
     })) || [];
 
   const airingList = [...nowPlaying, ...tvAiring];
 
-  const allAiring = airingList.sort(() => Math.random() - 0.5);
+  const allAiring = airingList.sort(() => Math.random() - 0.5).slice(0, 7);
 
   return {
     airingLoading,
@@ -52,3 +52,8 @@ export const useAllAiring = () => {
     allAiring,
   };
 };
+
+export const latestComingList = data =>
+  data?.results
+    .filter(item => item.release_date)
+    .sort((a, b) => new Date(a.release_date) - new Date(b.release_date));

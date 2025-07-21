@@ -1,7 +1,6 @@
 import Poster from '../Poster/Poster';
 import {
   ContentType,
-  MvGenre,
   MvInfoKrTit,
   MvInfoOgTit,
 } from '../MovieTitle/MovieTitle';
