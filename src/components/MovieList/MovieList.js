@@ -30,7 +30,7 @@ const MovieList = ({ list, date, search, onClick }) => {
             {search ? (
               <>
                 <MvInfoOgTit data={item} />
-                <ContentType data={item} />
+                {/* <ContentType data={item} /> */}
               </>
             ) : (
               <div className="statusData">

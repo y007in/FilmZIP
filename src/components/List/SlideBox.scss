@@ -20,6 +20,9 @@
       background-color: transparent;
       border: none;
       cursor: pointer;
+      svg path {
+        color: var(--text-color);
+      }
     }
   }
 }

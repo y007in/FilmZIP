@@ -21,25 +21,27 @@ const Main = () => {
     queries: [
       {
         queryKey: ['upcoming'],
-        queryFn: fetchUpcoming,
+        queryFn: ({ page = 1 }) => fetchUpcoming(page),
         staleTime: 1000 * 60 * 10,
         gcTime: 1000 * 60 * 30,
       },
 
       {
-        queryKey: ['movie-trend'],
-        queryFn: fetchMovieTrend,
+        queryKey: ['movieTrend'],
+        queryFn: ({ page = 1 }) => fetchMovieTrend(page),
         staleTime: 1000 * 60 * 10,
         gcTime: 1000 * 60 * 30,
       },
       {
-        queryKey: ['tv-trend'],
-        queryFn: fetchTvTrend,
+        queryKey: ['tvTrend'],
+        queryFn: ({ page = 1 }) => fetchTvTrend(page),
         staleTime: 1000 * 60 * 10,
         gcTime: 1000 * 60 * 30,
       },
     ],
   });
+
+  console.log(tvTrendData);
   const { recordList, getNoDupRecordList } = useRecordList();
   const { allAiring, airingLoading, airingError } = useAiringList();
   const noDupRecordLists = getNoDupRecordList(recordList);
@@ -83,12 +85,14 @@ const Main = () => {
             data={movieTrendData?.results}
             contentType={'movie'}
             nav={'/collection'}
+            type={'movieTrend'}
           />
           <SlideBox
             title={'이번주 시리즈 트렌드 랭킹'}
             data={tvTrendData?.results}
             contentType={'tv'}
             nav={'/collection'}
+            type={'tvTrend'}
           />
           <SlideBox
             title={'오늘은 이거 볼까요?'}
@@ -100,6 +104,7 @@ const Main = () => {
             data={latestComing}
             contentType={'movie'}
             nav={'/collection'}
+            type={'upcoming'}
             dayCount
           />
         </div>

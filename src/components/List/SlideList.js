@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import DelBtn from '../Button/DelBtn';
 import Poster from '../Poster/Poster';
-import { ContentType, MvInfoKrTit } from '../MovieTitle/MovieTitle';
+import { MvInfoKrTit } from '../MovieTitle/MovieTitle';
 const SlideList = ({ data, contentType, onClick, onDelete, dayCount }) => {
   const navigate = useNavigate();
   return (
@@ -21,7 +21,7 @@ const SlideList = ({ data, contentType, onClick, onDelete, dayCount }) => {
                 dayCount={dayCount}
               />
               <MvInfoKrTit data={item} />
-              <ContentType data={item} />
+              {/* <ContentType data={item} /> */}
             </div>
           ) : (
             <span className="listItem">

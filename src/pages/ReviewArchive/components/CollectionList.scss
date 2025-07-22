@@ -1,0 +1,15 @@
+.rankContainer {
+  padding: 0;
+  .spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: $pagePadding;
+  }
+}
+
+@media (min-width: 768px) {
+  .rankContainer {
+    padding: $pagePadding;
+  }
+}

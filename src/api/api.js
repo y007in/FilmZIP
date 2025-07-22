@@ -14,11 +14,11 @@ const fetchFromApi = async endpoint => {
   return response.json();
 };
 //트렌드
-export const fetchMovieTrend = async () => {
-  return fetchFromApi(`/trending/movie/week?language=ko-KR`);
+export const fetchMovieTrend = async page => {
+  return fetchFromApi(`/trending/movie/week?language=ko-KR&page=${page}`);
 };
-export const fetchTvTrend = async () => {
-  return fetchFromApi(`/trending/tv/week?language=ko-KR`);
+export const fetchTvTrend = async page => {
+  return fetchFromApi(`/trending/tv/week?language=ko-KR&${page}`);
 };
 
 //인기
@@ -37,8 +37,8 @@ export const fetchTvOnAir = async () => {
   return fetchFromApi(`/tv/airing_today?language=ko-KR&region=KR&page=1`);
 };
 //개봉 예정 영화
-export const fetchUpcoming = async () => {
-  return fetchFromApi(`/movie/upcoming?language=ko-KR&page=1&region=KR`);
+export const fetchUpcoming = async page => {
+  return fetchFromApi(`/movie/upcoming?language=ko-KR&page=${page}&region=KR`);
 };
 
 //장르
