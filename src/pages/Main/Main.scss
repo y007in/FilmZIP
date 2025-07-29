@@ -46,7 +46,7 @@
       gap: $px * 10;
       width: 100%;
       height: auto;
-      background: linear-gradient(135deg, #5db996 0%, #ff6f91 100%);
+      background-color: var(--bg-div-color);
       border-radius: $px * 10;
     }
   }

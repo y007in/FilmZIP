@@ -1,14 +1,9 @@
+import { dDayCount } from '../../utils/dDayCount';
 import Badge from '../Badge/Badge';
 import { MvCertification, MvInfoImage } from '../MovieTitle/MovieTitle';
 
 const Poster = ({ item, age, contentType, dayCount }) => {
-  const today = new Date();
-  const releaseDate = new Date(item.release_date);
-
-  const diff = releaseDate - today;
-  const diffDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const dDay = diffDays >= 0 ? `D-${diffDays}` : '';
-
+  const dDay = dDayCount(item);
   return (
     <article className="mvInfoImg">
       {item.poster_path !== null ? (

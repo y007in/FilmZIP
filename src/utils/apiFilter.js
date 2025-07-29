@@ -55,5 +55,9 @@ export const useAiringList = () => {
 
 export const latestComingList = data =>
   data?.results
-    .filter(item => item.release_date)
+    .filter(item => {
+      const today = new Date();
+      const releaseDate = new Date(item.release_date);
+      return item.release_date && releaseDate >= today.setHours(0, 0, 0, 0);
+    })
     .sort((a, b) => new Date(a.release_date) - new Date(b.release_date));

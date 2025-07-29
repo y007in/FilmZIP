@@ -1,7 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchUpcoming, fetchTvTrend, fetchMovieTrend } from '../api/api';
 
-// type에 따라 다른 fetch 함수를 매핑
 const fetchFnMap = {
   upcoming: fetchUpcoming,
   tvTrend: fetchTvTrend,

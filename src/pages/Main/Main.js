@@ -41,7 +41,6 @@ const Main = () => {
     ],
   });
 
-  console.log(tvTrendData);
   const { recordList, getNoDupRecordList } = useRecordList();
   const { allAiring, airingLoading, airingError } = useAiringList();
   const noDupRecordLists = getNoDupRecordList(recordList);
