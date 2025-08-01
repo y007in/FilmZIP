@@ -75,6 +75,9 @@
       border-radius: $px * 50;
       box-shadow: 1px 1px 4px 0px rgba($black, 0.1);
       cursor: pointer;
+      svg {
+        color: var(--text-color);
+      }
     }
   }
 }

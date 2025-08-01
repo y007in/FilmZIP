@@ -22,7 +22,12 @@ const SlideBox = ({ title, data, contentType, nav, dayCount, type }) => {
           </button>
         )}
       </div>
-      <SlideList data={data} contentType={contentType} dayCount={dayCount} />
+      <SlideList
+        data={data}
+        contentType={contentType}
+        dayCount={dayCount}
+        nav={nav}
+      />
     </article>
   );
 };
