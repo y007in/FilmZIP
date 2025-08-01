@@ -133,6 +133,6 @@ export const MvCertification = ({ id, contentType }) => {
   ) : null;
 };
 
-export const ContentType = data => {
+export const ContentType = ({ data }) => {
   return <p className="typeBadge">{getContentType(data, '영화', '시리즈')}</p>;
 };

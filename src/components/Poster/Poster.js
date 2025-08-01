@@ -1,4 +1,4 @@
-import { dDayCount } from '../../utils/dDayCount';
+import { dDayCount } from '../../utils/movieDateUtils';
 import Badge from '../Badge/Badge';
 import { MvCertification, MvInfoImage } from '../MovieTitle/MovieTitle';
 

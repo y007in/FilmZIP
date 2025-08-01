@@ -1,6 +1,7 @@
 import Poster from '../Poster/Poster';
 import {
   ContentType,
+  // ContentType,
   MvInfoKrTit,
   MvInfoOgTit,
 } from '../MovieTitle/MovieTitle';
@@ -8,7 +9,7 @@ import Badge from '../Badge/Badge';
 import { getWatchStatusLabel } from '../../constants/formField';
 import { getContentType } from '../../utils/getContentType';
 
-const MovieList = ({ list, date, search, onClick }) => {
+const MovieList = ({ list, date, search, title, onClick }) => {
   return (
     <ul className="mvCard">
       {list?.map(item => (
@@ -21,7 +22,9 @@ const MovieList = ({ list, date, search, onClick }) => {
             <Poster
               key={item.id}
               item={item}
-              age
+              {...(title === '영화 개봉 예정작'
+                ? { dayCount: true }
+                : { age: true })}
               contentType={getContentType(item, 'movie', 'tv')}
             />
           </aside>
@@ -30,7 +33,7 @@ const MovieList = ({ list, date, search, onClick }) => {
             {search ? (
               <>
                 <MvInfoOgTit data={item} />
-                {/* <ContentType data={item} /> */}
+                <ContentType data={item} />
               </>
             ) : (
               <div className="statusData">

@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import { getTodayString } from '../utils/today';
 
 export const useMovieForm = (movieRecord = null) => {
-  const today = new Date().toISOString().substring(0, 10);
-
+  const today = getTodayString();
   const initialData = movieRecord
     ? {
         checked: {

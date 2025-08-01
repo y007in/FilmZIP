@@ -5,7 +5,8 @@ import Loading from '../../components/StatusPage/Loading/Loading';
 import SlideBox from '../../components/List/SlideBox';
 import { fetchMovieTrend, fetchTvTrend, fetchUpcoming } from '../../api/api';
 import { useRecordList } from '../../hooks/useRecordList';
-import { useAiringList, latestComingList } from '../../utils/apiFilter';
+import { useAiringList } from '../../utils/apiFilter';
+import { latestComingList } from '../../utils/movieDateUtils';
 
 const Main = () => {
   const [
@@ -93,11 +94,11 @@ const Main = () => {
             nav={'/collection'}
             type={'tvTrend'}
           />
-          <SlideBox
+          {/* <SlideBox
             title={'오늘은 이거 볼까요?'}
             data={allAiring}
-            contentType={'movie'}
-          />
+            // contentType={'movie'}
+          /> */}
           <SlideBox
             title={'영화 개봉 예정작'}
             data={latestComing}

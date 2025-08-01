@@ -15,7 +15,7 @@ const SlideBox = ({ title, data, contentType, nav, dayCount, type }) => {
               icon={faAngleRight}
               onClick={() =>
                 navigate(`${nav}?title=${encodeURIComponent(title)}`, {
-                  state: { data, contentType, title, type },
+                  state: { contentType, title, type },
                 })
               }
             />
