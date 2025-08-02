@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import SlideList from './SlideList';
+import SlideList from '../Slide/SlideList';
 
 const SlideBox = ({ title, data, contentType, nav, dayCount, type }) => {
   const navigate = useNavigate();

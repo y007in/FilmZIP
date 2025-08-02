@@ -1,5 +1,5 @@
 import BasicList from './BasicList';
-import SlideList from './SlideList';
+import SlideList from '../Slide/SlideList';
 
 const List = ({ title, type, data, onClick, renderItem, allDel, onDelete }) => {
   return (

@@ -9,7 +9,12 @@ import { MvInfoKrTit, ContentType } from '../MovieTitle/MovieTitle';
 const SlideList = ({ data, contentType, onClick, onDelete, dayCount, nav }) => {
   const navigate = useNavigate();
   return (
-    <Swiper modules={[FreeMode]} spaceBetween={10} slidesPerView="auto">
+    <Swiper
+      modules={[FreeMode]}
+      spaceBetween={10}
+      slidesPerView="auto"
+      className="slideSwiper"
+    >
       {data?.map((item, i) => (
         <SwiperSlide key={item.id ?? `${item.text}-${i}`}>
           {contentType ? (
@@ -26,8 +31,10 @@ const SlideList = ({ data, contentType, onClick, onDelete, dayCount, nav }) => {
                 contentType={contentType}
                 dayCount={dayCount}
               />
-              <MvInfoKrTit data={item} />
-              <ContentType data={item} />
+              <div className="posterTit">
+                <MvInfoKrTit data={item} />
+                <ContentType data={item} />
+              </div>
             </div>
           ) : (
             <span className="listItem">

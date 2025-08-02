@@ -1,0 +1,106 @@
+.bannerSwipe {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 $pagePadding;
+  .swiper-wrapper {
+    display: flex;
+
+    .swiper-slide {
+      width: 100%;
+      position: relative;
+      border-radius: $px * 10;
+      cursor: pointer;
+      .air {
+        border-radius: $px * 10;
+        width: inherit;
+        height: auto;
+        object-fit: cover;
+        overflow: hidden;
+      }
+      .bannerItemTit {
+        position: absolute;
+        bottom: $px * 30;
+        left: $px * 30;
+        color: $white;
+        .mvInfoKrTit {
+          font-size: $font-headline-mobile;
+        }
+        .typeBadge {
+          color: $white;
+        }
+      }
+    }
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: $pagePadding;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    background-color: rgba($black, 0);
+    &::after {
+      content: '';
+      display: block;
+      width: $px * 10;
+      height: $px * 10;
+      border-top: $px solid $white;
+      border-right: $px solid $white;
+      position: absolute;
+      top: 50%;
+    }
+  }
+  .swiper-button-prev {
+    left: 0;
+    &::after {
+      transform: rotate(225deg);
+      right: 0;
+    }
+  }
+
+  .swiper-button-next {
+    right: 0;
+    &::after {
+      transform: rotate(45deg);
+      left: 0;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .bannerSwipe {
+    height: $px * 300;
+    padding: 0 $pagePadding * 3;
+    .swiper-wrapper {
+      height: inherit;
+      .swiper-slide {
+        height: inherit;
+        .air {
+          height: inherit;
+        }
+        .bannerItemTit {
+          .mvInfoKrTit {
+            font-size: $font-headline-tablet;
+          }
+        }
+      }
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+      width: $pagePadding * 3;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .bannerSwipe {
+    height: $px * 500;
+    // max-width: $max-width;
+    .swiper-wrapper {
+      .swiper-slide {
+      }
+    }
+  }
+}

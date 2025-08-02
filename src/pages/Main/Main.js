@@ -3,6 +3,7 @@ import { useQueries } from '@tanstack/react-query';
 import Page from '../../components/Page/Page';
 import Loading from '../../components/StatusPage/Loading/Loading';
 import SlideBox from '../../components/List/SlideBox';
+import SlideNav from '../../components/Slide/SlideNav';
 import { fetchMovieTrend, fetchTvTrend, fetchUpcoming } from '../../api/api';
 import { useRecordList } from '../../hooks/useRecordList';
 import { useAiringList } from '../../utils/apiFilter';
@@ -68,8 +69,11 @@ const Main = () => {
           </div>
         }
       >
+        <div className="airBanner">
+          <SlideNav data={allAiring} />
+        </div>
         <div className="banner">
-          <h1 className="introComment">오늘의 관람 기록을 남겨보세요 📝</h1>
+          {/* <h1 className="introComment">오늘의 관람 기록을 남겨보세요 📝</h1> */}
           <div className="bannerHeadLine">
             <SlideBox
               title={'나의 아카이빙'}
@@ -80,33 +84,32 @@ const Main = () => {
           </div>
         </div>
         <div className="topList">
-          <SlideBox
-            title={'이번주 영화 트렌드 랭킹'}
-            data={movieTrendData?.results}
-            contentType={'movie'}
-            nav={'/collection'}
-            type={'movieTrend'}
-          />
-          <SlideBox
-            title={'이번주 시리즈 트렌드 랭킹'}
-            data={tvTrendData?.results}
-            contentType={'tv'}
-            nav={'/collection'}
-            type={'tvTrend'}
-          />
-          {/* <SlideBox
-            title={'오늘은 이거 볼까요?'}
-            data={allAiring}
-            // contentType={'movie'}
-          /> */}
-          <SlideBox
-            title={'영화 개봉 예정작'}
-            data={latestComing}
-            contentType={'movie'}
-            nav={'/collection'}
-            type={'upcoming'}
-            dayCount
-          />
+          <article className="slideContain">
+            <SlideBox
+              title={'이번주 영화 트렌드 랭킹'}
+              data={movieTrendData?.results}
+              contentType={'movie'}
+              nav={'/collection'}
+              type={'movieTrend'}
+            />
+            <SlideBox
+              title={'이번주 시리즈 트렌드 랭킹'}
+              data={tvTrendData?.results}
+              contentType={'tv'}
+              nav={'/collection'}
+              type={'tvTrend'}
+            />
+          </article>
+          <article className="slideContain">
+            <SlideBox
+              title={'영화 개봉 예정작'}
+              data={latestComing}
+              contentType={'movie'}
+              nav={'/collection'}
+              type={'upcoming'}
+              dayCount
+            />
+          </article>
         </div>
       </Page>
     </div>

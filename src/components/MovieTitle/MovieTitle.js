@@ -28,7 +28,7 @@ export const MvInfoOgTit = ({ data }) => {
   );
 };
 export const MvInfoTagLine = ({ data }) => {
-  return <p className="mvInfoTagLine">{data.tagline}</p>;
+  return data.tagline && <p className="mvInfoTagLine">{data.tagline}</p>;
 };
 export const MvInfoOverview = ({ data }) => {
   return (

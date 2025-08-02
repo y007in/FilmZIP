@@ -1,4 +1,4 @@
-.swiper {
+.slideSwiper {
   width: 100%;
   overflow: hidden;
   padding: 0 $pagePadding;
@@ -34,15 +34,20 @@
       .listPoster {
         display: flex;
         flex-direction: column;
-        gap: $px * 10;
+        gap: $px * 8;
         width: $px * 125;
+        .posterTit {
+          display: flex;
+          flex-direction: column;
+          gap: $px * 3;
+        }
       }
     }
   }
 }
 
 @media (min-width: 768px) {
-  .swiper {
+  .slideSwiper {
     padding: 0;
     .swiper-wrapper {
       .swiper-slide {
