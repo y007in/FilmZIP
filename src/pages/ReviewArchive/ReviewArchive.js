@@ -9,12 +9,11 @@ const ReviewArchive = () => {
   const data = location.state?.data;
   const [params] = useSearchParams();
   const title = params.get('title');
-  console.log(data);
 
   return (
     <div className="ReviewArchive">
       <Page header={<Header title={title} />}>
-        {title === '나의 아카이빙' ? <RecordTab /> : <CollectionList />}
+        {title === '내가 본 영화' ? <RecordTab /> : <CollectionList />}
       </Page>
     </div>
   );

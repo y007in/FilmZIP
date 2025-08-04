@@ -32,16 +32,12 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-top: $pagePadding;
   }
   .banner {
     width: 100%;
     max-width: $max-width;
-    margin: $pagePadding;
-    .introComment {
-      font-size: $font-headline-mobile;
-      padding: 0 $pagePadding / 2 $pagePadding;
-      font-weight: 700;
-    }
+    padding: $pagePadding;
     .bannerHeadLine {
       display: flex;
       flex-direction: column;
@@ -60,21 +56,5 @@
     flex-direction: column;
     gap: $px * 10;
     max-width: $max-width;
-  }
-}
-
-@media (min-width: 768px) {
-  .MainPage {
-    .banner .introComment {
-      font-size: $font-headline-tablet;
-    }
-  }
-}
-
-@media (min-width: 1024px) {
-  .MainPage {
-    .banner .introComment {
-      font-size: $font-headline-pc;
-    }
   }
 }

@@ -4,30 +4,69 @@
   overflow: hidden;
   padding: 0 $pagePadding;
   .swiper-wrapper {
+    width: 100%;
+    height: 100%;
     display: flex;
-
     .swiper-slide {
       width: 100%;
+      height: 100%;
       position: relative;
       border-radius: $px * 10;
       cursor: pointer;
-      .air {
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: '';
+        width: 100%;
+        height: 100%;
+        background-color: rgba($black, 0.7);
         border-radius: $px * 10;
+      }
+      &.swiper-slide-active {
+        &::after {
+          position: absolute;
+          top: 0;
+          left: 0;
+          content: '';
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            to right,
+            rgba($black, 0.8) 0%,
+            rgba($black, 0.4) 50%,
+            rgba($black, 0) 100%
+          );
+          border-radius: $px * 10;
+        }
+        .bannerBadge {
+          position: absolute;
+          top: $pagePadding;
+          left: $pagePadding;
+          z-index: 1;
+        }
+      }
+      .air {
         width: inherit;
-        height: auto;
+        height: inherit;
         object-fit: cover;
+        border-radius: $px * 10;
         overflow: hidden;
+      }
+      .bannerBadge {
+        position: absolute;
+        top: $pagePadding;
+        left: $pagePadding;
+        z-index: -1;
       }
       .bannerItemTit {
         position: absolute;
-        bottom: $px * 30;
-        left: $px * 30;
+        bottom: $pagePadding;
+        left: $pagePadding;
         color: $white;
+        z-index: 1;
         .mvInfoKrTit {
           font-size: $font-headline-mobile;
-        }
-        .typeBadge {
-          color: $white;
         }
       }
     }
@@ -45,8 +84,8 @@
     &::after {
       content: '';
       display: block;
-      width: $px * 10;
-      height: $px * 10;
+      width: $px * 7;
+      height: $px * 7;
       border-top: $px solid $white;
       border-right: $px solid $white;
       position: absolute;
@@ -54,7 +93,7 @@
     }
   }
   .swiper-button-prev {
-    left: 0;
+    left: $px * -1;
     &::after {
       transform: rotate(225deg);
       right: 0;
@@ -62,7 +101,7 @@
   }
 
   .swiper-button-next {
-    right: 0;
+    right: $px * -1;
     &::after {
       transform: rotate(45deg);
       left: 0;
@@ -72,10 +111,11 @@
 
 @media (min-width: 768px) {
   .bannerSwipe {
-    height: $px * 300;
-    padding: 0 $pagePadding * 3;
+    height: $px * 400;
+    max-width: $px * 1280;
     .swiper-wrapper {
       height: inherit;
+
       .swiper-slide {
         height: inherit;
         .air {
@@ -88,19 +128,10 @@
         }
       }
     }
-    .swiper-button-prev,
-    .swiper-button-next {
-      width: $pagePadding * 3;
-    }
   }
 }
 @media (min-width: 1024px) {
   .bannerSwipe {
     height: $px * 500;
-    // max-width: $max-width;
-    .swiper-wrapper {
-      .swiper-slide {
-      }
-    }
   }
 }

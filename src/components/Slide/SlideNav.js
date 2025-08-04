@@ -3,10 +3,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { ContentType, MvInfoKrTit } from '../MovieTitle/MovieTitle';
 import { useNavigate } from 'react-router-dom';
 import { getContentType } from '../../utils/getContentType';
+import Badge from '../Badge/Badge';
 
 const SlideNav = ({ data }) => {
   const navigate = useNavigate();
-  console.log(data);
 
   return (
     <Swiper navigation modules={[Navigation]} className="bannerSwipe">
@@ -19,6 +19,12 @@ const SlideNav = ({ data }) => {
             )
           }
         >
+          <span className="bannerBadge">
+            <Badge
+              text={`상영 중인 ${getContentType(item, '영화', '시리즈')}`}
+              badgeType={'sub'}
+            />
+          </span>
           <img
             className="air"
             src={`https://image.tmdb.org/t/p/w1280${item.backdrop_path}`}
@@ -26,7 +32,6 @@ const SlideNav = ({ data }) => {
           />
           <div className="bannerItemTit">
             <MvInfoKrTit data={item} />
-            <ContentType data={item} />
           </div>
         </SwiperSlide>
       ))}

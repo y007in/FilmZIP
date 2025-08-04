@@ -69,14 +69,14 @@ const Main = () => {
           </div>
         }
       >
+        {/* <h1 className="introComment">오늘의 관람 기록을 남겨보세요 📝</h1> */}
         <div className="airBanner">
           <SlideNav data={allAiring} />
         </div>
         <div className="banner">
-          {/* <h1 className="introComment">오늘의 관람 기록을 남겨보세요 📝</h1> */}
           <div className="bannerHeadLine">
             <SlideBox
-              title={'나의 아카이빙'}
+              title={'내가 본 영화'}
               data={noDupRecordLists}
               contentType={'movie'}
               nav={'/review'}
