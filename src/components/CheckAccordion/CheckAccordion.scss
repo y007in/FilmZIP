@@ -6,7 +6,10 @@
     padding: 0 $pagePadding;
     .swiper-wrapper {
       width: 100%;
+      display: flex;
+      flex-direction: row;
       align-items: flex-start;
+      padding: 0 $pagePadding;
       .swiper-slide {
         width: 100vw;
         padding: 0;
