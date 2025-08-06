@@ -6,7 +6,7 @@ import SlideList from '../Slide/SlideList';
 const SlideBox = ({ title, data, contentType, nav, dayCount, type, box }) => {
   const navigate = useNavigate();
   return (
-    <article className="slideBox">
+    <article className={`slideBox ${box && 'box'}`}>
       {title && (
         <div className="slideBoxHead">
           <h1 className="contentTit">{title}</h1>

@@ -54,11 +54,34 @@
     flex-direction: column;
     gap: $px * 10;
     max-width: $max-width;
+    .slideContain {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
 
 @media (min-width: 768px) {
-  .MainPage .banner {
-    padding: 0;
+  .MainPage {
+    .banner {
+      padding: 0;
+    }
+    .topList {
+      gap: $px * 18;
+      .slideContain {
+        gap: $px * 18;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .MainPage {
+    .topList {
+      gap: $px * 25;
+      .slideContain {
+        gap: $px * 25;
+      }
+    }
   }
 }

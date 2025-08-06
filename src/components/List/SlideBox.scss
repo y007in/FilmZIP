@@ -3,7 +3,12 @@
   padding: $pagePadding 0;
   display: flex;
   flex-direction: column;
-  gap: $px * 10;
+  &.box {
+    gap: $px * 10;
+    .slideBoxHead {
+      padding: 0;
+    }
+  }
   .slideBoxHead {
     display: flex;
     justify-content: space-between;
@@ -32,6 +37,7 @@
 @media (min-width: 768px) {
   .slideBox {
     padding: $pagePadding;
+    gap: $px * 10;
     .slideBoxHead {
       padding: 0;
       .contentTit {
