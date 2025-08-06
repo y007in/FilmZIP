@@ -46,8 +46,6 @@
       gap: $px * 10;
       width: 100%;
       height: auto;
-      background-color: var(--bg-div-color);
-      border-radius: $px * 10;
     }
   }
   .topList {
@@ -56,5 +54,11 @@
     flex-direction: column;
     gap: $px * 10;
     max-width: $max-width;
+  }
+}
+
+@media (min-width: 768px) {
+  .MainPage .banner {
+    padding: 0;
   }
 }

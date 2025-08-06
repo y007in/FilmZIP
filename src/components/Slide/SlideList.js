@@ -6,14 +6,22 @@ import Poster from '../Poster/Poster';
 
 import { MvInfoKrTit, ContentType } from '../MovieTitle/MovieTitle';
 
-const SlideList = ({ data, contentType, onClick, onDelete, dayCount, nav }) => {
+const SlideList = ({
+  data,
+  contentType,
+  onClick,
+  onDelete,
+  dayCount,
+  nav,
+  box,
+}) => {
   const navigate = useNavigate();
   return (
     <Swiper
       modules={[FreeMode]}
       spaceBetween={10}
       slidesPerView="auto"
-      className="slideSwiper"
+      className={`slideSwiper ${box && 'box'}`}
     >
       {data?.map((item, i) => (
         <SwiperSlide key={item.id ?? `${item.text}-${i}`}>

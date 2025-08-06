@@ -1,7 +1,12 @@
 .slideSwiper {
   width: 100%;
   overflow: hidden;
-  padding: 0 $pagePadding;
+  padding: $pagePadding;
+  &.box {
+    background-color: var(--bg-div-color);
+    padding: $pagePadding;
+    border-radius: $px * 10;
+  }
   .swiper-wrapper {
     display: flex;
     justify-content: flex-start;

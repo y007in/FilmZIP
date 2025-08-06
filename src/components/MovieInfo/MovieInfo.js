@@ -63,7 +63,6 @@ const MovieInfo = ({ direction }) => {
       <ErrorPage statusCode={contentError?.status || creditError?.status} />
     );
   }
-  console.log(contentData);
 
   return (
     <section className="movieInfo">

@@ -12,15 +12,17 @@
       width: 100%;
       font-size: $font-tit-mobile;
       font-weight: 700;
-      margin-left: $px * 5;
     }
     .fullList {
-      width: $px * 35;
-      height: 100%;
+      width: $font-tit-mobile;
+      height: $font-tit-mobile;
       background-color: transparent;
       border: none;
       cursor: pointer;
-      svg path {
+      padding: 0;
+      svg {
+        width: 100%;
+        height: 100%;
         color: var(--text-color);
       }
     }
@@ -35,6 +37,10 @@
       .contentTit {
         font-size: $font-tit-tablet;
       }
+      .fullList {
+        width: $font-tit-tablet;
+        height: $font-tit-tablet;
+      }
     }
   }
 }
@@ -42,6 +48,10 @@
   .slideBox .slideBoxHead {
     .contentTit {
       font-size: $font-tit-pc;
+    }
+    .fullList {
+      width: $font-tit-pc;
+      height: $font-tit-pc;
     }
   }
 }

@@ -69,7 +69,6 @@ const Main = () => {
           </div>
         }
       >
-        {/* <h1 className="introComment">오늘의 관람 기록을 남겨보세요 📝</h1> */}
         <div className="airBanner">
           <SlideNav data={allAiring} />
         </div>
@@ -80,6 +79,7 @@ const Main = () => {
               data={noDupRecordLists}
               contentType={'movie'}
               nav={'/review'}
+              box
             />
           </div>
         </div>
