@@ -6,14 +6,14 @@ import CollectionList from './components/CollectionList';
 
 const ReviewArchive = () => {
   const location = useLocation();
-  const data = location.state?.data;
+  const nav = location.pathname;
   const [params] = useSearchParams();
   const title = params.get('title');
 
   return (
     <div className="ReviewArchive">
       <Page header={<Header title={title} />}>
-        {title === '내가 본 영화' ? <RecordTab /> : <CollectionList />}
+        {nav === '/review' ? <RecordTab /> : <CollectionList />}
       </Page>
     </div>
   );
