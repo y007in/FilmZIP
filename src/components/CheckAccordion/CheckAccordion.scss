@@ -2,14 +2,12 @@
   width: 100%;
   position: relative;
   .swiper {
-    padding: 0;
-    padding: 0 $pagePadding;
+    padding: 0 $px * 30;
     .swiper-wrapper {
       width: 100%;
       display: flex;
       flex-direction: row;
       align-items: flex-start;
-      padding: 0 $pagePadding;
       .swiper-slide {
         width: 100vw;
         padding: 0;
