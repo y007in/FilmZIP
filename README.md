@@ -9,11 +9,38 @@
 
 ## 기술 스택
 
-| category | stack                                                                                                                                                                                                                                                                                                                  |
-| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
-| Design   | ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white)                                                                                                                                                                                                                       |
-| FrontEnd | ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black) ![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=flat-square&logo=Sass&logoColor=white) ![TanStack Query](https://img.shields.io/badge/Tanstack_Query-FF4154?style=flat-square&logo=reactquery&logoColor=white) |
-| Tools    | ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=ESLint&logoColor=white) ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white) ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=white)               |     |
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Stack</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Design</td>
+      <td>
+        <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white" alt="Figma" />
+      </td>
+    </tr>
+    <tr>
+      <td>FrontEnd</td>
+      <td>
+        <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black" alt="React" />
+        <img src="https://img.shields.io/badge/SCSS-CC6699?style=flat-square&logo=Sass&logoColor=white" alt="SCSS" />
+        <img src="https://img.shields.io/badge/Tanstack_Query-FF4154?style=flat-square&logo=reactquery&logoColor=white" alt="TanStack Query" />
+      </td>
+    </tr>
+    <tr>
+      <td>Tools</td>
+      <td>
+        <img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=ESLint&logoColor=white" alt="ESLint" />
+        <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white" alt="Prettier" />
+        <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=white" alt="Git" />
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 \*[TMDB (The Movie Database)](https://www.themoviedb.org/) API를 사용하여 영화 데이터를 제공
 
@@ -25,22 +52,22 @@
 
 ---
 
-# Main
+# 📍 Main
 
-- `useQueries`로 여러 카테고리 데이터(상영 중인 영화, 개봉 예정작, 이번주 트렌드 영화/시리즈)를 한번에 요청하여 슬라이드 컴포넌트(Swiper)로 간략한 정보 노출
+- `useQueries`로 여러 카테고리 데이터(상영 중인 영화, 개봉 예정작, 이번주 트렌드 영화/시리즈)를 `한번에 요청`하여 슬라이드 컴포넌트(Swiper)로 간략한 정보 노출
 - 각 슬라이드에 '더보기' 버튼 클릭 시, pathname에 따라 `/collection` 또는 `/review` 경로로 카테고리명을 쿼리 파라미터로 포함하여 이동
 
 ### 카테고리 별 영화 페이지
 
-- useInfiniteQuery로 카테고리별 전체 영화 호출
-- useInView 훅으로 무한스크롤 구현
+- `useInfiniteQuery`로 카테고리별 전체 영화 호출
+- `useInView` 훅으로 무한스크롤 구현
 
 ### 내가 본 영화
 
 - LocalStorage의 `movieRecord` 에 저장된 영화 데이터를 목록 형태로 나열
 - 상태별 탭으로 분류하여 사용자가 저장한 영화의 상태를 한눈에 파악할 수 있도록 구성
 
-# Search
+# 📍 Search
 
 ### 최근 검색어
 
@@ -70,7 +97,7 @@
 - 검색 결과가 없는 경우
   - `"검색어"`에 대한 검색 결과가 없다는 안내 화면 표시 (앗! "검색어" 검색결과가 없어요)
 
-# Detail
+# 📍 Detail
 
 ### 영화 정보
 
@@ -87,8 +114,9 @@
   - 사용자가 선택한 감상 데이터를 LocalStorage에 `movieRecords`에 저장
     - `createId`, `movieId` , `poster_path`, `title`등과 함께 저장
   - 폼이 모두 완성되었을 때만 저장 버튼이 활성화되도록 **유효성 검사 로직 적용**
+  - 선택 태그에 ‘더보기’ 버튼과 블러 효과를 적용하여, 페이지가 깔끔하게 보이면서도 추가 콘텐츠가 존재함을 사용자에게 직관적으로 알릴 수 있도록 구성
 
-# Review
+# 📍 Review
 
 - 영화의 **제목**과 **포스터 이미지** 표시
 - 사용자가 선택한 **상태값**(예: 관람 상태 등)를 **상태값에 따라 시각적으로 구분**될 수 있도록 색상 구분
