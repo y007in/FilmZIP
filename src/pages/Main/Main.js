@@ -69,6 +69,7 @@ const Main = () => {
           </div>
         }
       >
+      
         <div className="airBanner">
           <SlideNav data={allAiring} />
         </div>

@@ -1,9 +1,10 @@
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { ContentType, MvInfoKrTit } from '../MovieTitle/MovieTitle';
+import { MvInfoKrTit } from '../MovieTitle/MovieTitle';
 import { useNavigate } from 'react-router-dom';
 import { getContentType } from '../../utils/getContentType';
 import Badge from '../Badge/Badge';
+import 'swiper/css/navigation';
 
 const SlideNav = ({ data }) => {
   const navigate = useNavigate();

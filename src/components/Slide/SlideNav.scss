@@ -73,7 +73,7 @@
   }
   .swiper-button-prev,
   .swiper-button-next {
-    width: $pagePadding;
+    width: $pagePadding * 3;
     height: 100%;
     position: absolute;
     top: 50%;
@@ -96,7 +96,7 @@
     left: $px * -1;
     &::after {
       transform: rotate(225deg);
-      right: 0;
+      right: 10%;
     }
   }
 
@@ -104,7 +104,7 @@
     right: $px * -1;
     &::after {
       transform: rotate(45deg);
-      left: 0;
+      left: 10%;
     }
   }
 }
@@ -128,10 +128,26 @@
         }
       }
     }
+    .swiper-button-prev,
+    .swiper-button-next {
+      &::after {
+        content: '';
+        width: $px * 10;
+        height: $px * 10;
+      }
+    }
   }
 }
 @media (min-width: 1024px) {
   .bannerSwipe {
     height: $px * 500;
+    .swiper-button-prev,
+    .swiper-button-next {
+      &::after {
+        content: '';
+        width: $px * 15;
+        height: $px * 15;
+      }
+    }
   }
 }
