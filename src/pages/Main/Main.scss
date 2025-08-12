@@ -38,15 +38,6 @@
     width: 100%;
     max-width: $max-width;
     padding: $pagePadding;
-    .bannerHeadLine {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: $px * 10;
-      width: 100%;
-      height: auto;
-    }
   }
   .topList {
     width: 100%;

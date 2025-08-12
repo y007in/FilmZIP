@@ -69,12 +69,11 @@ const Main = () => {
           </div>
         }
       >
-      
         <div className="airBanner">
           <SlideNav data={allAiring} />
         </div>
-        <div className="banner">
-          <div className="bannerHeadLine">
+        {noDupRecordLists.length > 0 && (
+          <div className="banner">
             <SlideBox
               title={'내가 본 영화'}
               data={noDupRecordLists}
@@ -83,7 +82,7 @@ const Main = () => {
               box
             />
           </div>
-        </div>
+        )}
         <div className="topList">
           <article className="slideContain">
             <SlideBox
