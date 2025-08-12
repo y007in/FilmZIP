@@ -49,7 +49,7 @@
       &.ex {
         &::after {
           content: '';
-          background: none;
+          display: none;
         }
       }
     }
