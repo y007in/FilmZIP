@@ -94,8 +94,11 @@
   - 영화 제목에 검색어가 포함된 항목 나열
   - 영화 클릭 시 해당 영화의 디테일 페이지로 이동
   - `모바일에서는 세로 컬럼 형태`, `태블릿과 PC에서는 그리드 형태`로 반응형으로 배치해 보여줌
+    <video src="https://github.com/user-attachments/assets/fa8f4b04-0171-4856-92f0-0b79b2d2c27f"></video>
 - 검색 결과가 없는 경우
   - `"검색어"`에 대한 검색 결과가 없다는 안내 화면 표시 (앗! "검색어" 검색결과가 없어요)
+    
+    <img width="377" height="669" alt="스크린샷 2025-08-12 오후 7 22 00" src="https://github.com/user-attachments/assets/de64e3ff-40ff-4722-8762-90cb49043cf3" />
 
 # 📍 Detail
 
@@ -128,3 +131,5 @@
   - 해당 영화에 대해 사용자가 저장한 기록들을 나열
   - 기록이 여러 개인 경우, **최신순으로 정렬**하여 모두 표시
   - 각 기록마다 수정 및 삭제 가능
+ 
+<video src="https://github.com/user-attachments/assets/d15f0bd9-d4e3-447b-9984-10756c9c77f1"></vidoe>
