@@ -3,7 +3,8 @@ import Badge from '../Badge/Badge';
 import { MvCertification, MvInfoImage } from '../MovieTitle/MovieTitle';
 
 const Poster = ({ item, age, contentType, dayCount }) => {
-  const dDay = dDayCount(item);
+  const { dDay } = dDayCount(item);
+
   return (
     <article className="mvInfoImg">
       {item.poster_path !== null ? (

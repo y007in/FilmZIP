@@ -8,6 +8,7 @@ import {
   fetchTvDetail,
   fetchMovieCredit,
   fetchTvCredit,
+  fetchUpcoming,
 } from '../../api/api';
 import {
   MvCertification,
@@ -19,6 +20,7 @@ import {
   MvInfoTagLine,
 } from '../../components/MovieTitle/MovieTitle';
 import { getBoolContentType } from '../../utils/getContentType';
+import { filterReleaseDate } from '../../utils/filterMovies';
 
 const MovieInfo = ({ direction }) => {
   const direct_type = ['row', 'col'].includes(direction) ? direction : '';
@@ -28,6 +30,7 @@ const MovieInfo = ({ direction }) => {
     { data: contentData, isLoading: contentLoading, error: contentError },
 
     { data: contentCredit, isLoading: creditLoading, error: creditError },
+    { data: upcomingData, isLoading: upcomingLoading, error: upcomingError },
   ] = useQueries({
     queries: [
       {
@@ -54,13 +57,23 @@ const MovieInfo = ({ direction }) => {
         gcTime: 1000 * 60 * 30,
         refetchOnWindowFocus: false,
       },
+      {
+        queryKey: ['upcoming'],
+        queryFn: ({ page = 1 }) => fetchUpcoming(page),
+        staleTime: 1000 * 60 * 10,
+        gcTime: 1000 * 60 * 30,
+      },
     ],
   });
 
-  if (contentLoading || creditLoading) return <Loading />;
+  if (contentLoading || creditLoading || upcomingLoading) return <Loading />;
   if (contentError || creditError) {
     return (
-      <ErrorPage statusCode={contentError?.status || creditError?.status} />
+      <ErrorPage
+        statusCode={
+          contentError?.status || creditError?.status || upcomingError?.status
+        }
+      />
     );
   }
 
@@ -69,10 +82,16 @@ const MovieInfo = ({ direction }) => {
       <div className="movieMeta">
         <MvCertification id={id} contentType={contentType} />
         <div className="runtime">
-          {contentData.release_date ? (
-            <Badge text={contentData.release_date.substr(0, 4)} />
+          {contentData.release_date || upcomingData.results.release_date ? (
+            <Badge
+              text={filterReleaseDate(
+                upcomingData,
+                contentData,
+                id,
+              ).release_date.substr(0, 4)}
+            />
           ) : (
-            contentData.first_air_date && (
+            contentData.last_air_date && (
               <Badge text={contentData.first_air_date.substr(0, 4)} />
             )
           )}

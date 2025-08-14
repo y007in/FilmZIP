@@ -15,8 +15,9 @@ export const latestComingList = data => {
 
 export const dDayCount = item => {
   const todayDate = getTodayDate();
-  const releaseDate = new Date(item.release_date);
+  const releaseDate = new Date(item?.release_date || item?.last_air_date);
   const diffTime = releaseDate - todayDate;
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-  return diffDays >= 0 ? `D-${diffDays}` : '';
+  const dDay = diffDays >= 0 ? `D-${diffDays}` : '';
+  return { dDay, diffDays };
 };

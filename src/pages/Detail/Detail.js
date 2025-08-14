@@ -16,10 +16,13 @@ import {
   fetchTvDetail,
   fetchMovieImage,
   fetchTvImage,
+  fetchUpcoming,
 } from '../../api/api';
 import { setMovieRecords, getMovieRecords } from '../../utils/storage';
 import { useMovieForm } from '../../hooks/useMovieForm';
 import { getBoolContentType } from '../../utils/getContentType';
+import { dDayCount } from '../../utils/movieDateUtils';
+import { filterReleaseDate } from '../../utils/filterMovies';
 
 const Detail = () => {
   const { id, contentType } = useParams();
@@ -33,6 +36,7 @@ const Detail = () => {
   const [
     { data: contentData, isLoading: contentLoading, error: contentError },
     { data: contentImage, isLoading: imageLoading, error: imageError },
+    { data: upcomingData, isLoading: upcomingLoading, error: upcomingError },
   ] = useQueries({
     queries: [
       {
@@ -59,9 +63,18 @@ const Detail = () => {
         gcTime: 1000 * 60 * 30,
         refetchOnWindowFocus: false,
       },
+      {
+        queryKey: ['upcoming'],
+        queryFn: ({ page = 1 }) => fetchUpcoming(page),
+        staleTime: 1000 * 60 * 10,
+        gcTime: 1000 * 60 * 30,
+      },
     ],
   });
-
+  //개봉날짜 따른 등록버튼 조건부
+  const { diffDays } = dDayCount(
+    filterReleaseDate(upcomingData, contentData, id),
+  );
   //기록 입력 폼 열/닫기
   const handleFilterDialog = () => {
     setIsRecord(!isRecord);
@@ -78,22 +91,35 @@ const Detail = () => {
     setWatch(initialData);
   };
 
-  if (contentLoading || (imageLoading && !isLoaded)) return <Loading />;
+  if (contentLoading || (imageLoading && !isLoaded) || upcomingLoading)
+    return <Loading />;
   if (contentError || imageError)
     return (
-      <ErrorPage statusCode={contentError?.status || imageError?.status} />
+      <ErrorPage
+        statusCode={
+          contentError?.status || imageError?.status || upcomingError?.status
+        }
+      />
     );
   return (
     <div className="DetailPage">
       <Page
         header={<Header movieData={contentData} />}
         footer={
-          <Button
-            styleType={'full'}
-            styleSize={'large'}
-            text={'등록하기'}
-            onClick={handleFilterDialog}
-          />
+          diffDays < 0 ? (
+            <Button
+              styleType={'full'}
+              styleSize={'large'}
+              text={'등록하기'}
+              onClick={handleFilterDialog}
+            />
+          ) : (
+            <Button
+              styleType={'disabled'}
+              styleSize={'large'}
+              text={`${diffDays}일 후 개봉해요!`}
+            />
+          )
         }
       >
         <div className="container">
