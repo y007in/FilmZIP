@@ -26,11 +26,13 @@ const SlideNav = ({ data }) => {
               badgeType={'sub'}
             />
           </span>
-          <img
-            className="air"
-            src={`https://image.tmdb.org/t/p/w1280${item.backdrop_path}`}
-            alt={`${item.title || item.name} 배경 이미지`}
-          />
+          <figure className="air">
+            <img
+              src={`https://image.tmdb.org/t/p/w1280${item.backdrop_path}`}
+              alt={`${item.title || item.name} 배경 이미지`}
+            />
+          </figure>
+
           <div className="bannerItemTit">
             <MvInfoKrTit data={item} />
           </div>
