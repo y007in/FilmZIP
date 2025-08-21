@@ -4,7 +4,9 @@ const FormControl = ({ label, htmlFor, inputType, sr_only, children }) => {
       <label htmlFor={htmlFor} className={sr_only}>
         {label}
         <span className="limit">
-          {inputType === 'buttonsCheck' && '중복 선택 가능'}
+          {(inputType === 'buttonsCheck' ||
+            inputType === 'buttonsCheckGroup') &&
+            '중복 선택 가능'}
         </span>
       </label>
       <div className="inputBox">{children}</div>
